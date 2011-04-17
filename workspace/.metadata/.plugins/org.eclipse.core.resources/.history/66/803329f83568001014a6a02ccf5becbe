@@ -1,0 +1,7 @@
+package br.estacio.hermes.model;
+
+public interface Autenticavel {
+	String nome;
+	
+
+}

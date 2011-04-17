@@ -1,0 +1,7 @@
+package br.estacio.hermes.model;
+
+public interface Autenticavel {
+	
+	public boolean autentica(string login,string senha); 
+
+}

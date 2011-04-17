@@ -1,0 +1,9 @@
+package br.estacio.hermes.controller;
+
+@Resource
+public class AutenticavelController {
+	public   autentica name() {
+		
+	}
+
+}
