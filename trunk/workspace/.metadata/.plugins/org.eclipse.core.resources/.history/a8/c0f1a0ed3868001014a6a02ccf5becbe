@@ -1,0 +1,6 @@
+package br.estacio.hermes.model;
+
+public class UF {
+	int numero;
+
+}

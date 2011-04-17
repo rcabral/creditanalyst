@@ -1,0 +1,16 @@
+package br.estacio.hermes.model;
+
+public class Funcionario implements Autenticavel {
+	String matricula;
+	String login;
+	String senha;
+	
+	public boolean autentica(String login, String senha) {
+		if(this.login == login && this.senha == senha ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+}

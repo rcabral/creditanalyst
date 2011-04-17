@@ -1,0 +1,7 @@
+package br.estacio.hermes.model;
+
+public class PessoaFisica {
+	String codigo;
+	
+
+}
