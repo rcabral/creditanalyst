@@ -1,8 +1,0 @@
-package br.estacio.hermes.model;
-
-public class Endereco {
-	String tipoDeLogradouro;
-	String nomeDeLogrado;
-	
-
-}

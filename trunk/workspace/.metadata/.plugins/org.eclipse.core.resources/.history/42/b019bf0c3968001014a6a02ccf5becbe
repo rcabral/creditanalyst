@@ -1,7 +1,0 @@
-package br.estacio.hermes.model;
-
-public class UF {
-	int codigo;
-	String nome;
-	
-}

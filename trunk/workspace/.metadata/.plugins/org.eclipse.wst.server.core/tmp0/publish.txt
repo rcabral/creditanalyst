@@ -1,3 +1,0 @@
-#Tomcat publish data
-#Sat Apr 16 15:46:27 BRT 2011
-org.eclipse.jst.jee.server\:/binary\:C\:\\faculdade\\projeto\ final\\workspace\\Hermes\\WebContent\\WEB-INF\\lib\\vraptor-3.3.1.jar=WEB-INF/lib/vraptor-3.3.1.jar

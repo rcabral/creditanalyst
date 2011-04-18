@@ -1,6 +1,0 @@
-package br.estacio.hermes.model;
-
-public class Conjuge {
-	double salario;
-
-}
