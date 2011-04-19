@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Funcionario implements Autenticavel {
+public class Funcionario extends PessoaFisica implements Autenticavel {
 	@Id
 	@GeneratedValue
 	private Long id;
