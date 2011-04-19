@@ -2,19 +2,23 @@ package br.estacio.hermes.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import br.estacio.hermes.model.Endereco;
 
 public class EnderecoDAO {
 	
 private Session session;
+private Transaction transaction;
 	
 	public EnderecoDAO(Session session){
 		this.session = session;
 	}
 	
 	public void salva(Endereco p){
+		transaction = this.session.beginTransaction();
 		this.session.save(p);
+		transaction.commit();
 	}
 	
 	public void remove(Endereco p){

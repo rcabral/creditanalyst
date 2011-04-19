@@ -1,5 +1,6 @@
 package br.estacio.hermes.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +14,7 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 	private String matricula;
 	private String login;
 	private String senha;
-	@OneToOne
+	@OneToOne(cascade={CascadeType.ALL})
 	private Endereco endereco;
 
 	public String getMatricula() {
