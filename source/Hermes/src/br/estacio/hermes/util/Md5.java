@@ -1,4 +1,4 @@
-package br.estacio.hermes.model;
+package br.estacio.hermes.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
