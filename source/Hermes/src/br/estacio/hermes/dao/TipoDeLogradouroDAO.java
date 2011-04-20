@@ -5,44 +5,44 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.caelum.vraptor.ioc.Component;
-import br.estacio.hermes.model.Logradouro;
+import br.estacio.hermes.model.TipoDeLogradouro;
 
 
 @Component
-public class LogradouroDAO {
+public class TipoDeLogradouroDAO {
 
 	private Session session;
 	private Transaction transaction;
 
-	public LogradouroDAO(Session session) {
+	public TipoDeLogradouroDAO(Session session) {
 		this.session = session;
 	}
 
-	public void salva(Logradouro p) {
+	public void salva(TipoDeLogradouro p) {
 		transaction = this.session.beginTransaction();
 		this.session.save(p);
 		transaction.commit();
 	}
 
-	public void remove(Logradouro p) {
+	public void remove(TipoDeLogradouro p) {
 		transaction = this.session.beginTransaction();
 		this.session.delete(p);
 		transaction.commit();
 	}
 
-	public Logradouro procura(Long id) {
-		return (Logradouro) this.session.load(Logradouro.class, id);
+	public TipoDeLogradouro procura(Long id) {
+		return (TipoDeLogradouro) this.session.load(TipoDeLogradouro.class, id);
 	}
 
-	public void atualiza(Logradouro p) {
+	public void atualiza(TipoDeLogradouro p) {
 		transaction = this.session.beginTransaction();
 		this.session.update(p);
 		transaction.commit();	
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Logradouro> lista() {
-		return this.session.createCriteria(Logradouro.class).list();
+	public List<TipoDeLogradouro> lista() {
+		return this.session.createCriteria(TipoDeLogradouro.class).list();
 	}
 
 }
