@@ -1,6 +1,9 @@
 package br.estacio.hermes.model;
 
 import java.util.Calendar;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -9,7 +12,8 @@ public abstract class PessoaFisica {
 	private String cpf;
 	private String rg;
 	private Calendar dataDeNascimento;
-	private char sexo;
+	@Enumerated(EnumType.STRING)
+	private Sexo sexo;
 
 	public String getNome() {
 		return nome;
@@ -43,11 +47,11 @@ public abstract class PessoaFisica {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
-	public char getSexo() {
+	public Sexo getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(char sexo) {
+	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
 
