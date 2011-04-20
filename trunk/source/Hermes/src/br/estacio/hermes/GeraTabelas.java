@@ -5,6 +5,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import br.estacio.hermes.model.Endereco;
 import br.estacio.hermes.model.Funcionario;
+import br.estacio.hermes.model.Proposta;
 import br.estacio.hermes.model.TipoDeLogradouro;
 import br.estacio.hermes.model.PessoaFisica;
 
@@ -15,6 +16,7 @@ public class GeraTabelas {
 		cfg.addAnnotatedClass(Funcionario.class);
 		cfg.addAnnotatedClass(Endereco.class);
 		cfg.addAnnotatedClass(TipoDeLogradouro.class);
+		cfg.addAnnotatedClass(Proposta.class);
 		SchemaExport se = new SchemaExport(cfg);
 		se.create(true, true);
 	}

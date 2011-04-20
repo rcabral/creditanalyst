@@ -17,11 +17,11 @@ public class IncluiLogradouro {
 		Session session = new HibernateUtil().getSession();
 		
 		TipoDeLogradouro tipoDeLogradouro = new TipoDeLogradouro();
-		//tipoDeLogradouro.setAbreviacao("R");
-		//tipoDeLogradouro.setNome("Rua");
+		tipoDeLogradouro.setAbreviacao("R");
+		tipoDeLogradouro.setNome("Rua");
 		
-		TipoDeLogradouroDAO tipoDeLogradouroDAO = new TipoDeLogradouroDAO(session);
-		tipoDeLogradouro = tipoDeLogradouroDAO.procura(1L);
+		//TipoDeLogradouroDAO tipoDeLogradouroDAO = new TipoDeLogradouroDAO(session);
+		//tipoDeLogradouro = tipoDeLogradouroDAO.procura(1L);
 		
 		//if (tipoDeLogradouro != null){
 		//	System.out.println("tipoDeLogradouro : " + tipoDeLogradouro.getNome());
