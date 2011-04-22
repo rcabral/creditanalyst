@@ -5,38 +5,38 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.caelum.vraptor.ioc.Component;
-import br.estacio.hermes.model.Funcionario;
+import br.estacio.hermes.model.Produto;
 
 @Component
-public class FuncionarioDAO {
+public class ProdutoDAO {
 	
 private Session session;
 private Transaction transaction;
 	
-	public FuncionarioDAO(Session session){
+	public ProdutoDAO(Session session){
 		this.session = session;
 	}
 	
-	public void salva(Funcionario p){
+	public void salva(Produto p){
 		transaction = this.session.beginTransaction();
 		this.session.save(p);
 		transaction.commit();
 	}
 	
-	public void remove(Funcionario p){
+	public void remove(Produto p){
 		this.session.delete(p);
 		this.session.flush();
 	}
-	public Funcionario procura(Long id){
-		return (Funcionario)this.session.load(Funcionario.class,id);
+	public Produto procura(Long id){
+		return (Produto)this.session.load(Produto.class,id);
 	}
-	public void atualiza(Funcionario p){
+	public void atualiza(Produto p){
 		this.session.update(p);
 		this.session.flush();
 	}
 
-	public List<Funcionario> lista(){
-		return this.session.createCriteria(Funcionario.class).list();
+	public List<Produto> lista(){
+		return this.session.createCriteria(Produto.class).list();
 	}
 
 }

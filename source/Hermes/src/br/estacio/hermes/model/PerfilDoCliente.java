@@ -9,7 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import br.com.caelum.vraptor.mydvds.model.DvdRental;
 
 @Entity
 public class PerfilDoCliente {
@@ -19,9 +18,9 @@ public class PerfilDoCliente {
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 	private int numeroDeDependentes;
-	private NivelDeInstrucao nivelDeInstrucao;
+	//private NivelDeInstrucao nivelDeInstrucao;
 	private Profissao profissao;
-	private TipoDeResidencia tipoDeResidencia;
+	//private TipoDeResidencia tipoDeResidencia;
 	private int tempoDeResidenciaAtualEmAnos;
 	private Endereco endereco;
 	private Set<BenImovel> benImoveis;
