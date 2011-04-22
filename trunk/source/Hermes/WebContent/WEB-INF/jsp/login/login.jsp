@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form id="login-form" action="<c:url value='/produtos/adiciona'/>" method="post">
+<form id="login-form" action="<c:url value='/login/login'/>" method="post">
 		<fieldset>
 		
 			<legend>Log in</legend>
