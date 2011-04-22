@@ -2,6 +2,7 @@ package br.estacio.hermes.model;
 
 import java.util.Calendar;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;

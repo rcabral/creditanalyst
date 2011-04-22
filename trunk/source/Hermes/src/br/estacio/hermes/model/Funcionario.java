@@ -17,6 +17,10 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 	@OneToOne(cascade={CascadeType.ALL})
 	private Endereco endereco;
 
+	public Funcionario() {
+		super();
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}

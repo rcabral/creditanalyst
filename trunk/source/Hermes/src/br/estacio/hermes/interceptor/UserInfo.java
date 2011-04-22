@@ -14,25 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.estacio.hermes;
+package br.estacio.hermes.interceptor;
 
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.Result;
-import br.estacio.hermes.interceptor.Public;
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.SessionScoped;
+import br.estacio.hermes.model.Autenticavel;
+import br.estacio.hermes.model.Funcionario;
 
-@Resource
-public class IndexController {
+/**
+ * Represents the user logged in the system.
+ * @author Caio Filipini
+ */
+@Component
+@SessionScoped
+public class UserInfo {
 
-	private final Result result;
+    private Funcionario user;
 
-	public IndexController(Result result) {
-		this.result = result;
-	}
+    public Funcionario getUser() {
+        return user;
+    }
 
-	@Path("/")
-	public void index() {
-		result.include("variable", "VRaptor!");
-	}
+    public void login(Funcionario user) {
+        this.user = user;
+    }
+
+    public void logout() {
+        this.user = null;
+    }
 
 }
