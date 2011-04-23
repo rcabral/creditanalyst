@@ -6,24 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Lista de Produtos</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<table>
-		<thead>
-			<th>Nome</th>
-			<th>Descrição</th>
-		</thead>
-		<tbody>
-			<c:forEach items="${produtoList}" var="produto">
-				<tr>
-					<td>${produto.nome}</td>
-					<td>${produto.descricao}</td>
-					<td><a href="edita?id=${produto.id }">Editar</a></td>
-					<td><a href="remove?id=${produto.id}">Remover</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<h3>Produto adicionado com sucesso!</h3>
 </body>
 </html>

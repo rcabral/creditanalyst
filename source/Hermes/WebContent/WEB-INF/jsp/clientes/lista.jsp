@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Lista de funcionários</title>
+<title>Lista de Clientes</title>
 </head>
 <body>
 	<table>
@@ -17,17 +17,15 @@
 			<th>RG</th>
 			<th>Data de Nascimento</th>
 			<th>Sexo</th>
-			<th>Matrícula</th>
 		</thead>
 		<tbody>
-			<c:forEach items="${funcionarioList}" var="funcionario">
+			<c:forEach items="${clienteList}" var="cliente">
 				<tr>
-					<td>${funcionario.nome}</td>
-					<td>${funcionario.cpf}</td>
-					<td>${funcionario.rg}</td>
-					<td><fmt:formatDate value="${funcionario.dataDeNascimento.time}" pattern="dd/MM/yyyy"/></td>
-					<td>${funcionario.sexo}</td>
-					<td>${funcionario.matricula}</td>
+					<td>${cliente.nome}</td>
+					<td>${cliente.cpf}</td>
+					<td>${cliente.rg}</td>
+					<td><fmt:formatDate value="${cliente.dataDeNascimento.time}" pattern="dd/MM/yyyy"/></td>
+					<td>${cliente.sexo}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
