@@ -64,7 +64,7 @@ public class IncluiLogradouro {
 		
 		
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO(session);
-		funcionarioDAO.salva(funcionario);
+		//funcionarioDAO.salva(funcionario);
 	
 		
 		

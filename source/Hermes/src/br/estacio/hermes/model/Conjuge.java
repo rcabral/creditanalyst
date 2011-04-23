@@ -11,7 +11,7 @@ public class Conjuge {
 	@Id
 	@GeneratedValue
 	double salario;
-	Profissao profissao;
+	//Profissao profissao;
 	Calendar dataDeEntradaNoEmpregoAtual;
 	TipoDeVinculoEmpregaticio  tipoDeVinculoEmpregaticio;
 }

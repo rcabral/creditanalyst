@@ -5,8 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.validator.NotNull;
 
 @Entity
+@Table( uniqueConstraints = {@UniqueConstraint(columnNames={"id", "matricula"})})
 public class Funcionario extends PessoaFisica implements Autenticavel {
 	@Id
 	@GeneratedValue
@@ -19,6 +24,14 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 
 	public Funcionario() {
 		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getMatricula() {
@@ -53,16 +66,10 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 		this.endereco = endereco;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public boolean autentica(String login, String senha) {
-		if (this.login == login && this.senha == senha) {
-			return true;
-		} else {
-			return false;
-		}
+		// TODO Auto-generated method stub
+		return false;
 	}
 
+	
 }
