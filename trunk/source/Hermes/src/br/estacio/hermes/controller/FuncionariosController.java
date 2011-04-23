@@ -20,4 +20,7 @@ public class FuncionariosController {
 		List<Funcionario> funcionarios = dao.lista();
 		return funcionarios;
 	}
+	
+	public void formulario(){
+	}
 }
