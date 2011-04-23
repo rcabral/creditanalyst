@@ -7,9 +7,9 @@ import javax.persistence.Id;
 @Entity
 public class NivelDeInstrucao {
 	@Id
-	@GeneratedValue
 	private Long id;
-	String descricao;
+	private String descricao;
+	
 	public Long getId() {
 		return id;
 	}
