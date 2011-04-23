@@ -21,7 +21,8 @@ public class PerfilDoCliente {
 	private int numeroDeDependentes;
 	@OneToOne
 	private NivelDeInstrucao nivelDeInstrucao;
-	//private Profissao profissao;
+	@OneToOne
+	private Profissao profissao;
 	@Enumerated(EnumType.STRING)
 	private TipoDeResidencia tipoDeResidencia;
 	private int tempoDeResidenciaAtualEmAnos;
