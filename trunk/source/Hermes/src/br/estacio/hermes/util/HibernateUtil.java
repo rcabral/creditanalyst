@@ -6,7 +6,6 @@ import org.hibernate.cfg.AnnotationConfiguration;
 
 import br.estacio.hermes.model.Endereco;
 import br.estacio.hermes.model.Funcionario;
-import br.estacio.hermes.model.TipoDeLogradouro;
 import br.estacio.hermes.model.PessoaFisica;
 
 public class HibernateUtil {
@@ -16,7 +15,6 @@ public class HibernateUtil {
 			cfg.addAnnotatedClass(PessoaFisica.class);
 			cfg.addAnnotatedClass(Funcionario.class);
 			cfg.addAnnotatedClass(Endereco.class);
-			cfg.addAnnotatedClass(TipoDeLogradouro.class);
 			factory = cfg.buildSessionFactory(); 
 		}
 		

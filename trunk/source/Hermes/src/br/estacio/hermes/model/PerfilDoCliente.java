@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.Email;
+
 @Entity
 public class PerfilDoCliente {
 	@Id
@@ -19,7 +21,7 @@ public class PerfilDoCliente {
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 	private int numeroDeDependentes;
-	@OneToOne
+	@Enumerated(EnumType.STRING)
 	private NivelDeInstrucao nivelDeInstrucao;
 	@OneToOne
 	private Profissao profissao;
@@ -34,6 +36,7 @@ public class PerfilDoCliente {
 	private Telefone telefoneResidencial;
 	@OneToOne
 	private Telefone telefoneCelular;
+	@Email
 	private String email;
 	private int quantidadeDeVeiculos;
 	private double rendaEstimada;
