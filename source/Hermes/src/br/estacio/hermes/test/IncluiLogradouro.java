@@ -12,7 +12,6 @@ import br.estacio.hermes.model.Endereco;
 import br.estacio.hermes.model.Funcionario;
 import br.estacio.hermes.model.PerfilDoCliente;
 import br.estacio.hermes.model.Sexo;
-import br.estacio.hermes.model.TipoDeLogradouro;
 import br.estacio.hermes.util.HibernateUtil;
 
 public class IncluiLogradouro {
@@ -31,10 +30,7 @@ public class IncluiLogradouro {
 		*/
 		
 		
-		TipoDeLogradouro tipoDeLogradouro = new TipoDeLogradouro();
-		tipoDeLogradouro.setAbreviacao("R");
-		tipoDeLogradouro.setNome("Rua");
-		
+			
 		
 		//TipoDeLogradouroDAO tipoDeLogradouroDAO = new TipoDeLogradouroDAO(session);
 		//tipoDeLogradouro = tipoDeLogradouroDAO.procura(1L);
@@ -51,13 +47,12 @@ public class IncluiLogradouro {
 		funcionario.setDataDeNascimento(new GregorianCalendar(1994, 1, 1));
 		funcionario.setLogin("rcabral");
 		funcionario.setSenha("12345678");
-		funcionario.setSexo(Sexo.MASCULINO);
+		//funcionario.setSexo(Sexo.MASCULINO);
 		funcionario.setMatricula("finicred-001");
 		Endereco endereco = new Endereco();
 		endereco.setBairro("covanca");
 		endereco.setCep("24412630");
 		endereco.setNomeDoLogrado("Aloízio Gonçalves");
-		endereco.setTipoDeLogradouro(tipoDeLogradouro);
 		endereco.setNumero(95);
 		funcionario.setEndereco(endereco);
 		

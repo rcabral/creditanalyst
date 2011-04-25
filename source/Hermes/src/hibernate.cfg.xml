@@ -16,11 +16,9 @@
 		<mapping class="br.estacio.hermes.model.PessoaFisica" />
 		<mapping class="br.estacio.hermes.model.Funcionario" />
 		<mapping class="br.estacio.hermes.model.Endereco" />
-		<mapping class="br.estacio.hermes.model.TipoDeLogradouro" />
 		<mapping class="br.estacio.hermes.model.Cliente" />
 		<mapping class="br.estacio.hermes.model.PerfilDoCliente" />
 		<mapping class="br.estacio.hermes.model.Conjuge" />
-		<mapping class="br.estacio.hermes.model.NivelDeInstrucao" />
 		<mapping class="br.estacio.hermes.model.Telefone" />
 		<mapping class="br.estacio.hermes.model.Profissao" />
 		<mapping class="br.estacio.hermes.model.BenImovel" />
