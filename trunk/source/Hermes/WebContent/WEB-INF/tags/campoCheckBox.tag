@@ -3,4 +3,5 @@
 <%@ attribute name="label" required="true" %>
 <%@ attribute name="value" required="false" %>
 <label for="${id}">${label}</label>
-<input type="text" id="${id}" name="${id}" class="data" value="${value}" />
+<input type="checkbox" id="${id}" name="${id}" class="checkbox" />
+			
