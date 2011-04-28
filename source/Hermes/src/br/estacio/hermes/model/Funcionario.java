@@ -71,5 +71,10 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 		return false;
 	}
 
+	public Credencial getCredencial() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

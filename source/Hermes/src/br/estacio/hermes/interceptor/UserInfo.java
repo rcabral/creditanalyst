@@ -19,7 +19,7 @@ package br.estacio.hermes.interceptor;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.SessionScoped;
 import br.estacio.hermes.model.Autenticavel;
-import br.estacio.hermes.model.Funcionario;
+
 
 /**
  * Represents the user logged in the system.
@@ -29,13 +29,13 @@ import br.estacio.hermes.model.Funcionario;
 @SessionScoped
 public class UserInfo {
 
-    private Funcionario user;
+    private Autenticavel user;
 
-    public Funcionario getUser() {
+    public Autenticavel getUser() {
         return user;
     }
 
-    public void login(Funcionario user) {
+    public void login(Autenticavel user) {
         this.user = user;
     }
 

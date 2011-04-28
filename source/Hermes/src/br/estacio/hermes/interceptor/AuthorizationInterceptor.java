@@ -21,27 +21,30 @@ package br.estacio.hermes.interceptor;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.resource.ResourceMethod;
-import br.estacio.hermes.controller.LoginController;
-import br.estacio.hermes.dao.FuncionarioDAO;
+import br.estacio.hermes.controller.AutenticacaoController;
+import br.estacio.hermes.service.AutenticadorService;
 
 /**
  * Interceptor to check if the user is in the session.
  */
 
+@Intercepts
 public class AuthorizationInterceptor implements Interceptor {
-
-
 	private final UserInfo info;
-	private final FuncionarioDAO dao;
 	private final Result result;
-
-	public AuthorizationInterceptor(UserInfo info, FuncionarioDAO dao, Result result) {
+	private final Validator validator;
+	private final AutenticadorService  autenticadorService;
+	
+	public AuthorizationInterceptor(UserInfo info, Result result,
+			Validator validator, AutenticadorService autenticadorService) {
 		this.info = info;
-		this.dao = dao;
 		this.result = result;
+		this.validator = validator;
+		this.autenticadorService = autenticadorService;
 	}
 
 	/**
@@ -59,11 +62,11 @@ public class AuthorizationInterceptor implements Interceptor {
     	/**
     	 * You can use the result even in interceptors.
     	 */
-    	if (info.getUser() == null) {
-    		result.redirectTo(LoginController.class).login();
-    	} else {
+    	//if (info.getUser() == null) {
+    	//	result.redirectTo(AutenticacaoController.class).login();
+    	//} else {
 	    	stack.next(method, resourceInstance);
-    	}
+    	//}
     }
 
 }
