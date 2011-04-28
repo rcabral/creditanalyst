@@ -11,6 +11,7 @@ import br.estacio.hermes.model.EstadoCivil;
 import br.estacio.hermes.model.NivelDeInstrucao;
 import br.estacio.hermes.model.Sexo;
 import br.estacio.hermes.model.TipoDeLogradouro;
+import br.estacio.hermes.model.TipoDeVinculoComCredor;
 import br.estacio.hermes.model.Uf;
 
 @Resource
@@ -40,6 +41,7 @@ public class ClientesController {
 		result.include("tipoDeLogradouroList",TipoDeLogradouro.values());
 		result.include("sexoList",Sexo.values());
 		result.include("estadoCivilList",EstadoCivil.values());
+		result.include("tipoDeVinculoComCredorList",TipoDeVinculoComCredor.values());
 		result.include("ufs",Uf.values());
 		result.include("cliente",cliente);
 	}
