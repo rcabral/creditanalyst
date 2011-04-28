@@ -101,7 +101,7 @@
 			<input id="perfilDoCliente.salario" type="text" name="perfilDoCliente.salario" value="${perfilDoCliente.salario}"  /><br /><br />
 			
 			
-			<hermes:combobox id="cliente.sexo" lista="sexoList" ></hermes:combobox>
+			<hermes:combobox id="cliente.sexo" lista="${sexoList}" ></hermes:combobox>
 						
 			
 			
