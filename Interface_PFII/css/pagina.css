@@ -1,0 +1,34 @@
+body {
+	margin:0px;
+}
+#conteudo{
+	width:100%;
+}
+#topo{
+	width:100%;
+	height:61px;
+	background:#fff url(../img/hermes.png) no-repeat center right;;
+}
+#menu {
+	height:25px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #0D2846;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #0D2846;
+	background-color: #ccc;
+}
+#corpo {
+	padding:0px 10px;
+	font-family:"Trebuchet MS", arial, sans-serif;
+	font-size:14px;
+}
+#rodape{
+	width:100%;
+	background-color: #ccc;
+	color:#fff;
+	font-size: 12px;
+}
+#rodape p.esquerda {margin:0px;padding:5px 10px;float:left;}
+#rodape p.direita {margin:0px;padding:5px 10px;text-align:right;}
