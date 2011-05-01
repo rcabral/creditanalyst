@@ -1,2 +1,27 @@
 @CHARSET "ISO-8859-1";
 
+
+#divBensImoveis,.divBemImovel{
+	margin: 0;
+	padding: 0;
+}
+
+.divBemImovel input{
+	margin: 5px;
+}
+
+.divBemImovel{
+	padding: 5px;
+}
+
+.texto{
+	width: 300px;
+}
+
+/*
+label{
+	display:block;
+	float:left;
+	width: 200px;
+}
+*/
