@@ -4,13 +4,17 @@ import java.util.List;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.deserialization.JsonDeserializer;
+import br.com.caelum.vraptor.view.Results;
 import br.estacio.hermes.dao.ClienteDAO;
 import br.estacio.hermes.dao.ProfissaoDAO;
 import br.estacio.hermes.model.Cliente;
 import br.estacio.hermes.model.EstadoCivil;
 import br.estacio.hermes.model.NivelDeInstrucao;
+import br.estacio.hermes.model.Proposta;
 import br.estacio.hermes.model.Sexo;
 import br.estacio.hermes.model.TipoDeLogradouro;
+import br.estacio.hermes.model.TipoDeResidencia;
 import br.estacio.hermes.model.TipoDeVinculoComCredor;
 import br.estacio.hermes.model.Uf;
 
@@ -20,10 +24,9 @@ public class ClientesController {
 	private final ProfissaoDAO profissaoDAO;
 	private final Result result;
 	private final Validator validator;
-   
-	
 
-	public ClientesController(ClienteDAO dao,ProfissaoDAO profissaoDAO,Result result, Validator validator) {
+	public ClientesController(ClienteDAO dao, ProfissaoDAO profissaoDAO,
+			Result result, Validator validator) {
 		this.dao = dao;
 		this.profissaoDAO = profissaoDAO;
 		this.result = result;
@@ -36,14 +39,16 @@ public class ClientesController {
 	}
 
 	public void formulario(Cliente cliente) {
-		result.include("nivelDeInstrucaoList",NivelDeInstrucao.values());
-		result.include("profissaoList",profissaoDAO.lista());
-		result.include("tipoDeLogradouroList",TipoDeLogradouro.values());
-		result.include("sexoList",Sexo.values());
-		result.include("estadoCivilList",EstadoCivil.values());
-		result.include("tipoDeVinculoComCredorList",TipoDeVinculoComCredor.values());
-		result.include("ufs",Uf.values());
-		result.include("cliente",cliente);
+		result.include("nivelDeInstrucaoList", NivelDeInstrucao.values());
+		result.include("profissaoList", profissaoDAO.lista());
+		result.include("tipoDeLogradouroList", TipoDeLogradouro.values());
+		result.include("sexoList", Sexo.values());
+		result.include("estadoCivilList", EstadoCivil.values());
+		result.include("tipoDeVinculoComCredorList",
+				TipoDeVinculoComCredor.values());
+		result.include("tipoDeResidenciaList", TipoDeResidencia.values());
+		result.include("ufs", Uf.values());
+		result.include("cliente", cliente);
 	}
 
 	public void adiciona(Cliente cliente) {
@@ -69,6 +74,13 @@ public class ClientesController {
 		Cliente Cliente = dao.carrega(id);
 		dao.remove(Cliente);
 		result.redirectTo(this).lista();
+	}
+
+	public void novaProposta(Long id) {
+		Cliente cliente = dao.carrega(id);
+		Proposta proposta = new Proposta();
+		proposta.setCliente(cliente);
+		result.forwardTo(PropostasController.class).formulario(proposta);
 	}
 
 }
