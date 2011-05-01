@@ -26,6 +26,9 @@
 					<td>${cliente.rg}</td>
 					<td><fmt:formatDate value="${cliente.dataDeNascimento.time}" pattern="dd/MM/yyyy"/></td>
 					<td>${cliente.sexo}</td>
+					<td><a href="novaProposta?id=${cliente.id}">Nova Proposta</a></td>
+					<td><a href="edita?id=${cliente.id}">Editar</a></td>
+					<td><a href="remove?id=${cliente.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
