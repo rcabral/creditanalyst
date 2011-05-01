@@ -1,125 +1,134 @@
 <%@ include file="/header.jsp" %> 
 	<form <c:choose><c:when test='${cliente.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
+		<input type="hidden" name="cliente.id"  value="${cliente.id}" />
 		<fieldset>
 			<legend>Cliente</legend>
 			<fieldset>
 				<legend>Dados Pessoais</legend>
-				<input type="hidden" name="cliente.id"  value="${cliente.id}" />
-				<label for="cliente.nome">Nome:</label>
-				<input id="cliente.nome" type="text" name="cliente.nome" value="${cliente.nome}"  /><br /><br />
-				<label for="cliente.cpf">CPF:</label>
-				<input id="cliente.cpf" type="text" name="cliente.cpf" value="${cliente.cpf}"  /><br /><br />
-				<label for="cliente.rg">RG:</label>
-				<input id="cliente.rg" type="text" name="cliente.rg" value="${cliente.rg}"  /><br /><br />
-				<hermes:campoData id="cliente.dataDeNascimento" value="${cliente.dataDeNascimento}" label="Data de Nascimento:"></hermes:campoData><br /><br />
+				<hermes:campoTexto label="Nome:" id="cliente.nome" value="${cliente.nome}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoCPF label="CPF:" id="cliente.cpf" value="${cliente.cpf}"></hermes:campoCPF>
+				<br /><br />
+				<hermes:campoRG label="RG:" id="cliente.rg" value="${cliente.rg}"></hermes:campoRG>
+				<br /><br />
+				<fmt:formatDate value="${cliente.dataDeNascimento.time}" var="dataDeNascimento" pattern="dd/MM/yyyy"/>
+				<hermes:campoData id="cliente.dataDeNascimento"  label="Data de Nascimento:" value="${dataDeNascimento}"></hermes:campoData>
+				<br /><br />
 				<label for="cliente.sexo">Sexo:</label>
 				<select name="cliente.sexo" id="cliente.sexo">
 					<option value=""></option>
 					<c:forEach items="${sexoList}" var="sexo">
-						<option value="${sexo}">${sexo.nome}</option>
+						<option value="${sexo}" <c:if test="${cliente.sexo==sexo}">selected="selected"</c:if> >${sexo.nome}</option>
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="perfilDoCliente.estadoCivil">Estado Civil:</label>
-				<select name="perfilDoCliente.estadoCivil" id="perfilDoCliente.estadoCivil">
+				<label for="cliente.perfilDoCliente.estadoCivil">Estado Civil:</label>
+				<select name="cliente.perfilDoCliente.estadoCivil" id="cliente.perfilDoCliente.estadoCivil">
 					<option value=""></option>
 					<c:forEach items="${estadoCivilList}" var="estadoCivil">
-						<option value="${estadoCivil}">${estadoCivil.nome}</option>
+						<option value="${estadoCivil}" <c:if test="${cliente.perfilDoCliente.estadoCivil==estadoCivil}">selected="selected"</c:if> >${estadoCivil.nome}</option>
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.numeroDeDependentes">Número de Dependentes:</label>
-				<input id="cliente.numeroDeDependentes" type="text" name="cliente.numeroDeDependentes" value="${cliente.numeroDeDependentes}"  /><br /><br />
-				<label for="cliente.nivelDeInstrucao">Nível de Instrução:</label>
-				<select name="cliente.nivelDeInstrucao" id="cliente.nivelDeInstrucao">
+				<hermes:campoNumeroInteiro label="Número de Dependentes:" id="cliente.perfilDoCliente.numeroDeDependentes" value="${cliente.perfilDoCliente.numeroDeDependentes}"></hermes:campoNumeroInteiro>
+				<br /><br />
+				<label for="cliente.perfilDoCliente.nivelDeInstrucao">Nível de Instrução:</label>
+				<select name="cliente.perfilDoCliente.nivelDeInstrucao" id="cliente.perfilDoCliente.nivelDeInstrucao">
 					<option value=""></option>
 					<c:forEach items="${nivelDeInstrucaoList}" var="nivelDeInstrucao">
-						<option value="${nivelDeInstrucao}">${nivelDeInstrucao.nome}</option>
+						<option value="${nivelDeInstrucao}" <c:if test="${cliente.perfilDoCliente.nivelDeInstrucao==nivelDeInstrucao}">selected="selected"</c:if> >${nivelDeInstrucao.nome}</option>
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.profissao">Profissão:</label>
-				<select name="cliente.profissao" id="cliente.profissao">
+				<label for="cliente.perfilDoCliente.profissao.codigoCBO">Profissão:</label>
+				<select name="cliente.perfilDoCliente.profissao.codigoCBO" id="cliente.perfilDoCliente.profissao.codigoCBO">
 					<option value=""></option>
 					<c:forEach items="${profissaoList}" var="profissao">
-						<option value="${profissao.codigoCBO}">${profissao.descricao}</option>
+						<option value="${profissao.codigoCBO}" <c:if test="${cliente.perfilDoCliente.profissao.codigoCBO==profissao.codigoCBO}">selected="selected"</c:if>  >${profissao.descricao}</option>
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.tipoDeResidencia">Tipo de Residencia:</label>
-				<select name="cliente.tipoDeResidencia" id="cliente.tipoDeResidencia">
+				<label for="cliente.perfilDoCliente.tipoDeResidencia">Tipo de Residencia:</label>
+				<select name="cliente.perfilDoCliente.tipoDeResidencia" id="cliente.perfilDoCliente.tipoDeResidencia">
 					<option value=""></option>
-					<option value="PROPRIA">Própria</option>
-				    <option value="ALUGADA">Alugada</option>
+					<c:forEach items="${tipoDeResidenciaList}" var="tipoDeResidencia">
+						<option value="${tipoDeResidencia}" <c:if test="${cliente.perfilDoCliente.tipoDeResidencia==tipoDeResidencia}">selected="selected"</c:if> >${tipoDeResidencia.nome}</option>
+					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.tempoDeResidenciaAtualEmAnos">Tempo de Residencia em Anos:</label>
-				<input id="cliente.tempoDeResidenciaAtualEmAnos" type="text" name="cliente.tempoDeResidenciaAtualEmAnos" value="${cliente.tempoDeResidenciaAtualEmAnos}"  /><br /><br />
-				
-				<label for="benImovel.valor">Ben Imóvel - valor:</label>
-				<input id="benImovel.valor" type="text" name="benImovel.valor" value="${benImovel.valor}"  /><br /><br />
-				<label for="benImovel.possuiOnus">Ben Imóvel - Possui Ônus:</label>
-				<input id="benImovel.possuiOnus" type="checkbox" name="benImovel.possuiOnus"  /><br /><br />
-				<label for="telefone.numero">Telefone Residencial:</label>
-				<input type="text" id="telefone.DDD" name="telefone.DDD" value="${telefone.DDD}" size="2" maxlength="2"  />
-				<input type="text" id="telefone.numero" name="telefone.numero" value="${telefone.numero}" size="10"  /><br /><br />
-				<label for="telefone.numero">Telefone Celular:</label>
-				<input type="text" id="telefone.DDD" name="telefone.DDD" value="${telefone.DDD}" size="2" maxlength="2"  />
-				<input type="text" id="telefone.numero" name="telefone.numero" value="${telefone.numero}" size="10"  /><br /><br />
-				<label for="perfilDoCliente.email">Email:</label>
-				<input id="perfilDoCliente.email" type="text" name="perfilDoCliente.email" value="${perfilDoCliente.email}"  /><br /><br />
-				<label for="perfilDoCliente.quantidadeDeVeiculos">Quantidade de Veículos:</label>
-				<input id="perfilDoCliente.quantidadeDeVeiculos" type="text" name="perfilDoCliente.quantidadeDeVeiculos" value="${perfilDoCliente.quantidadeDeVeiculos}"  /><br /><br />
-				<hermes:campoMoeda label="Renda Mensal Comprovada" id="perfilDoCliente.rendaMensalComprovada" value="${perfilDoCliente.rendaMensalComprovada}"></hermes:campoMoeda>
+				<hermes:campoNumeroInteiro label="Tempo de Residencia em Anos:" id="cliente.perfilDoCliente.tempoDeResidenciaAtualEmAnos" value="${cliente.perfilDoCliente.tempoDeResidenciaAtualEmAnos}" ></hermes:campoNumeroInteiro>
 				<br /><br />
-				<hermes:campoMoeda label="Salário" id="perfilDoCliente.salario" value="${perfilDoCliente.salario}"></hermes:campoMoeda>	
+				<hermes:campoTelefone label="Telefone Residencial:" idDDD="cliente.perfilDoCliente.telefoneResidencial.ddd" idTelefone="cliente.perfilDoCliente.telefoneResidencial.numero" valueTelefone="${cliente.perfilDoCliente.telefoneResidencial.numero}" valueDDD="${cliente.perfilDoCliente.telefoneResidencial.ddd}"></hermes:campoTelefone>
 				<br /><br />
-				<hermes:campoData id="perfilDoCliente.dataDeEntradaNoEmpregoAtual" label="Data de Entrada no Emprego Atual:" value="${perfilDoCliente.dataDeEntradaNoEmpregoAtual}" ></hermes:campoData>
+				<hermes:campoTelefone label="Telefone Celular:" idDDD="cliente.perfilDoCliente.telefoneCelular.ddd" idTelefone="cliente.perfilDoCliente.telefoneCelular.numero" valueTelefone="${cliente.perfilDoCliente.telefoneCelular.numero}" valueDDD="${cliente.perfilDoCliente.telefoneCelular.ddd}"></hermes:campoTelefone>
 				<br /><br />
-				<label for="perfilDoCliente.tipoDeVinculoComCredor">Tipo de Vínculo com o Credor:</label>
-				<select name="perfilDoCliente.tipoDeVinculoComCredor" id="perfilDoCliente.tipoDeVinculoComCredor">
+				<hermes:campoEmail label="Email:" id="cliente.perfilDoCliente.email" value="${cliente.perfilDoCliente.email}"></hermes:campoEmail>
+				<br /><br />
+				<hermes:campoNumeroInteiro label="Quantidade de Veículos:" id="cliente.perfilDoCliente.quantidadeDeVeiculos" value="${cliente.perfilDoCliente.quantidadeDeVeiculos}" ></hermes:campoNumeroInteiro>
+				<br /><br />
+				<hermes:campoMoeda label="Renda Mensal Comprovada" id="cliente.perfilDoCliente.rendaMensalComprovada" value="${cliente.perfilDoCliente.rendaMensalComprovada}"></hermes:campoMoeda>
+				<br /><br />
+				<hermes:campoMoeda label="Salário" id="cliente.perfilDoCliente.salario" value="${cliente.perfilDoCliente.salario}"></hermes:campoMoeda>	
+				<br /><br />
+				<fmt:formatDate value="${cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual.time}" var="dataDeEntradaNoEmpregoAtual" pattern="dd/MM/yyyy"/>
+				<hermes:campoData id="cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual" label="Data de Entrada no Emprego Atual:" value="${dataDeEntradaNoEmpregoAtual}" ></hermes:campoData>
+				<br /><br />
+				<label for="cliente.perfilDoCliente.tipoDeVinculoComCredor">Tipo de Vínculo com o Credor:</label>
+				<select name="cliente.perfilDoCliente.tipoDeVinculoComCredor" id="cliente.perfilDoCliente.tipoDeVinculoComCredor">
 					<option value=""></option>
 					<c:forEach items="${tipoDeVinculoComCredorList}" var="tipoDeVinculoComCredor">  
-						<option value="${tipoDeVinculoComCredor}">${tipoDeVinculoComCredor.nome}</option>
+							<option value="${tipoDeVinculoComCredor}" <c:if test="${cliente.perfilDoCliente.tipoDeVinculoComCredor==tipoDeVinculoComCredor}">selected="selected"</c:if>>${tipoDeVinculoComCredor.nome}</option>
 					</c:forEach>
 				</select><br /><br />
-				<hermes:campoData label="Data de Abertura da Conta mais antiga:" id="perfilDoCliente.dataDeAberturaDaContaMaisAntiga" value="${perfilDoCliente.dataDeAberturaDaContaMaisAntiga}"></hermes:campoData>
+				<fmt:formatDate value="${cliente.perfilDoCliente.dataDeAberturaDaContaMaisAntiga.time}" var="dataDeAberturaDaContaMaisAntiga" pattern="dd/MM/yyyy"/>
+				<hermes:campoData label="Data de Abertura da Conta mais antiga:" id="cliente.perfilDoCliente.dataDeAberturaDaContaMaisAntiga" value="${dataDeAberturaDaContaMaisAntiga}"></hermes:campoData>
 				<br /><br />
-				<hermes:campoCheckBox label="Possui Cheque Especial:" id="perfilDoCliente.possuiChequeEspecial"></hermes:campoCheckBox>
+				<hermes:campoCheckBox label="Possui Cheque Especial:" id="cliente.perfilDoCliente.possuiChequeEspecial" value="${cliente.perfilDoCliente.possuiChequeEspecial}"></hermes:campoCheckBox>
 				<br /><br />
-				<hermes:campoCheckBox label="Possui seguro de Automóvel:" id="perfilDoCliente.possuiSeguroDeAutmovel"></hermes:campoCheckBox>
-			</fieldset>
-			<fieldset>
+				<hermes:campoCheckBox label="Possui seguro de Automóvel:" id="cliente.perfilDoCliente.possuiSeguroDeAutmovel" value="${cliente.perfilDoCliente.possuiSeguroDeAutmovel}"  ></hermes:campoCheckBox>
+				<br /><br />
+				<label>Bens Imóveis:</label> <input type="button" id="btnIncluiBemImovel" value="+" />
+				<br /><br />
+				<dir id="divBensImoveis">
+					 <c:forEach items="${cliente.perfilDoCliente.bensImoveis}" var="bemImovel" varStatus="s">  
+					 	<div class="divBemImovel">
+							<hermes:campoMoeda label="Valor:" id="cliente.perfilDoCliente.bensImoveis[${s.index}].valor" value="${bemImovel.valor}"></hermes:campoMoeda>
+							<hermes:campoCheckBox label="Possui Ônus:" id="cliente.perfilDoCliente.bensImoveis[${s.index}].possuiOnus" value="${bemImovel.possuiOnus}"></hermes:campoCheckBox>
+							<input type="button" class="btnRemoveBemImovel" value="-" />
+						</div> 
+					 </c:forEach>  
+				</dir>
+				</fieldset>
+				<fieldset>
 				<legend>Endereço</legend>
-				<label for="endereco.tipoDeLogradouro">Tipo de Logradouro:</label>
-				<select name="endereco.tipoDeLogradouro" id="endereco.tipoDeLogradouro">
+				<label for="cliente.perfilDoCliente.endereco.tipoDeLogradouro">Tipo de Logradouro:</label>
+				<select name="cliente.perfilDoCliente.endereco.tipoDeLogradouro" id="cliente.perfilDoCliente.endereco.tipoDeLogradouro">
 					<option value=""></option>
 					<c:forEach items="${tipoDeLogradouroList}" var="tipoDeLogradouro">
-						<option value="${tipoDeLogradouro}">${tipoDeLogradouro.nome}</option>
+						<option value="${tipoDeLogradouro}" <c:if test="${cliente.perfilDoCliente.endereco.tipoDeLogradouro==tipoDeLogradouro}">selected="selected"</c:if> >${tipoDeLogradouro.nome}</option>
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="endereco.nomeDoLogrado">Nome do Logradouro:</label>
-				<input id="endereco.nomeDoLogrado" type="text" name="endereco.nomeDoLogrado" value="${endereco.nomeDoLogrado}"  /><br /><br />
-				<label for="endereco.numero">Número:</label>
-				<input id="endereco.numero" type="text" name="endereco.numero" value="${endereco.numero}"  /><br /><br />
-				<label for="endereco.bairro">Bairro:</label>
-				<input id="endereco.bairro" type="text" name="endereco.bairro" value="${endereco.bairro}"  /><br /><br />
-				<label for="endereco.cep">CEP:</label>
-				<input id="endereco.cep" type="text" name="endereco.cep" value="${endereco.cep}"  /><br /><br />
-				<label for="endereco.municipio">Município:</label>
-				<input id="endereco.municipio" type="text" name="endereco.municipio" value="${endereco.municipio}"  /><br /><br />
-				<label for="endereco.uf">UF:</label>
-				<select name="endereco.uf" id="endereco.uf">
+				<hermes:campoTexto label="Nome do Logradouro:" id="cliente.perfilDoCliente.endereco.nomeDoLogrado" value="${cliente.perfilDoCliente.endereco.nomeDoLogrado}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoNumeroInteiro label="Número:" id="cliente.perfilDoCliente.endereco.numero" value="${cliente.perfilDoCliente.endereco.numero}"></hermes:campoNumeroInteiro>
+				<br /><br />
+				<hermes:campoTexto label="Bairro:" id="cliente.perfilDoCliente.endereco.bairro" value="${cliente.perfilDoCliente.endereco.bairro}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoCEP label="CEP:" id="cliente.perfilDoCliente.endereco.cep" value="${cliente.perfilDoCliente.endereco.cep}"></hermes:campoCEP>
+				<br /><br />
+				<hermes:campoTexto label="Município:" id="cliente.perfilDoCliente.endereco.municipio" value="${cliente.perfilDoCliente.endereco.municipio}"></hermes:campoTexto>
+				<br /><br />
+				<label for="cliente.perfilDoCliente.endereco.uf">UF:</label>
+				<select name="cliente.perfilDoCliente.endereco.uf" id="cliente.perfilDoCliente.endereco.uf">
 					<option value=""></option>
 					<c:forEach items="${ufs}" var="uf">  
-						<option value="${uf}">${uf}</option>
+						<option value="${uf}" <c:if test="${cliente.perfilDoCliente.endereco.uf==uf}">selected="selected"</c:if>>${uf}</option>
 					</c:forEach>
 				</select><br /><br />
 			</fieldset>
-			<br /><br />
+			<br />	
 			<button type="submit">Enviar</button>	
 		</fieldset>
-		
 	</form>
 <%@ include file="/footer.jsp" %>
