@@ -26,9 +26,11 @@
 	<script type="text/javascript" src="<c:url value="/js/default.js"/>"  ></script>
 </head>
 <body onload="menuDropDown(0);">
-	<div id="conteudo">
-	   	  <div id="topo"><image src="<c:url value="/images/cred_scor.png"/>" width="549" height="61" alt="" /></div>
-	   	  <%@ include file="/menu.jsp" %>
+		  <div id="cabecalho">
+		   	  <div id="topo"><image src="<c:url value="/images/cred_scor.png"/>" width="549" height="61" alt="" /></div>
+		   	  <%@ include file="/menu.jsp" %>
+	   	  </div>
+	   	  <div id="conteudo">
 				<c:if test="${not empty errors}">
 					<div id="errors">
 						<ul>

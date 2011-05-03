@@ -51,5 +51,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-commons-annotations.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hamcrest-all-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/seltag.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/taglib76.tld"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
