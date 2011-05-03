@@ -109,6 +109,7 @@ public class Proposta {
 	}
 
 	public double calculaPrestacao(){
+		/*
 		double s,p,q,valorDaPrestacao;
 		long carencia = Util.diffOfDays(Calendar.getInstance(),this.dataDoPrimeiroVencimento);
 		
@@ -144,7 +145,7 @@ public class Proposta {
 		
 		fator = fatorAuxiliar1 * fatorAuxiliar2 / fatorAuxiliar3;
 		valorDaPrestacao = this.valor * fator;
-		
+		*/
 		
 		valorDaPrestacao = (this.valor * (this.taxaDeJuros / 100)) / (1 - (1 / Math.pow(1+(this.taxaDeJuros/100), this.quantidadeDeParcelas)));
         return valorDaPrestacao;
