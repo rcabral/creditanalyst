@@ -23,6 +23,7 @@
 	<link href="<c:url value="/frameworks/jquery/plugins/jquery-ui/css/cupertino/jquery-ui-1.8.12.custom.css"/>" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="<c:url value="/frameworks/jquery/jquery.min.js"/>"  ></script>
 	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-ui/js/jquery-ui.min.js"/>"  ></script>
+	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-validation/jquery.validate.min.js"/>"  ></script>
 	<script type="text/javascript" src="<c:url value="/js/default.js"/>"  ></script>
 </head>
 <body onload="menuDropDown(0);">
