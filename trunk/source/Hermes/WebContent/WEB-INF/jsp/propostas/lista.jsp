@@ -18,8 +18,8 @@
 					<td><fmt:formatDate value="${proposta.data.time}" pattern="dd/MM/yyyy"/></td>
 					<td>${proposta.status}</td>
 					<td><fmt:formatDate value="${proposta.dataDeAprovacao.time}" pattern="dd/MM/yyyy"/></td>
-					<td><a href="edita?id=${cliente.id}">Editar</a></td>
-					<td><a href="remove?id=${cliente.id}">Remover</a></td>
+					<td><a href="<c:url value="/propostas/edita"/>?id=${proposta.id}">Editar</a></td>
+					<td><a href="<c:url value="/propostas/remove"/>?id=${proposta.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

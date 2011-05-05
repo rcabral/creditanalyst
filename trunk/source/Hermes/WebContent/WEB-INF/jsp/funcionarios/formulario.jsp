@@ -1,32 +1,65 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
-	<div id="erros">
-		<ul>
-		<c:forEach items="${errors}" var="error">
-		<li>${error.category } - ${error.message }</li>
-		</c:forEach>
-		</ul>
-	</div>
-	<form action="adiciona">
+<%@ include file="/header.jsp" %> 
+	<form <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
+		<input type="hidden" name="funcionario.id"  value="${funcionario.id}" />
 		<fieldset>
-			<legend>Adicionar Funcionario</legend>
-			<label for="nome">Nome:</label>
-			<input id="nome" type="text" name="funcionario.nome"/><br /><br />
-			<label for="descricao">Descrição:</label>
-			<textarea id="descricao" name="produto.descricao"></textarea><br /><br />
-			<label for="preco">Preço:</label>
-			<input id="preco" type="text" name="produto.preco"/><br /><br />
-			<button type="submit">Enviar</button>
+			<legend>Funcionário</legend>
+			<fieldset>
+				<legend>Dados Pessoais</legend>
+				<hermes:campoTexto label="Nome:" id="funcionario.nome" value="${funcionario.nome}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoCPF label="CPF:" id="funcionario.cpf" value="${funcionario.cpf}"></hermes:campoCPF>
+				<br /><br />
+				<hermes:campoRG label="RG:" id="funcionario.rg" value="${funcionario.rg}"></hermes:campoRG>
+				<br /><br />
+				<fmt:formatDate value="${funcionario.dataDeNascimento.time}" var="dataDeNascimento" pattern="dd/MM/yyyy"/>
+				<hermes:campoData id="funcionario.dataDeNascimento"  label="Data de Nascimento:" value="${dataDeNascimento}"></hermes:campoData>
+				<br /><br />
+				<label for="funcionario.sexo">Sexo:</label>
+				<select name="funcionario.sexo" id="funcionario.sexo">
+					<option value=""></option>
+					<c:forEach items="${sexoList}" var="sexo">
+						<option value="${sexo}" <c:if test="${funcionario.sexo==sexo}">selected="selected"</c:if> >${sexo.nome}</option>
+					</c:forEach>
+				</select>
+				<br /><br />
+			</fieldset>
+			<fieldset>
+				<legend>Endereço</legend>
+				<label for="funcionario.endereco.tipoDeLogradouro">Tipo de Logradouro:</label>
+				<select name="funcionario.endereco.tipoDeLogradouro" id="funcionario.endereco.tipoDeLogradouro">
+					<option value=""></option>
+					<c:forEach items="${tipoDeLogradouroList}" var="tipoDeLogradouro">
+						<option value="${tipoDeLogradouro}" <c:if test="${funcionario.endereco.tipoDeLogradouro==tipoDeLogradouro}">selected="selected"</c:if> >${tipoDeLogradouro.nome}</option>
+					</c:forEach>
+				</select>
+				<br /><br />
+				<hermes:campoTexto label="Nome do Logradouro:" id="funcionario.endereco.nomeDoLogrado" value="${funcionario.endereco.nomeDoLogrado}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoNumeroInteiro label="Número:" id="funcionario.endereco.numero" value="${funcionario.endereco.numero}"></hermes:campoNumeroInteiro>
+				<br /><br />
+				<hermes:campoTexto label="Bairro:" id="funcionario.endereco.bairro" value="${funcionario.endereco.bairro}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoCEP label="CEP:" id="funcionario.endereco.cep" value="${funcionario.endereco.cep}"></hermes:campoCEP>
+				<br /><br />
+				<hermes:campoTexto label="Município:" id="funcionario.endereco.municipio" value="${funcionario.endereco.municipio}"></hermes:campoTexto>
+				<br /><br />
+				<label for="funcionario.endereco.uf">UF:</label>
+				<select name="funcionario.endereco.uf" id="funcionario.endereco.uf">
+					<option value=""></option>
+					<c:forEach items="${ufs}" var="uf">  
+						<option value="${uf}" <c:if test="${funcionario.endereco.uf==uf}">selected="selected"</c:if>>${uf}</option>
+					</c:forEach>
+				</select><br /><br />
+			</fieldset>
+			<fieldset>
+				<legend>Credencial</legend>
+				<hermes:campoTexto label="Login:" id="funcionario.credencial.login" value="${funcionario.credencial.login}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoSenha label="Senha:" id="funcionario.credencial.senha"></hermes:campoSenha>
+				<br /><br />
+			</fieldset>
+			<br />	
+			<button type="submit">Enviar</button>	
 		</fieldset>
 	</form>
-</body>
-</html>
+<%@ include file="/footer.jsp" %>
