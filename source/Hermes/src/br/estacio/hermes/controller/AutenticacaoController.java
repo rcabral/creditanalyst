@@ -40,19 +40,19 @@ public class AutenticacaoController {
 	@Public
 	public void login(Credencial credencial) {
 		// search for the user in the database
-		final Autenticavel currentUser = funcionarioDAO.carrega(credencial);
+		//final Autenticavel currentUser = funcionarioDAO.carrega(credencial);
 		// if no user is found, adds an error message to the validator
 		// "invalid_login_or_password" is the message key from messages.properties,
 		// and that key is used with the fmt taglib in index.jsp, for example: <fmt:message key="error.key">
-		validator.checking(new Validations() {{
-		    that(currentUser, is(notNullValue()), "login", "invalid_login_or_password");
-		}});
+		//validator.checking(new Validations() {{
+		 //   that(currentUser, is(notNullValue()), "login", "invalid_login_or_password");
+		//}});
 		// you can use "this" to redirect to another logic from this controller
-		validator.onErrorUsePageOf(this).login();
+		//validator.onErrorUsePageOf(this).login();
 
 		// the login was valid, add user to session
-		userInfo.login(currentUser);
-		result.redirectTo(ClientesController.class).lista();
+		//userInfo.login(currentUser);
+		//result.redirectTo(ClientesController.class).lista();
 	}
 
 }

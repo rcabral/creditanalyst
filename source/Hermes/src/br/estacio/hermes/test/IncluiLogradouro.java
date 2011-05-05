@@ -45,9 +45,7 @@ public class IncluiLogradouro {
 		funcionario.setRg("207104175");
 		funcionario.setCpf("05586878739");
 		funcionario.setDataDeNascimento(new GregorianCalendar(1994, 1, 1));
-		funcionario.setLogin("rcabral");
-		funcionario.setSenha("12345678");
-		//funcionario.setSexo(Sexo.MASCULINO);
+				//funcionario.setSexo(Sexo.MASCULINO);
 		funcionario.setMatricula("finicred-001");
 		Endereco endereco = new Endereco();
 		endereco.setBairro("covanca");

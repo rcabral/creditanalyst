@@ -14,6 +14,7 @@
 		<property name="format_sql">true</property>
 		<mapping class="br.estacio.hermes.model.PessoaFisica" />
 		<mapping class="br.estacio.hermes.model.Funcionario" />
+		<mapping class="br.estacio.hermes.model.Credencial" />
 		<mapping class="br.estacio.hermes.model.Endereco" />
 		<mapping class="br.estacio.hermes.model.Cliente" />
 		<mapping class="br.estacio.hermes.model.PerfilDoCliente" />
@@ -22,6 +23,8 @@
 		<mapping class="br.estacio.hermes.model.Profissao" />
 		<mapping class="br.estacio.hermes.model.BenImovel" />
 		<mapping class="br.estacio.hermes.model.Banco" />
+		<mapping class="br.estacio.hermes.model.Proposta" />
+		<mapping class="br.estacio.hermes.model.Plano" />
 	</session-factory>
 </hibernate-configuration>
 	

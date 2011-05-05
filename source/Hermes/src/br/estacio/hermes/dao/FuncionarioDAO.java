@@ -27,12 +27,12 @@ private Session session;
 	public Funcionario carrega(Long id){
 		return (Funcionario)this.session.load(Funcionario.class,id);
 	}
-	public Funcionario carrega(Credencial credencial) {
-		return (Funcionario) session.createCriteria(Funcionario.class)
-		.add(Restrictions.eq("login", credencial.getLogin()))
-		.add(Restrictions.eq("senha", credencial.getSenha()))
-		.uniqueResult();
-	}
+	//public Funcionario carrega(Credencial credencial) {
+	//	return (Funcionario) session.createCriteria(Funcionario.class)
+	//	.add(Restrictions.eq("login", credencial.getLogin()))
+	//	.add(Restrictions.eq("senha", credencial.getSenha()))
+	//	.uniqueResult();
+	//}
 	public void atualiza(Funcionario objtect){
 		this.session.update(objtect);
 	}
