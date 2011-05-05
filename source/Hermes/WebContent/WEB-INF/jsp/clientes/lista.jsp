@@ -1,4 +1,7 @@
-<%@ include file="/header.jsp" %> 
+<%@ include file="/header.jsp" %>
+
+	<%@ taglib uri="http://displaytag.sf.net" prefix="displayTag" %>
+	 
 	<table>
 		<thead>
 			<th>Nome</th>
