@@ -1,6 +1,7 @@
 package br.estacio.hermes.controller;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -32,6 +33,7 @@ public class PropostasController {
 	}
 
 	public void adiciona(Proposta proposta) {
+		proposta.setData(Calendar.getInstance());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
 		dao.salva(proposta);

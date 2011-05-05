@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.NotNull;
+
+
+
 import br.estacio.hermes.util.Util;
 
 @Entity
@@ -16,7 +20,7 @@ public class Proposta {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
+	@OneToOne @NotNull
 	private Cliente cliente;
 	private Calendar data;
 	@Enumerated(EnumType.STRING)

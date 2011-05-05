@@ -32,7 +32,6 @@ import br.estacio.hermes.service.AutenticadorService;
  * Interceptor to check if the user is in the session.
  */
 
-@Intercepts
 public class AuthorizationInterceptor implements Interceptor {
 	private final UserInfo info;
 	private final Result result;
