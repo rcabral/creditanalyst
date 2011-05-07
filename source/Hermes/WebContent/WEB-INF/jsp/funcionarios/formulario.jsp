@@ -1,5 +1,6 @@
-<%@ include file="/header.jsp" %> 
-	<form <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
+<%@ include file="/header.jsp" %>
+<script type="text/javascript" src="<c:url value="/js/funcionariosFormulario.js"/>"  ></script> 
+	<form id="formFuncionario" <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="funcionario.id"  value="${funcionario.id}" />
 		<fieldset>
 			<legend>Funcionário</legend>
@@ -25,6 +26,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>Endereço</legend>
+				<input type="hidden" name="funcionario.endereco.id" value="${funcionario.endereco.id}" />
 				<label for="funcionario.endereco.tipoDeLogradouro">Tipo de Logradouro:</label>
 				<select name="funcionario.endereco.tipoDeLogradouro" id="funcionario.endereco.tipoDeLogradouro">
 					<option value=""></option>
@@ -53,10 +55,17 @@
 			</fieldset>
 			<fieldset>
 				<legend>Credencial</legend>
-				<hermes:campoTexto label="Login:" id="funcionario.credencial.login" value="${funcionario.credencial.login}"></hermes:campoTexto>
+				<hermes:campoTexto label="Login:" id="funcionario.login" value="${funcionario.login}"></hermes:campoTexto>
 				<br /><br />
-				<hermes:campoSenha label="Senha:" id="funcionario.credencial.senha"></hermes:campoSenha>
+				<hermes:campoSenha label="Senha:" id="funcionario.senha"></hermes:campoSenha>
 				<br /><br />
+				<label for="funcionario.cargo">Cargo:</label>
+				<select name="funcionario.cargo" id="funcionario.cargo">
+					<option value=""></option>
+					<c:forEach items="${cargoList}" var="cargo">  
+						<option value="${cargo}" <c:if test="${funcionario.cargo==cargo}">selected="selected"</c:if>>${cargo.nome}</option>
+					</c:forEach>
+				</select><br /><br />
 			</fieldset>
 			<br />	
 			<button type="submit">Enviar</button>	
