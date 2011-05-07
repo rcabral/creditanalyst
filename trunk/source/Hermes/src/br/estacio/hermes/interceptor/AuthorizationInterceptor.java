@@ -19,14 +19,11 @@ package br.estacio.hermes.interceptor;
 
 
 import br.com.caelum.vraptor.InterceptionException;
-import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.resource.ResourceMethod;
-import br.estacio.hermes.controller.AutenticacaoController;
-import br.estacio.hermes.service.AutenticadorService;
 
 /**
  * Interceptor to check if the user is in the session.
@@ -36,14 +33,12 @@ public class AuthorizationInterceptor implements Interceptor {
 	private final UserInfo info;
 	private final Result result;
 	private final Validator validator;
-	private final AutenticadorService  autenticadorService;
 	
 	public AuthorizationInterceptor(UserInfo info, Result result,
-			Validator validator, AutenticadorService autenticadorService) {
+			Validator validator) {
 		this.info = info;
 		this.result = result;
 		this.validator = validator;
-		this.autenticadorService = autenticadorService;
 	}
 
 	/**

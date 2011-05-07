@@ -5,6 +5,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.estacio.hermes.dao.BancoDAO;
+import br.estacio.hermes.interceptor.Public;
 import br.estacio.hermes.model.Banco;
 
 @Resource
@@ -13,6 +14,7 @@ public class BancosController{
 	private final Result result;
 	private final Validator validator;
 	
+
 	public BancosController(BancoDAO dao, Result result,Validator validator) {
 		this.dao = dao;
 		this.result = result;

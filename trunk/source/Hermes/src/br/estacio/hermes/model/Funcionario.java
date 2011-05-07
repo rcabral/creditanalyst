@@ -1,26 +1,35 @@
 package br.estacio.hermes.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.validator.NotNull;
+import br.estacio.hermes.interceptor.Credencial;
+import br.estacio.hermes.util.Md5;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "id","matricula" }) })
-public class Funcionario extends PessoaFisica implements Autenticavel {
+@Table(name = "Funcionario", uniqueConstraints = { @UniqueConstraint(columnNames = {
+		"id", "matricula" }) })
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Funcionario extends PessoaFisica {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String matricula;
 	@OneToOne(cascade = { CascadeType.ALL })
 	private Endereco endereco;
-	@OneToOne(cascade = { CascadeType.ALL })
-	private Credencial credencial;
+	@Enumerated(EnumType.STRING)
+	private Cargo cargo;
+	private String login;
+	private String senha;
 
 	public Long getId() {
 		return id;
@@ -46,12 +55,28 @@ public class Funcionario extends PessoaFisica implements Autenticavel {
 		this.endereco = endereco;
 	}
 
-	public Credencial getCredencial() {
-		return credencial;
+	public Cargo getCargo() {
+		return cargo;
 	}
 
-	public void setCredencial(Credencial credencial) {
-		this.credencial = credencial;
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
 
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = Md5.md5(senha);
+		;
+	}
 }
