@@ -1,4 +1,4 @@
-$(document).ready(function() {
+funcionariosFormulario.js$(document).ready(function() {
 	var calculaPrestacaoUrl = $("#calculaPrestacaoUrl").val();
 	
 	$('#valor,#quantidadeDeParcelas,#dataDoPrimeiroVencimento').keyup(function() {
