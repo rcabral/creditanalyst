@@ -6,6 +6,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.estacio.hermes.dao.FuncionarioDAO;
 import br.estacio.hermes.model.Funcionario;
+import br.estacio.hermes.model.Cargo;
 import br.estacio.hermes.model.Sexo;
 import br.estacio.hermes.model.TipoDeLogradouro;
 import br.estacio.hermes.model.Uf;
@@ -16,8 +17,8 @@ public class FuncionariosController {
 	private final Result result;
 	private final Validator validator;
 
-	public FuncionariosController(FuncionarioDAO dao, Result result, Validator validator) {
-		this.dao = dao;
+	public FuncionariosController(FuncionarioDAO funcionarioDAO, Result result, Validator validator) {
+		this.dao = funcionarioDAO;
 		this.result = result;
 		this.validator = validator;
 	}
@@ -31,9 +32,11 @@ public class FuncionariosController {
 		result.include("sexoList", Sexo.values());
 		result.include("tipoDeLogradouroList", TipoDeLogradouro.values());
 		result.include("ufs", Uf.values());
+		result.include("cargoList",Cargo.values());
 		result.include("funcionario", funcionario);
+		
 	}
-
+	
 	public void adiciona(Funcionario funcionario) {
 		validator.validate(funcionario);
 		validator.onErrorUsePageOf(this).formulario(funcionario);

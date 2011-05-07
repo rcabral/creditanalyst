@@ -14,7 +14,6 @@
 		<property name="format_sql">true</property>
 		<mapping class="br.estacio.hermes.model.PessoaFisica" />
 		<mapping class="br.estacio.hermes.model.Funcionario" />
-		<mapping class="br.estacio.hermes.model.Credencial" />
 		<mapping class="br.estacio.hermes.model.Endereco" />
 		<mapping class="br.estacio.hermes.model.Cliente" />
 		<mapping class="br.estacio.hermes.model.PerfilDoCliente" />
