@@ -32,12 +32,4 @@
 		   	  <%@ include file="/menu.jsp" %>
 	   	  </div>
 	   	  <div id="conteudo">
-				<c:if test="${not empty errors}">
-					<div id="errors">
-						<ul>
-							<c:forEach items="${errors }" var="error">
-								<li>${error.category } - ${error.message }</li>
-							</c:forEach>
-						</ul>
-					</div>
-				</c:if>
+				<%@ include file="/error.jsp" %>
