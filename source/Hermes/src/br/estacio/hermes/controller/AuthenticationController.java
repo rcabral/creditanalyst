@@ -10,7 +10,7 @@ import br.estacio.hermes.interceptor.Credencial;
 import br.estacio.hermes.interceptor.UserInfo;
 import br.estacio.hermes.dao.CredencialDAO;
 import br.estacio.hermes.dao.FuncionarioDAO;
-import br.estacio.hermes.interceptor.Public;
+import br.estacio.hermes.interceptor.Publico;
 import br.estacio.hermes.model.Funcionario;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -37,13 +37,13 @@ public class AuthenticationController {
 	}
 
 
-	@Public
+	@Publico
 	@Get
 	public void login(){
 		
 	}
 		
-	@Public
+	@Publico
 	@Post
 	public void autentica(Credencial credencial) {
 		// search for the user in the database

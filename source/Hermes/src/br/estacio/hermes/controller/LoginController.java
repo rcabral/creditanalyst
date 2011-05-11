@@ -1,12 +1,12 @@
 package br.estacio.hermes.controller;
 
 import br.com.caelum.vraptor.Resource;
-import br.estacio.hermes.interceptor.Public;
+import br.estacio.hermes.interceptor.Publico;
 
 @Resource
 public class LoginController {
 	
-	@Public
+	@Publico
 	public void login(){
 		
 	}
