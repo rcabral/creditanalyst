@@ -16,27 +16,28 @@
  */
 package br.estacio.hermes.interceptor;
 
-
-
 import br.com.caelum.vraptor.InterceptionException;
+import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.resource.ResourceMethod;
+import br.estacio.hermes.controller.AuthenticationController;
+import br.estacio.hermes.model.Cargo;
 
 /**
  * Interceptor to check if the user is in the session.
  */
-
+@Intercepts
 public class AuthorizationInterceptor implements Interceptor {
-	private final UserInfo info;
+	private final UserInfo currentUser;
 	private final Result result;
 	private final Validator validator;
-	
-	public AuthorizationInterceptor(UserInfo info, Result result,
+
+	public AuthorizationInterceptor(UserInfo currentUser, Result result,
 			Validator validator) {
-		this.info = info;
+		this.currentUser = currentUser;
 		this.result = result;
 		this.validator = validator;
 	}
@@ -44,23 +45,39 @@ public class AuthorizationInterceptor implements Interceptor {
 	/**
 	 * the easiest way to implement the accepts method is creating an annotation
 	 */
-    public boolean accepts(ResourceMethod method) {
-        return !method.containsAnnotation(Public.class);
-    }
+	public boolean accepts(ResourceMethod method) {
+		return method.containsAnnotation(Restrito.class);
+	}
 
-    /**
-     * Intercepts the request and checks if there is a user logged in.
-     */
-    public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance)
-            throws InterceptionException {
-    	/**
-    	 * You can use the result even in interceptors.
-    	 */
-    	//if (info.getUser() == null) {
-    	//	result.redirectTo(AutenticacaoController.class).login();
-    	//} else {
-	    	stack.next(method, resourceInstance);
-    	//}
-    }
+	/**
+	 * Intercepts the request and checks if there is a user logged in.
+	 */
+	public void intercept(InterceptorStack stack, ResourceMethod method,
+			Object resourceInstance) throws InterceptionException {
+
+		Restrito restrito = method.getMethod().getAnnotation(Restrito.class);
+		boolean possuiAcesso = false;
+		Cargo[] cargos = restrito.value();
+
+		if (cargos.length == 0) {
+			possuiAcesso = true;
+		} else {
+			if (currentUser != null) {
+
+				for (Cargo cargo : cargos) {
+					System.out.println(cargo);
+					if (cargo == currentUser.getUser().getCargo())
+						possuiAcesso = true;
+				}
+
+			}
+		}
+
+		if (possuiAcesso) {
+			stack.next(method, resourceInstance);
+		} else {
+			result.redirectTo(AuthenticationController.class).login();
+		}
+	}
 
 }

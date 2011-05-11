@@ -23,7 +23,7 @@ public class AuthenticationInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ResourceMethod method) {
-		return !method.containsAnnotation(Public.class);
+		return !method.containsAnnotation(Publico.class);
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method,
