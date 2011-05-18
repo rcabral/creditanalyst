@@ -1,7 +1,9 @@
 <%@ include file="/header.jsp" %>
 <script type="text/javascript" src="<c:url value="/js/propostasFormulario.js"/>"  ></script> 
-	<form id="formularioDeProposta" <c:choose><c:when test='${cliente.id == null}'>action="<c:url value="/propostas/adiciona"/>"</c:when><c:otherwise>action="<c:url value="/propostas/altera"/>"</c:otherwise></c:choose> method="post" >
+	<form id="formularioDeProposta" <c:choose><c:when test='${proposta.id == null}'>action="<c:url value="/propostas/adiciona"/>"</c:when><c:otherwise>action="<c:url value="/propostas/altera"/>"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" id="calculaPrestacaoUrl" value="<c:url value='/propostas/calculaPrestacao'/>" />
+		<input type="hidden" name="proposta.id"  value="${proposta.id}" />
+		<input type="hidden" id="proposta.status" name="proposta.status" value="ANALISE" />
 		<fieldset>
 			<legend>Proposta</legend>
 			<fieldset>

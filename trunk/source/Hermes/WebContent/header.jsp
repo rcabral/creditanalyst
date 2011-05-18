@@ -24,6 +24,8 @@
 	<script type="text/javascript" src="<c:url value="/frameworks/jquery/jquery.min.js"/>"  ></script>
 	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-ui/js/jquery-ui.min.js"/>"  ></script>
 	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-validation/jquery.validate.min.js"/>"  ></script>
+	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-mask/jquery.maskedinput-1.3.min.js"/>"  ></script>
+	<script type="text/javascript" src="<c:url value="/frameworks/jquery/plugins/jquery-mask-money/jquery.maskMoney.js"/>"  ></script>
 	<script type="text/javascript" src="<c:url value="/js/default.js"/>"  ></script>
 </head>
 <body onload="menuDropDown(0);">

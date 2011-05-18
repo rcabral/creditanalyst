@@ -1,16 +1,16 @@
 @CHARSET "ISO-8859-1";
 
 
-#divBensImoveis,.divBemImovel{
+#divBensImoveis,.divBemImovel,#divRegras,.divRegra{
 	margin: 0;
 	padding: 0;
 }
 
-.divBemImovel input{
+.divBemImovel input,.divRegra input{
 	margin: 5px;
 }
 
-.divBemImovel{
+.divBemImovel,.divRegra{
 	padding: 5px;
 }
 
@@ -49,6 +49,16 @@ label{
 #errors{
 	color: red;
 }
+
+#imgBarras{
+	position: fixed;
+	bottom: 40px;
+	display: block;
+	margin-left: 400px;
+	margin-right: 400px;
+}
+
+
 
 
 

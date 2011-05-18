@@ -1,5 +1,5 @@
 <%@ include file="/header.jsp" %>
-<script type="text/javascript" src="<c:url value="/js/funcionariosFormulario.js"/>"  ></script> 
+<script type="text/javascript" src="<c:url value="/js/escoragensFormulario.js"/>"  ></script> 
 	<form id="formFuncionario" <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="funcionario.id"  value="${funcionario.id}" />
 		<fieldset>
@@ -19,11 +19,12 @@
 			</fieldset>	
 			<fieldset>
 				<legend>Regras</legend>
-				<hermes:campoTexto label="Nome:" id=""></hermes:campoTexto>
+				<label>Incluir Regra:</label> <input type="button" id="btnIncluiRegra" value="+" />
 				<br /><br />
-				<hermes:campoTexto label="Descrição:" id=""></hermes:campoTexto>
+				<dir id="divRegras">
+				</dir>
 			</fieldset>
-			<button type="submit">Enviar</button>	
+			<button type="submit">Treinar Rede e Salvar</button>	
 		</fieldset>
 	</form>
 <%@ include file="/footer.jsp" %>
