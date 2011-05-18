@@ -7,6 +7,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.estacio.hermes.interceptor.Credencial;
+import br.estacio.hermes.interceptor.Restrito;
 import br.estacio.hermes.interceptor.UserInfo;
 import br.estacio.hermes.dao.CredencialDAO;
 import br.estacio.hermes.dao.FuncionarioDAO;
@@ -57,5 +58,10 @@ public class AuthenticationController {
 		userInfo.login(funcionario);
 		result.redirectTo(MainController.class).main();
 	}
-
+	
+	@Restrito
+	public void logout(){
+		userInfo.logout();
+		result.redirectTo(this).login();
+	}
 }

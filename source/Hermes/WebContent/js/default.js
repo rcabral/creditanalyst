@@ -44,8 +44,9 @@ $(document).ready(function() {
 		$(this).parent().remove();
 	});
 	
-	
-	
-	
+	 //$(".cpf").mask("999.999.999-99");
+	 //$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+
+
 	
 });
