@@ -23,6 +23,26 @@
 				<br /><br />
 				<dir id="divRegras">
 				</dir>
+							
+				<label for="">Regra:</label>
+				<select name="" id="">
+					<option value=""></option>
+					<c:forEach items="${regraList}" var="regra">
+						<option value="${regra.id}" >${regra.pergunta}</option>
+					</c:forEach>
+				</select>
+				
+				<div id="atrivutosDeResposta" style="display: inline;">
+					<label for="">Comparador:</label>
+					<select name="" id="">
+						<option value=""></option>
+						<c:forEach items="${comparadorList}" var="comparador">
+							<option value="${comparador}" >${comparador.nome}</option>
+						</c:forEach>
+					</select>
+					<hermes:campoTexto label="Resposta:" id=""></hermes:campoTexto>
+				</div>
+				
 			</fieldset>
 			<button type="submit">Treinar Rede e Salvar</button>	
 		</fieldset>

@@ -6,6 +6,9 @@ Para inserir mais um nível deve-se alterar a classe "item" para "submenu" e adic
 -->
 	<ul id="menu_dropdown" class="menubar">
 
+		<li class="submenu"><a 
+					href="<c:url value="/main/main"/>">Principal</a>
+		</li>
 		<li class="submenu"><a href="#">Clientes</a>
 			<ul class="menu">
 				<li class="item"><a href="<c:url value="/clientes/lista"/>">Lista</a>
@@ -18,9 +21,6 @@ Para inserir mais um nível deve-se alterar a classe "item" para "submenu" e adic
 		<li class="submenu"><a href="#">Propostas</a>
 			<ul class="menu">
 				<li class="item"><a href="<c:url value="/propostas/lista"/>">Lista</a>
-				</li>
-				<li class="item"><a
-					href="<c:url value="/propostas/formulario"/>">Nova</a>
 				</li>
 			</ul>
 		</li>
@@ -50,6 +50,15 @@ Para inserir mais um nível deve-se alterar a classe "item" para "submenu" e adic
 						</li>
 						<li class="item"><a
 							href="<c:url value="/bancos/formulario"/>">Novo</a>
+						</li>
+					</ul>
+				</li>
+				<li class="submenu"><a href="#">Regras</a>
+					<ul class="menu">
+						<li class="item"><a href="<c:url value="/regras/lista"/>">Lista</a>
+						</li>
+						<li class="item"><a
+							href="<c:url value="/regras/formulario"/>">Nova</a>
 						</li>
 					</ul>
 				</li>

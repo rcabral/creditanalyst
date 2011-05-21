@@ -13,7 +13,6 @@
 <link href="<c:url value="/css/login.css"/>" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<%@ include file="/error.jsp" %> 
 <form id="login-form" action="autentica" method="post">
 		<fieldset>
 			<legend>Log in</legend>
@@ -24,7 +23,13 @@
 			<input type="password" id="credencial.senha" name="credencial.senha"/>
 			<div class="clear"></div>
 			<div class="clear"></div>
-			<br />
+			<div id="errors">
+				<ul>
+					<c:forEach items="${errors}" var="error">
+						<li>${error.category } - ${error.message }</li>
+					</c:forEach>
+				</ul>
+			</div>
 			<input type="submit" style="margin: -20px 0 0 287px;" class="button" name="commit" value="Log in"/>	
 		</fieldset>
 </form>
