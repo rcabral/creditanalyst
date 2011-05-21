@@ -1,5 +1,6 @@
 package br.estacio.hermes.model;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -113,46 +114,17 @@ public class Proposta {
 	}
 
 	public double calculaPrestacao(){
-		/*
-		double s,p,q,valorDaPrestacao;
-		long carencia = Util.diffOfDays(Calendar.getInstance(),this.dataDoPrimeiroVencimento);
+		int carencia = Util.diffOfDays(Calendar.getInstance(),this.dataDoPrimeiroVencimento);
 		
-		System.out.println("carencia :" + carencia );
-		
-		double taxa = this.taxaDeJuros/100;
-		long x1 = carencia;
+		double fator;
+		int x1 = carencia;
 		int x2 = 30;
-		double fatorAuxiliar1,fatorAuxiliar2,fatorAuxiliar3,fator;
-		
-		
-		s = Math.pow((1 + taxa),carencia);
-		
-		for (int ind = 2; ind <= this.quantidadeDeParcelas ;ind++) {
-			if(ind <= 12){
-				s += ind * (1 + taxa);
-			}else{
-				s += 12 * Math.pow((1+taxa),ind + 1);  
-			}
-		}
-		
-		p = Math.pow(1+taxa,this.quantidadeDeParcelas) - 1;
-		if(p==0){
-			q=0;
-		}else{
-			q = taxa*s/p;
-		}
-		
-		fatorAuxiliar1 = Math.pow((1 + taxa),x1/x2);
-		fatorAuxiliar2 = Math.pow(taxa * (1 + taxa), this.quantidadeDeParcelas);
-		fatorAuxiliar3 = (  Math.pow((1+taxa),this.quantidadeDeParcelas) -1) * (1 + taxa);
-		
-		
-		fator = fatorAuxiliar1 * fatorAuxiliar2 / fatorAuxiliar3;
+		double taxa = this.taxaDeJuros/100;
+				
+		fator = Math.pow(1 + taxa,x1/x2) * (taxa * Math.pow((1 + taxa),this.quantidadeDeParcelas)) / ( Math.pow(1 + taxa, this.quantidadeDeParcelas) - 1 ) * ( 1 + taxa)  ;
 		valorDaPrestacao = this.valor * fator;
-		*/
 		
-		valorDaPrestacao = (this.valor * (this.taxaDeJuros / 100)) / (1 - (1 / Math.pow(1+(this.taxaDeJuros/100), this.quantidadeDeParcelas)));
-        return valorDaPrestacao;
+		return valorDaPrestacao;
 	}
 
 }

@@ -24,6 +24,7 @@
 		<mapping class="br.estacio.hermes.model.Banco" />
 		<mapping class="br.estacio.hermes.model.Proposta" />
 		<mapping class="br.estacio.hermes.model.Plano" />
+		<mapping class="br.estacio.hermes.model.Regra" />
 	</session-factory>
 </hibernate-configuration>
 	

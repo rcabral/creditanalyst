@@ -4,7 +4,7 @@
 <c:if test="${not empty errors}">
 	<div id="errors">
 		<ul>
-			<c:forEach items="${errors }" var="error">
+			<c:forEach items="${errors}" var="error">
 				<li>${error.category } - ${error.message }</li>
 			</c:forEach>
 		</ul>

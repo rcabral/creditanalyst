@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 public class Conjuge {
 	@Id
 	@GeneratedValue
+	private Long id;
 	private double salario;
 	@OneToOne
 	private Profissao profissao;
