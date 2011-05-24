@@ -1,23 +1,54 @@
 package br.estacio.hermes.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-public class RegraDeInferencia{
+import org.hibernate.validator.NotNull;
+
+@Entity
+public class RegraDeInferencia {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String logica;
+	@OneToOne @NotNull
+	private Regra regra;
+	@Enumerated(EnumType.STRING)
+	private Comparador comparador;
+	private String resposta;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getLogica() {
-		return logica;
+
+	public Regra getRegra() {
+		return regra;
 	}
-	public void setLogica(String logica) {
-		this.logica = logica;
+
+	public void setRegra(Regra regra) {
+		this.regra = regra;
+	}
+
+	public Comparador getComparador() {
+		return comparador;
+	}
+
+	public void setComparador(Comparador comparador) {
+		this.comparador = comparador;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
 	}
 }

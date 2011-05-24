@@ -62,7 +62,15 @@ Para inserir mais um nível deve-se alterar a classe "item" para "submenu" e adic
 						</li>
 					</ul>
 				</li>
-				<li class="item"><a href="<c:url value="/escoragens/formulario"/>">Escoragem</a>
+				<li class="submenu"><a href="#">Método de Escoragem</a>
+					<ul class="menu">
+						<li class="item"><a href="<c:url value="/escoragens/lista"/>">Lista</a>
+						</li>
+						<li class="item"><a
+							href="<c:url value="/escoragens/formulario"/>">Novo</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 		<li class="submenu"><a 

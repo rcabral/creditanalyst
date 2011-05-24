@@ -1,7 +1,7 @@
 package br.estacio.hermes.model;
 
 public enum TipoDeResposta{
-	Boolean("Boleano"),Integer("Inteiro"),Real("Real");
+	Boolean("Boleano"),Integer("Inteiro"),Real("Real"),SEM_RESPOSTA("Sem Resposta");
 
 	private final String nome;
 

@@ -25,6 +25,8 @@
 		<mapping class="br.estacio.hermes.model.Proposta" />
 		<mapping class="br.estacio.hermes.model.Plano" />
 		<mapping class="br.estacio.hermes.model.Regra" />
+		<mapping class="br.estacio.hermes.model.RegraDeInferencia" />
+		<mapping class="br.estacio.hermes.model.Escoragem" />
 	</session-factory>
 </hibernate-configuration>
 	
