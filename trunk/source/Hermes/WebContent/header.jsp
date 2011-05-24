@@ -16,6 +16,7 @@
 	<meta name="description" content="<fmt:message key="meta.description"/>"/>
 	<meta name="keywords" content="sites, web, desenvolvimento, development, java, opensource"/>
 	<title>Hermes</title>
+	<link rel="shortcut icon" href="<c:url value="/images/favicon.ico"/>" />
 	<link href="<c:url value="/css/menu.css"/>" rel="stylesheet" type="text/css" />
 	<link href="<c:url value="/css/pagina.css"/>" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="<c:url value="/js/menu.js"/>"></script>

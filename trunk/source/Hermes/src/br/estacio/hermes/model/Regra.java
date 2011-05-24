@@ -20,7 +20,6 @@ public class Regra {
 	@NotEmpty
 	@NotNull
 	private String pergunta;
-	private String resposta;
 	@NotNull
 	private boolean possuiResposta;
 	@Enumerated(EnumType.STRING)
@@ -48,14 +47,6 @@ public class Regra {
 
 	public void setPergunta(String pergunta) {
 		this.pergunta = pergunta;
-	}
-
-	public String getResposta() {
-		return resposta;
-	}
-
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
 	}
 
 	public boolean isPossuiResposta() {

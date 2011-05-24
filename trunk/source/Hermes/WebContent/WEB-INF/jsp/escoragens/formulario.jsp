@@ -1,48 +1,54 @@
 <%@ include file="/header.jsp" %>
 <script type="text/javascript" src="<c:url value="/js/escoragensFormulario.js"/>"  ></script> 
-	<form id="formFuncionario" <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
-		<input type="hidden" name="funcionario.id"  value="${funcionario.id}" />
+<style type="text/css">
+<!--
+@import url("<c:url value="/css/escoragensFormulario.css"/>");
+-->
+</style>
+
+	<form id="formEscoragem" <c:choose><c:when test='${escoragem.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
+		<input type="hidden" name="escoragem.id"  value="${escoragem.id}" />
 		<fieldset>
-			<legend>Escoragem</legend>
+			<legend>Método de Escoragem</legend>
 			<fieldset>
-				<legend>Amostragem de Propostas</legend>
+				<legend>Identificação</legend>
+				<hermes:campoTexto label="Nome:" id="escoragem.nome" value="${escoragem.nome}"></hermes:campoTexto>
+				<br /><br />
+				<hermes:campoTexto label="Descrição:" id="escoragem.descricao" value="${escoragem.descricao}"></hermes:campoTexto>
+				<br /><br />
+			</fieldset>	
+			<fieldset>
+				<legend>Amostragem de Treino</legend>
 				<fieldset>
 				<legend>Data de Início</legend>
-				<hermes:campoCheckBox label="Intervalo Aberto" id=""></hermes:campoCheckBox>
-				<hermes:campoData label="Data: " id=""></hermes:campoData>
+				<fmt:formatDate value="${escoragem.dataDeInicioDaAmostragem.time}" var="dataDeInicioDaAmostragem" pattern="dd/MM/yyyy"/>
+				<hermes:campoData label="Data: " id="escoragem.dataDeInicioDaAmostragem" value="${dataDeInicioDaAmostragem}"></hermes:campoData>
 				</fieldset>
 				<fieldset>
-				<legend>Data Fim</legend>
-				<hermes:campoCheckBox label="Intervalo Aberto" id=""></hermes:campoCheckBox>
-				<hermes:campoData label="Data: " id=""></hermes:campoData>
+				<legend>Data de Fim</legend>
+				<fmt:formatDate value="${escoragem.dataFinalDaAmostragem.time}" var="dataFinalDaAmostragem" pattern="dd/MM/yyyy"/>
+				<hermes:campoData label="Data: " id="escoragem.dataFinalDaAmostragem" value="${dataFinalDaAmostragem}"></hermes:campoData>
 				</fieldset>
 			</fieldset>	
 			<fieldset>
 				<legend>Regras</legend>
 				<label>Incluir Regra:</label> <input type="button" id="btnIncluiRegra" value="+" />
 				<br /><br />
-				<dir id="divRegras">
-				</dir>
-							
-				<label for="">Regra:</label>
-				<select name="" id="">
-					<option value=""></option>
-					<c:forEach items="${regraList}" var="regra">
-						<option value="${regra.id}" >${regra.pergunta}</option>
-					</c:forEach>
-				</select>
-				
-				<div id="atrivutosDeResposta" style="display: inline;">
-					<label for="">Comparador:</label>
-					<select name="" id="">
+				<div id="divRegras"></div>
+				<div id="divOptions">
+					<div id="divOptionsRegras">
+						<option value=""></option>
+						<c:forEach items="${regraList}" var="regra">
+										<option value="${regra.id}" possuiResposta="${regra.possuiResposta}" >${regra.pergunta}</option>
+						</c:forEach>
+					</div>
+					<div id="divOptionsComparador">
 						<option value=""></option>
 						<c:forEach items="${comparadorList}" var="comparador">
-							<option value="${comparador}" >${comparador.nome}</option>
+								<option value="${comparador}" >${comparador.nome}</option>
 						</c:forEach>
-					</select>
-					<hermes:campoTexto label="Resposta:" id=""></hermes:campoTexto>
+					</div>
 				</div>
-				
 			</fieldset>
 			<button type="submit">Treinar Rede e Salvar</button>	
 		</fieldset>
