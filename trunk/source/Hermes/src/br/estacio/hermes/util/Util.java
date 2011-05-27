@@ -19,5 +19,15 @@ public class Util {
 		return diffOfDays;
 
 	}
+	
+	public static int diffOfYears(Calendar startDate, Calendar endDate) {  
+		  Calendar date = (Calendar) startDate.clone();  
+		  int yearsBetween = 0;  
+		  while (date.before(endDate)) {  
+		    date.add(Calendar.YEAR, 1);  
+		    yearsBetween++;  
+		  }  
+		  return yearsBetween;  
+	}  
 
 }

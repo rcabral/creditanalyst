@@ -11,11 +11,11 @@
 			<hermes:campoCheckBox label="Possui Resposta:" id="regra.possuiResposta" value="${regra.possuiResposta}"></hermes:campoCheckBox>
 			<br/><br/>
 			<div id="divAtributosDeResposta">
-				<label for="regra.tipo">Tipo de Resposta:</label>
-				<select name="regra.tipoDeResposta" id="regra.tipoDeResposta">
+				<label for="regra.metodo">Campo:</label>
+				<select name="regra.metodo" id="regra.metodo">
 					<option value=""></option>
-					<c:forEach items="${tipoDeRespostaList}" var="tipo">
-						<option value="${tipo}" <c:if test="${regra.tipoDeResposta==tipo}">selected="selected"</c:if> >${tipo.nome}</option>
+					<c:forEach items="${campoList}" var="campo">
+						<option value="${campo.metodo}" <c:if test="${campo.metodo==regra.metodo}">selected="selected"</c:if> >${campo.nome}</option>
 					</c:forEach>
 				</select>
 				<br/><br/>

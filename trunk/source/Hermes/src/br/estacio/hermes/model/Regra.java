@@ -21,9 +21,9 @@ public class Regra {
 	@NotNull
 	private String pergunta;
 	@NotNull
+	private String metodo;
+	@NotNull
 	private boolean possuiResposta;
-	@Enumerated(EnumType.STRING)
-	private TipoDeResposta tipoDeResposta;
 
 	public Long getId() {
 		return id;
@@ -57,12 +57,12 @@ public class Regra {
 		this.possuiResposta = possuiResposta;
 	}
 
-	public TipoDeResposta getTipoDeResposta() {
-		return tipoDeResposta;
+	public String getMetodo() {
+		return metodo;
 	}
 
-	public void setTipoDeResposta(TipoDeResposta tipoDeResposta) {
-		this.tipoDeResposta = tipoDeResposta;
+	public void setMetodo(String metodo) {
+		this.metodo = metodo;
 	}
 
 }

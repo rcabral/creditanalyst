@@ -5,6 +5,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.estacio.hermes.dao.RegraDAO;
+import br.estacio.hermes.model.Proposta;
 import br.estacio.hermes.model.Regra;
 import br.estacio.hermes.model.TipoDeResposta;
 
@@ -26,7 +27,8 @@ public class RegrasController {
 	}
 
 	public void formulario(Regra regra) {
-		result.include("tipoDeRespostaList", TipoDeResposta.values());
+		Proposta proposta = new Proposta();
+		result.include("campoList",proposta.getCampos());
 		result.include("regra", regra);
 	}
 

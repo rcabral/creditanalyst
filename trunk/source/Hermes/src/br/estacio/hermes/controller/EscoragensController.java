@@ -32,12 +32,14 @@ public class EscoragensController {
 	}
 	
 	public void formulario(Escoragem escoragem) {
+		result.include("escoragem", escoragem);
 		result.include("regraList", regraDAO.lista());
 		result.include("comparadorList", Comparador.values());
-		result.include("escoragem", escoragem);
 	}
 	
 	public void adiciona(Escoragem escoragem) {
+		result.include("regraList", regraDAO.lista());
+		result.include("comparadorList", Comparador.values());
 		validator.validate(escoragem);
 		validator.onErrorUsePageOf(this).formulario(escoragem);
 		dao.salva(escoragem);
@@ -50,6 +52,8 @@ public class EscoragensController {
 	}
 
 	public void altera(Escoragem escoragem) {
+		result.include("regraList", regraDAO.lista());
+		result.include("comparadorList", Comparador.values());
 		validator.validate(escoragem);
 		validator.onErrorUsePageOf(this).formulario(escoragem);
 		dao.atualiza(escoragem);

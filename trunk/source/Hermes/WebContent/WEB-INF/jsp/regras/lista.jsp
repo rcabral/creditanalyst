@@ -3,14 +3,21 @@
 		<thead>
 			<th>ID</th>
 			<th>Nome</th>
-			<th>Tipo de Resposta</th>
+			<th>Pergunta</th>
+			<th>Possui Resposta</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${regraList}" var="regra">
 				<tr>
 					<td>${regra.id}</td>
 					<td>${regra.nome}</td>
-					<td>${regra.tipoDeResposta}</td>
+					<td>${regra.pergunta}</td>
+					<td>
+						<c:choose>
+							<c:when test="${regra.possuiResposta}">Sim</c:when>
+							<c:otherwise>Não</c:otherwise>
+						</c:choose>
+					</td>
 					<td><a href="edita?id=${regra.id}">Editar</a></td>
 					<td><a href="remove?id=${regra.id}">Remover</a></td>
 				</tr>

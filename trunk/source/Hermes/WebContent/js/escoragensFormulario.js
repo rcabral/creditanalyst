@@ -38,12 +38,8 @@ $(document).ready(function() {
 		});
 	});
 	
-	
-	
-	
-	
-	
-	
-	 
+	$(".btnRemoveRegra").click(function() {
+		$(this).parent().remove();
+	});
 	
 });
