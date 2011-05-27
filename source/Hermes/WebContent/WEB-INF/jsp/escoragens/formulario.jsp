@@ -34,7 +34,33 @@
 				<legend>Regras</legend>
 				<label>Incluir Regra:</label> <input type="button" id="btnIncluiRegra" value="+" />
 				<br /><br />
-				<div id="divRegras"></div>
+				<div id="divRegras">
+					<c:forEach items="${escoragem.regrasDeInferencia}" var="regraDeInferencia" varStatus="s">
+						<div class="divRegra"> 
+							<input type="button" class="btnRemoveRegra" value="-" />
+							<label for="escoragem.regrasDeInferencia[${s.index}].regra.id">Regra:</label>
+							<select name="escoragem.regrasDeInferencia[${s.index}].regra.id" id="escoragem.regrasDeInferencia[${s.index}].regra.id" class="comboRegra">
+							 	<option value=""></option>
+								<c:forEach items="${regraList}" var="regra">
+												<option value="${regra.id}" possuiResposta="${regra.possuiResposta}" <c:if test="${escoragem.regrasDeInferencia[s.index].regra.id==regra.id}">selected="selected"</c:if>>${regra.pergunta}</option>
+								</c:forEach>
+							</select>
+							<c:if test="${escoragem.regrasDeInferencia[s.index].regra.possuiResposta}">
+								<div class="atrivutosDeResposta" style="display: inline;">
+									<label for="escoragem.regrasDeInferencia[${s.index}].comparador">Comparador:</label>
+									<select name="escoragem.regrasDeInferencia[${s.index}].comparador" id="escoragem.regrasDeInferencia[${s.index}].comparador">
+										<option value=""></option>
+										<c:forEach items="${comparadorList}" var="comparador">
+												<option value="${comparador}" <c:if test="${escoragem.regrasDeInferencia[s.index].comparador==comparador}">selected="selected"</c:if>>${comparador.nome}</option>
+										</c:forEach>
+									</select>
+									<label for="">Resposta:</label>
+									<input type="text" id="escoragem.regrasDeInferencia[${s.index}].resposta" name="escoragem.regrasDeInferencia[${s.index}].resposta" class="texto" value="${escoragem.regrasDeInferencia[s.index].resposta}" />
+								</div>
+							</c:if>
+						</div>
+					</c:forEach>
+				</div>
 				<div id="divOptions">
 					<div id="divOptionsRegras">
 						<option value=""></option>

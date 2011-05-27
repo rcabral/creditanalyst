@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 @Entity
@@ -17,9 +18,11 @@ public class Escoragem {
 	@GeneratedValue
 	private Long id;
 	@OneToMany(cascade = { CascadeType.ALL })
-	@NotNull
+	@NotNull 
 	private List<RegraDeInferencia> regrasDeInferencia;
+	@NotNull @NotEmpty
 	private String nome;
+	@NotNull @NotEmpty
 	private String descricao;
 	private Calendar dataDeInicioDaAmostragem;
 	private Calendar dataFinalDaAmostragem;
