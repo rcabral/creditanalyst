@@ -9,9 +9,9 @@
 			<fieldset>
 				<legend>Cliente</legend>
 				<input type="hidden" name="proposta.cliente.id"  value="${proposta.cliente.id}" />
-				<hermes:campoCPF label="CPF:" id="proposta.cliente.cpf" value="${proposta.cliente.cpf}"></hermes:campoCPF>
+				<hermes:campoCPF readOnly="true" label="CPF:" id="proposta.cliente.cpf" value="${proposta.cliente.cpf}"></hermes:campoCPF>
 				<br /><br />
-				<hermes:campoTexto label="Nome:" id="proposta.cliente.nome" value="${proposta.cliente.nome}"></hermes:campoTexto>
+				<hermes:campoTexto readOnly="true" label="Nome:" id="proposta.cliente.nome" value="${proposta.cliente.nome}"></hermes:campoTexto>
 			</fieldset>
 			<fieldset>
 				<legend>Dados do Crédito</legend>
@@ -21,7 +21,7 @@
 				<br /><br />
 				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" ></hermes:campoData>
 				<br /><br />
-				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${proposta.valorDaPrestacao}" name="proposta.valorDaPrestacao"></hermes:campoMoeda>
+				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${proposta.valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="true"></hermes:campoMoeda>
 			</fieldset>
 			<br />	
 			<button type="submit">Enviar</button>	

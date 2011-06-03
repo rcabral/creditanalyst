@@ -10,7 +10,25 @@ $(document).ready(function() {
 		,dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']	
 		,maxDate: '+50d'
 		,minDate: '0d'	
+		,onSelect: function() {
+			var calculaPrestacaoUrl = $("#calculaPrestacaoUrl").val();
+			$('#valorDaPrestacao').val('');
+			$.post(calculaPrestacaoUrl,$("#formularioDeProposta").serialize() ,function(data) {
+				if(data!='?'){
+					$('#valorDaPrestacao').val(data);
+				}	
+			});
+		}	
 	});
+	
+	function calculaProposta(){
+		$('#valorDaPrestacao').val('');
+		$.post(calculaPrestacaoUrl,$("#formularioDeProposta").serialize() ,function(data) {
+			if(data!='?'){
+				$('#valorDaPrestacao').val(data);
+			}	
+		});
+	}
 	
 	$(".data").datepicker({	
 							dateFormat:"dd/mm/yy"
@@ -45,7 +63,9 @@ $(document).ready(function() {
 	});
 	
 	 //$(".cpf").mask("999.999.999-99");
-	 //$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	 
+	
+	 $(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
 
 
 	

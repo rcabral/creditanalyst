@@ -157,12 +157,12 @@ public class Proposta {
 	public int getIdade() {
 		Calendar startDate = Calendar.getInstance();
 		Calendar endDate = this.cliente.getDataDeNascimento();
-		return Util.diffOfYears(startDate, endDate);
+		return Util.diffOfYears(startDate,endDate);
 	}
-
+	
 	@Campo(nome = "Sexo")
-	public Sexo getSexo() {
-		return this.cliente.getSexo();
+	public double getSexo() {
+		return this.cliente.getSexo().ordinal();
 	}
 
 	@Campo(nome = "Comprometimento da Renda")
@@ -171,8 +171,8 @@ public class Proposta {
 	}
 	
 	@Campo(nome = "Estado Civil")
-	public EstadoCivil getEstadoCivil() {
-		return this.cliente.getPerfilDoCliente().getEstadoCivil();
+	public double getEstadoCivil() {
+		return this.cliente.getPerfilDoCliente().getEstadoCivil().ordinal();
 	}
 	
 	@Campo(nome = "Número de dependentes")
@@ -181,18 +181,18 @@ public class Proposta {
 	}
 	
 	@Campo(nome = "Nível de Instrução")
-	public NivelDeInstrucao setNivelDeInstrucao(NivelDeInstrucao nivelDeInstrucao) {
-		return this.cliente.getPerfilDoCliente().getNivelDeInstrucao();
+	public double setNivelDeInstrucao(NivelDeInstrucao nivelDeInstrucao) {
+		return this.cliente.getPerfilDoCliente().getNivelDeInstrucao().ordinal();
 	}
 	
 	@Campo(nome = "Profissão")
-	public Profissao getProfissao() {
-		return this.cliente.getPerfilDoCliente().getProfissao();
+	public double getProfissao() {
+		return this.cliente.getPerfilDoCliente().getProfissao().getCodigoCBO();
 	}
 	
 	@Campo(nome = "Tipo de Residencia")
-	public TipoDeResidencia getTipoDeResidencia() {
-		return this.cliente.getPerfilDoCliente().getTipoDeResidencia();
+	public double getTipoDeResidencia() {
+		return this.cliente.getPerfilDoCliente().getTipoDeResidencia().ordinal();
 	}
 	
 	@Campo(nome = "Tempo de Residencia em Anos")
@@ -206,18 +206,26 @@ public class Proposta {
 	}
 	
 	@Campo(nome = "Tipo de Vínculo com o Credor")
-	public TipoDeVinculoComCredor getTipoDeVinculoComCredor() {
-		return this.cliente.getPerfilDoCliente().getTipoDeVinculoComCredor();
+	public double getTipoDeVinculoComCredor() {
+		return this.cliente.getPerfilDoCliente().getTipoDeVinculoComCredor().ordinal();
 	}
 	
 	@Campo(nome = "Cheque Especial")
-	public boolean isPossuiChequeEspecial() {
-		return this.cliente.getPerfilDoCliente().isPossuiChequeEspecial();
+	public double isPossuiChequeEspecial() {
+		if(this.cliente.getPerfilDoCliente().isPossuiChequeEspecial()){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	
 	@Campo(nome = "Seguto de Automóvel")
-	public boolean isPossuiSeguroDeAutmovel() {
-		return this.cliente.getPerfilDoCliente().isPossuiSeguroDeAutmovel();
+	public double isPossuiSeguroDeAutmovel() {
+		if(this.cliente.getPerfilDoCliente().isPossuiSeguroDeAutmovel()){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	
 	@Campo(nome = "Valor Total de bens imóveis")

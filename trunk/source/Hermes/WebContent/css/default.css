@@ -57,6 +57,19 @@ label{
 	margin-right: 400px;
 }
 
+.textoVerde{
+	color: green;
+}
+
+.textoLaranja{
+	color: orange;
+}
+
+.readOnly{
+	background-color: #DBDBDB ;
+}
+
+
 
 
 

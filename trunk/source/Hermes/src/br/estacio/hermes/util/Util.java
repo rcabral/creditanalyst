@@ -21,11 +21,12 @@ public class Util {
 	}
 	
 	public static int diffOfYears(Calendar startDate, Calendar endDate) {  
-		  Calendar date = (Calendar) startDate.clone();  
-		  int yearsBetween = 0;  
-		  while (date.before(endDate)) {  
-		    date.add(Calendar.YEAR, 1);  
-		    yearsBetween++;  
+		  Calendar date = (Calendar) startDate.clone(); 
+		  Calendar date2 = (Calendar) endDate.clone();
+		  int yearsBetween = -1;  
+		  while (date2.before(date)) {  
+			  date2.add(1,Calendar.YEAR);  
+			  yearsBetween++;  
 		  }  
 		  return yearsBetween;  
 	}  

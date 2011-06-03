@@ -42,6 +42,7 @@ public class EscoragensController {
 		result.include("comparadorList", Comparador.values());
 		validator.validate(escoragem);
 		validator.onErrorUsePageOf(this).formulario(escoragem);
+		dao.desativaRegrasDeEscoragem();
 		dao.salva(escoragem);
 		result.redirectTo(this).lista();
 	}
@@ -56,6 +57,7 @@ public class EscoragensController {
 		result.include("comparadorList", Comparador.values());
 		validator.validate(escoragem);
 		validator.onErrorUsePageOf(this).formulario(escoragem);
+		dao.desativaRegrasDeEscoragem();
 		dao.atualiza(escoragem);
 		result.redirectTo(this).lista();
 	}
