@@ -18,7 +18,7 @@ public class RegraDeInferencia {
 	private Regra regra;
 	@Enumerated(EnumType.STRING)
 	private Comparador comparador;
-	private String resposta;
+	private double resposta;
 
 	public Long getId() {
 		return id;
@@ -44,11 +44,11 @@ public class RegraDeInferencia {
 		this.comparador = comparador;
 	}
 
-	public String getResposta() {
+	public double getResposta() {
 		return resposta;
 	}
 
-	public void setResposta(String resposta) {
+	public void setResposta(double resposta) {
 		this.resposta = resposta;
 	}
 }

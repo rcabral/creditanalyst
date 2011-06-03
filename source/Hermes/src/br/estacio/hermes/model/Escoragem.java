@@ -1,5 +1,8 @@
 package br.estacio.hermes.model;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class Escoragem {
 	private String descricao;
 	private Calendar dataDeInicioDaAmostragem;
 	private Calendar dataFinalDaAmostragem;
+	private boolean ativo;
 
 	public Long getId() {
 		return id;
@@ -73,6 +77,90 @@ public class Escoragem {
 
 	public void setDataFinalDaAmostragem(Calendar dataFinalDaAmostragem) {
 		this.dataFinalDaAmostragem = dataFinalDaAmostragem;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public ArrayList<Double> escorar(Proposta proposta) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException{
+		ArrayList<Double> escore = new ArrayList<Double>(); 
+		Class classeProposta = proposta.getClass();
+		double retorno = (Double) null;
+		
+		for (RegraDeInferencia regraDeInferencia : this.regrasDeInferencia) {
+			 Method method = classeProposta.getMethod(regraDeInferencia.getRegra().getMetodo());
+			 double retornoDoMetodo = (Double)method.invoke(proposta,null);
+			 Comparador comparador = regraDeInferencia.getComparador();
+			 double resposta = regraDeInferencia.getResposta();
+			 			 
+			 if(comparador == Comparador.IGUAL){
+				 if(retornoDoMetodo==resposta){
+					 retorno = 1;
+				 }else{
+					 retorno = 0;
+				 }
+			 }else if (comparador == Comparador.DIFERENTE) {
+				 if(retornoDoMetodo!=resposta){
+					 retorno = 1;
+				 }else{
+					 retorno = 0;
+				 }
+			 } else if (comparador == Comparador.MAIOR) {
+				 if(retornoDoMetodo > resposta){
+					 retorno = 1;
+				 }else{
+					 if(resposta==0){
+						 retorno = 0;
+					 }else{
+						 retorno = retornoDoMetodo/resposta;
+					 }
+				 }
+			 } else if (comparador == Comparador.MAIOR_IGUAL) {
+				 if(retornoDoMetodo >= resposta){
+					 retorno = 1;
+				 }else{
+					 if(resposta==0){
+						 retorno = 0;
+					 }else{
+						 retorno = retornoDoMetodo/resposta;
+					 }
+				 }	 
+			 } else if (comparador == Comparador.MENOR) {
+				 if(retornoDoMetodo < resposta){
+					 retorno = 1;
+				 }else{
+					 if(retornoDoMetodo==0){
+						 retorno = 0;
+					 }else{
+						 retorno = resposta/retornoDoMetodo;
+						 
+					 }
+				 }
+			 } else if (comparador == Comparador.MENOR_IGUAL) {
+				 if(retornoDoMetodo <= resposta){
+					 retorno = 1;
+				 }else{
+					 if(retornoDoMetodo==0){
+						 retorno = 0;
+					 }else{
+						 retorno = resposta/retornoDoMetodo;
+						 
+					 }
+				 }	 
+			 }else {
+				 retorno = retornoDoMetodo;
+			 }
+			 
+			 escore.add(retorno);
+		
+		}
+		
+		return escore;
 	}
 
 }

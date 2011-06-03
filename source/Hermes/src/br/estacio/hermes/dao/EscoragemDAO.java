@@ -32,6 +32,10 @@ private Session session;
 	public List<Escoragem> lista(){
 		return this.session.createCriteria(Escoragem.class).list();
 	}
+	
+	public void desativaRegrasDeEscoragem(){
+		this.session.createQuery("update Escoragem set ativo = false ").executeUpdate();
+	}
 
 }
 
