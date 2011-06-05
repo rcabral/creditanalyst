@@ -1,0 +1,32 @@
+      Início
+
+1 	Enquanto (houver cliente) faça
+2    		Obter CPF do cliente;
+
+3    		Se (CPF cadastrado) Então
+4			Se (dados atualizados) Então
+6	   			Gravar Cliente;
+			Senão
+5	   			Atualizar dados do cliente;
+			Fim-se 
+			
+	     	Senão
+2		 	Obter CPF do cliente;
+    		Fim-se
+    		
+6    		Gravar Cliente;
+7    		Obter plano disponível; 
+8    		Obter dados da Operação desejada;
+
+9    		Se (dados ok) Então
+10       		Gravar proposta;
+	     	Senão
+8        		Obter dados da Operação desejada;
+	     	Fim-se
+	     	
+11   		Incluir Score;
+12   		Emitir proposta;
+
+13 	Fim Enquanto
+
+14    Fim

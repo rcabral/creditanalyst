@@ -1,0 +1,22 @@
+      Início
+
+1 	Enquanto (houver analise) faça
+1    		Obter CPF analise;
+
+2    		Se (proposta aprovada) Então
+4			Se (cliente aceita proposta) Então
+6	   			Gravar proposta;
+			Senão
+5	   			cancela proposta;
+			Fim-se 
+			
+	     	Senão
+3		 	Informa resposta ao cliente;
+    		Fim-se
+    		
+7    		Sair do sistema; 
+
+
+ 	Fim Enquanto
+
+     Fim
