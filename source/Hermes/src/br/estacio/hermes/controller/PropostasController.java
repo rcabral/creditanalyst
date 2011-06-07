@@ -1,24 +1,31 @@
 package br.estacio.hermes.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.view.Results;
+import br.estacio.hermes.dao.ContratoDAO;
 import br.estacio.hermes.dao.PropostaDAO;
+import br.estacio.hermes.model.Contrato;
+import br.estacio.hermes.model.Prestacao;
 import br.estacio.hermes.model.Proposta;
+import br.estacio.hermes.model.Status;
 
 @Resource
 public class PropostasController {
 	private final PropostaDAO dao;
+	private final ContratoDAO contratoDAO;
 	private final Result result;
 	private final Validator validator;
 
-	public PropostasController(PropostaDAO dao, Result result,
-			Validator validator) {
+	public PropostasController(PropostaDAO dao, ContratoDAO contratoDAO,
+			Result result, Validator validator) {
 		this.dao = dao;
+		this.contratoDAO = contratoDAO;
 		this.result = result;
 		this.validator = validator;
 	}
@@ -36,8 +43,29 @@ public class PropostasController {
 		proposta.setData(Calendar.getInstance());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
+		proposta.setStatus(Status.APROVADO);
+		adicionaContrato(proposta);
 		dao.salva(proposta);
 		result.redirectTo(this).lista();
+	}
+	
+	public void adicionaContrato(Proposta proposta) {
+		Calendar dataDoPrimeiroVencimento = proposta.getDataDoPrimeiroVencimento();
+		List<Prestacao> prestacoes = new ArrayList<Prestacao>();
+		for (int i = 0; i < proposta.getQuantidadeDeParcelas(); i++) {
+			Calendar dataDeVencimento = (Calendar) dataDoPrimeiroVencimento.clone();
+			dataDeVencimento.add(Calendar.MONTH, i);
+			Prestacao prestacao = new Prestacao();
+			prestacao.setNumero(i + 1);
+			prestacao.setDataDeVencimento((Calendar)dataDeVencimento.clone());
+			prestacoes.add(prestacao);
+		}
+
+		Contrato contrato = new Contrato();
+		contrato.setData(Calendar.getInstance());
+		contrato.setProposta(proposta);
+		contrato.setPrestacoes(prestacoes);
+		contratoDAO.salva(contrato);
 	}
 
 	public void edita(Long id) {

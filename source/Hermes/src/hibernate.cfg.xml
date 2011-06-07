@@ -27,6 +27,8 @@
 		<mapping class="br.estacio.hermes.model.Regra" />
 		<mapping class="br.estacio.hermes.model.RegraDeInferencia" />
 		<mapping class="br.estacio.hermes.model.Escoragem" />
+		<mapping class="br.estacio.hermes.model.Contrato" />
+		<mapping class="br.estacio.hermes.model.Prestacao" />
 	</session-factory>
 </hibernate-configuration>
 	

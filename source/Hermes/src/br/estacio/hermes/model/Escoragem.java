@@ -87,14 +87,14 @@ public class Escoragem {
 		this.ativo = ativo;
 	}
 
-	public ArrayList<Double> escorar(Proposta proposta) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException{
+	public ArrayList<Double> escorar(Proposta proposta) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException{
 		ArrayList<Double> escore = new ArrayList<Double>(); 
 		Class classeProposta = proposta.getClass();
-		double retorno = (Double) null;
+		double retorno;
 		
 		for (RegraDeInferencia regraDeInferencia : this.regrasDeInferencia) {
 			 Method method = classeProposta.getMethod(regraDeInferencia.getRegra().getMetodo());
-			 double retornoDoMetodo = (Double)method.invoke(proposta,null);
+			 double retornoDoMetodo = (Double)method.invoke(proposta);
 			 Comparador comparador = regraDeInferencia.getComparador();
 			 double resposta = regraDeInferencia.getResposta();
 			 			 
