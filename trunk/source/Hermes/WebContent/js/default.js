@@ -65,7 +65,7 @@ $(document).ready(function() {
 	 //$(".cpf").mask("999.999.999-99");
 	 
 	
-	 $(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	 //$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
 
 
 	

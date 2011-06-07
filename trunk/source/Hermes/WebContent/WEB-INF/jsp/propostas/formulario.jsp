@@ -21,7 +21,7 @@
 				<br /><br />
 				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" ></hermes:campoData>
 				<br /><br />
-				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${proposta.valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="true"></hermes:campoMoeda>
+				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${proposta.valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="false"></hermes:campoMoeda>
 			</fieldset>
 			<br />	
 			<button type="submit">Enviar</button>	
