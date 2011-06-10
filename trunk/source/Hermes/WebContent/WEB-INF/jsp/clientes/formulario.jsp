@@ -33,7 +33,7 @@
 				<hermes:campoNumeroInteiro label="Número de Dependentes:" id="cliente.perfilDoCliente.numeroDeDependentes" value="${cliente.perfilDoCliente.numeroDeDependentes}"></hermes:campoNumeroInteiro>
 				<br /><br />
 				<label for="cliente.perfilDoCliente.nivelDeInstrucao">Nível de Instrução:</label>
-				<select name="cliente.perfilDoCliente.nivelDeInstrucao" id="cliente.perfilDoCliente.nivelDeInstrucao">
+				<select class="teste" name="cliente.perfilDoCliente.nivelDeInstrucao" id="cliente.perfilDoCliente.nivelDeInstrucao">
 					<option value=""></option>
 					<c:forEach items="${nivelDeInstrucaoList}" var="nivelDeInstrucao">
 						<option value="${nivelDeInstrucao}" <c:if test="${cliente.perfilDoCliente.nivelDeInstrucao==nivelDeInstrucao}">selected="selected"</c:if> >${nivelDeInstrucao.nome}</option>
@@ -41,7 +41,7 @@
 				</select>
 				<br /><br />
 				<label for="cliente.perfilDoCliente.profissao.codigoCBO">Profissão:</label>
-				<select name="cliente.perfilDoCliente.profissao.codigoCBO" id="cliente.perfilDoCliente.profissao.codigoCBO">
+				<select class="autocomplete" name="cliente.perfilDoCliente.profissao.codigoCBO" id="cliente.perfilDoCliente.profissao.codigoCBO">
 					<option value=""></option>
 					<c:forEach items="${profissaoList}" var="profissao">
 						<option value="${profissao.codigoCBO}" <c:if test="${cliente.perfilDoCliente.profissao.codigoCBO==profissao.codigoCBO}">selected="selected"</c:if>  >${profissao.descricao}</option>

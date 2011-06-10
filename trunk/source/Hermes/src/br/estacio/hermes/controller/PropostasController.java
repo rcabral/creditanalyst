@@ -1,16 +1,27 @@
 package br.estacio.hermes.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Vector;
+
+import org.neuroph.core.NeuralNetwork;
+import org.neuroph.core.learning.SupervisedTrainingElement;
+import org.neuroph.core.learning.TrainingSet;
+
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.view.Results;
+import br.estacio.hermes.dao.ClienteDAO;
 import br.estacio.hermes.dao.ContratoDAO;
+import br.estacio.hermes.dao.EscoragemDAO;
+import br.estacio.hermes.dao.PerfilDoClienteDAO;
 import br.estacio.hermes.dao.PropostaDAO;
 import br.estacio.hermes.model.Contrato;
+import br.estacio.hermes.model.Escoragem;
 import br.estacio.hermes.model.Prestacao;
 import br.estacio.hermes.model.Proposta;
 import br.estacio.hermes.model.Status;
@@ -19,13 +30,22 @@ import br.estacio.hermes.model.Status;
 public class PropostasController {
 	private final PropostaDAO dao;
 	private final ContratoDAO contratoDAO;
+	private final ClienteDAO clienteDAO;
+	private final EscoragemDAO escoragemDAO;
+	private final PerfilDoClienteDAO perfilDoClienteDAO;
 	private final Result result;
 	private final Validator validator;
 
 	public PropostasController(PropostaDAO dao, ContratoDAO contratoDAO,
-			Result result, Validator validator) {
+			ClienteDAO clienteDAO, EscoragemDAO escoragemDAO,
+			PerfilDoClienteDAO perfilDoClienteDAO, Result result,
+			Validator validator) {
+		super();
 		this.dao = dao;
 		this.contratoDAO = contratoDAO;
+		this.clienteDAO = clienteDAO;
+		this.escoragemDAO = escoragemDAO;
+		this.perfilDoClienteDAO = perfilDoClienteDAO;
 		this.result = result;
 		this.validator = validator;
 	}
@@ -39,12 +59,24 @@ public class PropostasController {
 		return proposta;
 	}
 
-	public void adiciona(Proposta proposta) {
+	public void adiciona(Proposta proposta) throws SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		proposta.setData(Calendar.getInstance());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
-		proposta.setStatus(Status.APROVADO);
-		adicionaContrato(proposta);
+		
+		NeuralNetwork hermesNeuralNetwork = NeuralNetwork.load("Hermes.nnet");
+		Escoragem escoragem = this.escoragemDAO.carregaEscoragemAtiva();
+		proposta.setCliente(clienteDAO.carrega(proposta.getCliente().getId()));
+		ArrayList<Double> escore = escoragem.escorar(proposta);
+		hermesNeuralNetwork.setInput(new SupervisedTrainingElement(escore,escore).getInput());
+		hermesNeuralNetwork.calculate();
+		double[] networkOutput = hermesNeuralNetwork.getOutput();
+		
+		System.out.println("networkOutput: " + networkOutput[0]);
+				
+		//proposta.setStatus(Status.APROVADO);
+		//adicionaContrato(proposta);
+		
 		dao.salva(proposta);
 		result.redirectTo(this).lista();
 	}

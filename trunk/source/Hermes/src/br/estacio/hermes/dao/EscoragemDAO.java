@@ -2,6 +2,8 @@ package br.estacio.hermes.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.estacio.hermes.model.Escoragem;
 
@@ -23,8 +25,17 @@ private Session session;
 	}
 	public Escoragem carrega(Long id){
 		return (Escoragem)this.session.load(Escoragem.class,id);
-		
 	}
+	
+	public Escoragem carregaEscoragemAtiva(){
+		Escoragem escoragem = null;
+		List<Escoragem> escoragens = this.session.createCriteria(Escoragem.class).setMaxResults(1).add(Restrictions.eq("ativo",true)).list();
+		if(escoragens.size()>0){
+			escoragem = escoragens.get(0);
+		}
+		return escoragem;
+	}	
+	
 	public void atualiza(Escoragem objtect){
 		this.session.update(objtect);
 	}
