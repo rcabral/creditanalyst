@@ -1,11 +1,16 @@
 package br.estacio.hermes.controller;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
+
+import javax.servlet.ServletContext;
 
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.learning.SupervisedTrainingElement;
@@ -14,6 +19,7 @@ import org.neuroph.core.learning.TrainingSet;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.estacio.hermes.dao.ClienteDAO;
 import br.estacio.hermes.dao.ContratoDAO;
@@ -35,11 +41,12 @@ public class PropostasController {
 	private final PerfilDoClienteDAO perfilDoClienteDAO;
 	private final Result result;
 	private final Validator validator;
+	private final ServletContext context;
 
 	public PropostasController(PropostaDAO dao, ContratoDAO contratoDAO,
 			ClienteDAO clienteDAO, EscoragemDAO escoragemDAO,
 			PerfilDoClienteDAO perfilDoClienteDAO, Result result,
-			Validator validator) {
+			Validator validator, ServletContext context) {
 		super();
 		this.dao = dao;
 		this.contratoDAO = contratoDAO;
@@ -48,6 +55,7 @@ public class PropostasController {
 		this.perfilDoClienteDAO = perfilDoClienteDAO;
 		this.result = result;
 		this.validator = validator;
+		this.context = context;
 	}
 
 	public List<Proposta> lista() {
@@ -59,37 +67,58 @@ public class PropostasController {
 		return proposta;
 	}
 
-	public void adiciona(Proposta proposta) throws SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public void adiciona(Proposta proposta) throws SecurityException,
+			IllegalArgumentException, NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			ClassNotFoundException {
+		
 		proposta.setData(Calendar.getInstance());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
+				
+		final Escoragem escoragem = this.escoragemDAO.carregaEscoragemAtiva();
+		validator.checking(new Validations() {
+			{
+				that(escoragem, is(notNullValue()), "login", "invalid_login_or_password");
+			}
+		});
 		
-		NeuralNetwork hermesNeuralNetwork = NeuralNetwork.load("Hermes.nnet");
-		Escoragem escoragem = this.escoragemDAO.carregaEscoragemAtiva();
+		//load neuralNetwork
+		String neuralNetFile = this.context.getRealPath("/WEB-INF/NeuralNetwork") + "/" + "Hermes.nnet";
+		NeuralNetwork hermesNeuralNetwork = NeuralNetwork.load(neuralNetFile);
+		
+		
 		proposta.setCliente(clienteDAO.carrega(proposta.getCliente().getId()));
 		ArrayList<Double> escore = escoragem.escorar(proposta);
 		hermesNeuralNetwork.setInput(new SupervisedTrainingElement(escore,escore).getInput());
 		hermesNeuralNetwork.calculate();
-		double[] networkOutput = hermesNeuralNetwork.getOutput();
 		
-		System.out.println("networkOutput: " + networkOutput[0]);
-				
-		//proposta.setStatus(Status.APROVADO);
-		//adicionaContrato(proposta);
+		double[] networkOutput = hermesNeuralNetwork.getOutput();
+		double respostaDoPrimeiroNeuronio = networkOutput[0];
+		double respostaDoSegundoNeuronio = networkOutput[1];
+		
+		if(respostaDoPrimeiroNeuronio == 1.0) {
+			proposta.setStatus(Status.APROVADO);
+			 adicionaContrato(proposta);
+		} else{
+			proposta.setStatus(Status.REPROVADO);
+		}
 		
 		dao.salva(proposta);
 		result.redirectTo(this).lista();
 	}
-	
+
 	public void adicionaContrato(Proposta proposta) {
-		Calendar dataDoPrimeiroVencimento = proposta.getDataDoPrimeiroVencimento();
+		Calendar dataDoPrimeiroVencimento = proposta
+				.getDataDoPrimeiroVencimento();
 		List<Prestacao> prestacoes = new ArrayList<Prestacao>();
 		for (int i = 0; i < proposta.getQuantidadeDeParcelas(); i++) {
-			Calendar dataDeVencimento = (Calendar) dataDoPrimeiroVencimento.clone();
+			Calendar dataDeVencimento = (Calendar) dataDoPrimeiroVencimento
+					.clone();
 			dataDeVencimento.add(Calendar.MONTH, i);
 			Prestacao prestacao = new Prestacao();
 			prestacao.setNumero(i + 1);
-			prestacao.setDataDeVencimento((Calendar)dataDeVencimento.clone());
+			prestacao.setDataDeVencimento((Calendar) dataDeVencimento.clone());
 			prestacoes.add(prestacao);
 		}
 
@@ -122,7 +151,8 @@ public class PropostasController {
 		proposta.setTaxaDeJuros(1);
 		double valorDaPrestacao = proposta.calculaPrestacao();
 		DecimalFormat decimal = new DecimalFormat("0.00");
-		result.use(Results.json()).withoutRoot().from(decimal.format(valorDaPrestacao)).serialize();
+		result.use(Results.json()).withoutRoot()
+				.from(decimal.format(valorDaPrestacao)).serialize();
 	}
 
 }

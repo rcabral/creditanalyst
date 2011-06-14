@@ -18,11 +18,7 @@ public class Teste {
 		
 		
 		
-		NeuralNetwork neuralNetwork = new MultiLayerPerceptron(1,2,3);
-		
-		
-		TrainingSet trainingSet = new TrainingSet();
-		//trainingSet.addElement(new SupervisedTrainingElement(
+		System.out.println(Util.getWebInfPath());
 		
 	
 		

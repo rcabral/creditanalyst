@@ -1,6 +1,8 @@
 package br.estacio.hermes.util;
 
+import java.net.URL;
 import java.util.Calendar;
+
 
 public class Util {
 
@@ -30,5 +32,15 @@ public class Util {
 		  }  
 		  return yearsBetween;  
 	}  
+	
+	public static String getWebInfPath(){
+		final String WEBINF = "WEB-INF";  
+	    String filePath = "";
+	    URL url = new Util().getClass().getResource("Util.class");
+	    String className = url.getFile();
+	    filePath = className.substring(1,className.indexOf(WEBINF) + WEBINF.length()+ 1);
+	    filePath = filePath.replace("%20"," ");
+	    return filePath;
+	 }
 
 }

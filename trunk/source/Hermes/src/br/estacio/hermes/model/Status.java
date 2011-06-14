@@ -1,7 +1,7 @@
 package br.estacio.hermes.model;
 
 public enum Status{
-	APROVADO("Aprovada"),CANCELADO("Cancelada"),ANALISE("Em Análise");
+	APROVADO("Aprovada"),REPROVADO("Reprovado"),CANCELADO("Cancelada"),ANALISE("Em Análise");
 	
 	private final String nome;
 
