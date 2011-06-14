@@ -94,7 +94,7 @@ public class Proposta {
 	}
 
 	@Campo(nome = "Quantidade de Parcelas")
-	public int getQuantidadeDeParcelas() {
+	public double getQuantidadeDeParcelas() {
 		return quantidadeDeParcelas;
 	}
 
@@ -154,7 +154,7 @@ public class Proposta {
 	}
 
 	@Campo(nome = "Idade")
-	public int getIdade() {
+	public double getIdade() {
 		Calendar startDate = Calendar.getInstance();
 		Calendar endDate = this.cliente.getDataDeNascimento();
 		return Util.diffOfYears(startDate,endDate);
@@ -167,7 +167,7 @@ public class Proposta {
 
 	@Campo(nome = "Comprometimento da Renda")
 	public double getPorcentagemDeComprometimentoDaRenda() {
-		return (this.valorDaPrestacao * 100)/this.cliente.perfilDoCliente.getRendaMensalComprovada();
+		return (this.valorDaPrestacao * 100)/this.cliente.getPerfilDoCliente().getRendaMensalComprovada();
 	}
 	
 	@Campo(nome = "Estado Civil")
@@ -176,12 +176,12 @@ public class Proposta {
 	}
 	
 	@Campo(nome = "Número de dependentes")
-	public int getNumeroDeDependentes() {
+	public double getNumeroDeDependentes() {
 		return this.cliente.getPerfilDoCliente().getNumeroDeDependentes();
 	}
 	
 	@Campo(nome = "Nível de Instrução")
-	public double setNivelDeInstrucao(NivelDeInstrucao nivelDeInstrucao) {
+	public double getNivelDeInstrucao() {
 		return this.cliente.getPerfilDoCliente().getNivelDeInstrucao().ordinal();
 	}
 	
@@ -196,12 +196,12 @@ public class Proposta {
 	}
 	
 	@Campo(nome = "Tempo de Residencia em Anos")
-	public int getTempoDeResidenciaAtualEmAnos() {
+	public double getTempoDeResidenciaAtualEmAnos() {
 		return this.cliente.getPerfilDoCliente().getTempoDeResidenciaAtualEmAnos();
 	}
 	
 	@Campo(nome = "Quantidade de Veículos")
-	public int getQuantidadeDeVeiculos() {
+	public double getQuantidadeDeVeiculos() {
 		return this.cliente.getPerfilDoCliente().getQuantidadeDeVeiculos();
 	}
 	
