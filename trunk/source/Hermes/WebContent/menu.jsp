@@ -49,7 +49,7 @@ Para inserir mais um nível deve-se alterar a classe "item" para "submenu" e adic
 						<li class="item"><a href="<c:url value="/profissoes/lista"/>">Lista</a>
 						</li>
 						<li class="item"><a
-							href="<c:url value="/profissoes/formulario"/>">Nova</a>
+							href="<c:url value="/profissoes/novo"/>">Nova</a>
 						</li>
 					</ul>
 				</li>
