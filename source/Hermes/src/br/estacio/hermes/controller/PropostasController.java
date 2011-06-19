@@ -21,11 +21,14 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
+import br.estacio.hermes.dao.BancoDAO;
 import br.estacio.hermes.dao.ClienteDAO;
 import br.estacio.hermes.dao.ContratoDAO;
 import br.estacio.hermes.dao.EscoragemDAO;
 import br.estacio.hermes.dao.PerfilDoClienteDAO;
+import br.estacio.hermes.dao.ProfissaoDAO;
 import br.estacio.hermes.dao.PropostaDAO;
+import br.estacio.hermes.model.Banco;
 import br.estacio.hermes.model.Contrato;
 import br.estacio.hermes.model.Escoragem;
 import br.estacio.hermes.model.Prestacao;
@@ -42,11 +45,12 @@ public class PropostasController {
 	private final Result result;
 	private final Validator validator;
 	private final ServletContext context;
+	private final BancoDAO bancoDAO;
 
 	public PropostasController(PropostaDAO dao, ContratoDAO contratoDAO,
 			ClienteDAO clienteDAO, EscoragemDAO escoragemDAO,
 			PerfilDoClienteDAO perfilDoClienteDAO, Result result,
-			Validator validator, ServletContext context) {
+			Validator validator, ServletContext context, BancoDAO bancoDAO) {
 		super();
 		this.dao = dao;
 		this.contratoDAO = contratoDAO;
@@ -56,6 +60,7 @@ public class PropostasController {
 		this.result = result;
 		this.validator = validator;
 		this.context = context;
+		this.bancoDAO = bancoDAO;
 	}
 
 	public List<Proposta> lista() {
@@ -63,49 +68,59 @@ public class PropostasController {
 		return propostas;
 	}
 
-	public Proposta formulario(Proposta proposta) {
-		return proposta;
+	public void formulario(Proposta proposta) {
+		result.include("bancoList", bancoDAO.lista());
+		result.include("proposta", proposta);
 	}
 
 	public void adiciona(Proposta proposta) throws SecurityException,
 			IllegalArgumentException, NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException {
-		
 		proposta.setData(Calendar.getInstance());
+		final Banco banco = proposta.getBancoParaRecebimentoDoCredito(); 
+		result.include("bancoList", bancoDAO.lista());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
-				
+		escore(proposta);
+		dao.salva(proposta);
+		result.redirectTo(this).lista();
+	}
+
+	public void escore(Proposta proposta) throws SecurityException,
+			IllegalArgumentException, NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			ClassNotFoundException {
 		final Escoragem escoragem = this.escoragemDAO.carregaEscoragemAtiva();
 		validator.checking(new Validations() {
 			{
-				that(escoragem, is(notNullValue()), "login", "invalid_login_or_password");
+				that(escoragem, is(notNullValue()), "login",
+						"invalid_login_or_password");
 			}
 		});
-		
-		//load neuralNetwork
-		String neuralNetFile = this.context.getRealPath("/WEB-INF/NeuralNetwork") + "/" + "Hermes.nnet";
+
+		// load neuralNetwork
+		String neuralNetFile = this.context
+				.getRealPath("/WEB-INF/NeuralNetwork") + "/" + "Hermes.nnet";
 		NeuralNetwork hermesNeuralNetwork = NeuralNetwork.load(neuralNetFile);
-		
-		
+
 		proposta.setCliente(clienteDAO.carrega(proposta.getCliente().getId()));
 		ArrayList<Double> escore = escoragem.escorar(proposta);
-		hermesNeuralNetwork.setInput(new SupervisedTrainingElement(escore,escore).getInput());
+		hermesNeuralNetwork.setInput(new SupervisedTrainingElement(escore,
+				escore).getInput());
 		hermesNeuralNetwork.calculate();
-		
+
 		double[] networkOutput = hermesNeuralNetwork.getOutput();
 		double respostaDoPrimeiroNeuronio = networkOutput[0];
 		double respostaDoSegundoNeuronio = networkOutput[1];
-		
-		if(respostaDoPrimeiroNeuronio == 1.0) {
+
+		if (respostaDoPrimeiroNeuronio == 1.0) {
 			proposta.setStatus(Status.APROVADO);
-			 adicionaContrato(proposta);
-		} else{
+			proposta.setDataDeAprovacao(Calendar.getInstance());
+			adicionaContrato(proposta);
+		} else {
 			proposta.setStatus(Status.REPROVADO);
 		}
-		
-		dao.salva(proposta);
-		result.redirectTo(this).lista();
 	}
 
 	public void adicionaContrato(Proposta proposta) {
@@ -134,9 +149,14 @@ public class PropostasController {
 		result.forwardTo(this).formulario(proposta);
 	}
 
-	public void altera(Proposta proposta) {
+	public void altera(Proposta proposta) throws SecurityException,
+			IllegalArgumentException, NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			ClassNotFoundException {
+		result.include("bancoList", bancoDAO.lista());
 		validator.validate(proposta);
 		validator.onErrorUsePageOf(this).formulario(proposta);
+		escore(proposta);
 		dao.atualiza(proposta);
 		result.redirectTo(this).lista();
 	}
@@ -148,11 +168,11 @@ public class PropostasController {
 	}
 
 	public void calculaPrestacao(Proposta proposta) {
-		proposta.setTaxaDeJuros(1);
+		proposta.setTaxaDeJuros(5);
 		double valorDaPrestacao = proposta.calculaPrestacao();
 		DecimalFormat decimal = new DecimalFormat("0.00");
 		result.use(Results.json()).withoutRoot()
-				.from(decimal.format(valorDaPrestacao)).serialize();
+				.from(new DecimalFormat("###,##0.00").format(valorDaPrestacao)).serialize();
 	}
 
 }

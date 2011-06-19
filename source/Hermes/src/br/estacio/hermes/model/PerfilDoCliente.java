@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.validator.Email;
+
 
 @Entity
 public class PerfilDoCliente {
@@ -38,7 +38,7 @@ public class PerfilDoCliente {
 	private Telefone telefoneResidencial;
 	@OneToOne(cascade = { CascadeType.ALL })
 	private Telefone telefoneCelular;
-	@Email
+	//@Email
 	private String email;
 	private int quantidadeDeVeiculos;
 	private double rendaEstimada;

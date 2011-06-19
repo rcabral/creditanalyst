@@ -3,22 +3,22 @@ package br.estacio.hermes.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import org.hibernate.validator.Length;
-import org.hibernate.validator.Min;
-import org.hibernate.validator.NotNull;
+
+
+
 
 @Entity
 public class Produto {
 	@Id 
 	@GeneratedValue
 	private Long id;
-	@NotNull
-	@Length(min=3)
+	//@NotNull
+	//@Length(min=3)
 	private String nome;
-	@NotNull
-	@Length(max=40)
+	//@NotNull
+	//@Length(max=40)
 	private String descricao;
-	@Min(1)
+	//@Min(1)
 	private Double preco;
 	
 	public String getNome() {

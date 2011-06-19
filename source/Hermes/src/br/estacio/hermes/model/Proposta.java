@@ -2,10 +2,8 @@ package br.estacio.hermes.model;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,8 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.NotNull;
 
 import br.estacio.hermes.util.Util;
 
@@ -25,17 +24,23 @@ public class Proposta {
 	@GeneratedValue
 	private Long id;
 	@OneToOne
-	@NotNull
 	private Cliente cliente;
 	private Calendar data;
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	private Calendar dataDeAprovacao;
+	@NotNull
 	private Calendar dataDoPrimeiroVencimento;
+	@NotNull
 	private double valor;
 	private double taxaDeJuros;
+	@NotNull
 	private int quantidadeDeParcelas;
+	@NotNull
 	private double valorDaPrestacao;
+	@OneToOne
+	@NotNull
+	private Banco bancoParaRecebimentoDoCredito;
 
 	public Long getId() {
 		return id;
@@ -118,6 +123,15 @@ public class Proposta {
 		this.dataDoPrimeiroVencimento = dataDoPrimeiroVencimento;
 	}
 
+	public Banco getBancoParaRecebimentoDoCredito() {
+		return bancoParaRecebimentoDoCredito;
+	}
+
+	public void setBancoParaRecebimentoDoCredito(
+			Banco bancoParaRecebimentoDoCredito) {
+		this.bancoParaRecebimentoDoCredito = bancoParaRecebimentoDoCredito;
+	}
+
 	public double calculaPrestacao() {
 		int carencia = Util.diffOfDays(Calendar.getInstance(),
 				this.dataDoPrimeiroVencimento);
@@ -157,9 +171,9 @@ public class Proposta {
 	public double getIdade() {
 		Calendar startDate = Calendar.getInstance();
 		Calendar endDate = this.cliente.getDataDeNascimento();
-		return Util.diffOfYears(startDate,endDate);
+		return Util.diffOfYears(startDate, endDate);
 	}
-	
+
 	@Campo(nome = "Sexo")
 	public double getSexo() {
 		return this.cliente.getSexo().ordinal();
@@ -167,93 +181,101 @@ public class Proposta {
 
 	@Campo(nome = "Comprometimento da Renda")
 	public double getPorcentagemDeComprometimentoDaRenda() {
-		return (this.valorDaPrestacao * 100)/this.cliente.getPerfilDoCliente().getRendaMensalComprovada();
+		return (this.valorDaPrestacao * 100)
+				/ this.cliente.getPerfilDoCliente().getRendaMensalComprovada();
 	}
-	
+
 	@Campo(nome = "Estado Civil")
 	public double getEstadoCivil() {
 		return this.cliente.getPerfilDoCliente().getEstadoCivil().ordinal();
 	}
-	
+
 	@Campo(nome = "Número de dependentes")
 	public double getNumeroDeDependentes() {
 		return this.cliente.getPerfilDoCliente().getNumeroDeDependentes();
 	}
-	
+
 	@Campo(nome = "Nível de Instrução")
 	public double getNivelDeInstrucao() {
-		return this.cliente.getPerfilDoCliente().getNivelDeInstrucao().ordinal();
+		return this.cliente.getPerfilDoCliente().getNivelDeInstrucao()
+				.ordinal();
 	}
-	
+
 	@Campo(nome = "Profissão")
 	public double getProfissao() {
 		return this.cliente.getPerfilDoCliente().getProfissao().getCodigoCBO();
 	}
-	
+
 	@Campo(nome = "Tipo de Residencia")
 	public double getTipoDeResidencia() {
-		return this.cliente.getPerfilDoCliente().getTipoDeResidencia().ordinal();
+		return this.cliente.getPerfilDoCliente().getTipoDeResidencia()
+				.ordinal();
 	}
-	
+
 	@Campo(nome = "Tempo de Residencia em Anos")
 	public double getTempoDeResidenciaAtualEmAnos() {
-		return this.cliente.getPerfilDoCliente().getTempoDeResidenciaAtualEmAnos();
+		return this.cliente.getPerfilDoCliente()
+				.getTempoDeResidenciaAtualEmAnos();
 	}
-	
+
 	@Campo(nome = "Quantidade de Veículos")
 	public double getQuantidadeDeVeiculos() {
 		return this.cliente.getPerfilDoCliente().getQuantidadeDeVeiculos();
 	}
-	
+
 	@Campo(nome = "Tipo de Vínculo com o Credor")
 	public double getTipoDeVinculoComCredor() {
-		return this.cliente.getPerfilDoCliente().getTipoDeVinculoComCredor().ordinal();
+		return this.cliente.getPerfilDoCliente().getTipoDeVinculoComCredor()
+				.ordinal();
 	}
-	
+
 	@Campo(nome = "Cheque Especial")
 	public double isPossuiChequeEspecial() {
-		if(this.cliente.getPerfilDoCliente().isPossuiChequeEspecial()){
+		if (this.cliente.getPerfilDoCliente().isPossuiChequeEspecial()) {
 			return 1;
-		}else{
+		} else {
 			return 0;
 		}
 	}
-	
+
 	@Campo(nome = "Seguto de Automóvel")
 	public double isPossuiSeguroDeAutmovel() {
-		if(this.cliente.getPerfilDoCliente().isPossuiSeguroDeAutmovel()){
+		if (this.cliente.getPerfilDoCliente().isPossuiSeguroDeAutmovel()) {
 			return 1;
-		}else{
+		} else {
 			return 0;
 		}
 	}
-	
+
 	@Campo(nome = "Valor Total de bens imóveis")
 	public double getValorTotalDeBensImoveis() {
-		List<BenImovel> bensImoveis = this.cliente.getPerfilDoCliente().getBensImoveis();
+		List<BenImovel> bensImoveis = this.cliente.getPerfilDoCliente()
+				.getBensImoveis();
 		double valorTotal = 0;
 		for (BenImovel benImovel : bensImoveis) {
-			valorTotal+=benImovel.getValor();
+			valorTotal += benImovel.getValor();
 		}
 		return valorTotal;
 	}
-	
+
 	@Campo(nome = "Porcentagem de ônus nos Bens Imóveis")
 	public double getPorcentagemDeOnusNosBensImoveis() {
-		List<BenImovel> bensImoveis = this.cliente.getPerfilDoCliente().getBensImoveis();
+		List<BenImovel> bensImoveis = this.cliente.getPerfilDoCliente()
+				.getBensImoveis();
 		double valorTotal = 0;
 		int quantidadeDeBensImoveis = bensImoveis.size();
 		int quantidadeDeOnus = 0;
 		for (BenImovel benImovel : bensImoveis) {
-			if(benImovel.isPossuiOnus()){
-				quantidadeDeOnus+= 1;
+			if (benImovel.isPossuiOnus()) {
+				quantidadeDeOnus += 1;
 			}
 		}
-		return (quantidadeDeOnus * 100)/quantidadeDeBensImoveis;
+		return (quantidadeDeOnus * 100) / quantidadeDeBensImoveis;
 	}
-	
+
 	@Campo(nome = "Renda de Reserva")
-	public double getRendaDeReserva(){
-		return this.cliente.getPerfilDoCliente().getRendaMensalComprovada() - this.getValorDaPrestacao();
+	public double getRendaDeReserva() {
+		return this.cliente.getPerfilDoCliente().getRendaMensalComprovada()
+				- this.getValorDaPrestacao();
 	}
 }

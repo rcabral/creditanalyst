@@ -5,24 +5,21 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+//import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.NotEmpty;
-import org.hibernate.validator.NotNull;
 
 @Entity
 public class Regra {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@NotEmpty
-	@NotNull
+	//@NotNull
 	private String nome;
-	@NotEmpty
-	@NotNull
+	//@NotNull
 	private String pergunta;
-	@NotNull
+	//@NotNull
 	private String metodo;
-	@NotNull
+	//@NotNull
 	private boolean possuiResposta;
 
 	public Long getId() {
