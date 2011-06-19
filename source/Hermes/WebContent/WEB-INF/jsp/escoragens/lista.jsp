@@ -1,4 +1,5 @@
-<%@ include file="/header.jsp" %> 
+<%@ include file="/header.jsp" %>
+	<a class="linkMais" href="<c:url value="/escoragens/formulario"/>"><img alt="voltar" src="<c:url value="/images/mais.png"/>" /></a> 
 	<table>
 		<thead>
 			<th>Id</th>
