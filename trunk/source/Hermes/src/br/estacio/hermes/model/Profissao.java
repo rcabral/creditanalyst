@@ -2,15 +2,20 @@ package br.estacio.hermes.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.hibernate.validator.NotEmpty;
-import org.hibernate.validator.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+//import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Profissao {
-	@Id @NotEmpty
+	@Id
+	@NotNull(message="{validator.notEmpty}")
 	private Long codigoCBO;
-	@NotEmpty
+	@NotEmpty(message="{validator.notEmpty}")
 	private String descricao;
 	
 	public Long getCodigoCBO() {

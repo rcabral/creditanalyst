@@ -2,14 +2,23 @@ package br.estacio.hermes.model;
 
 import java.util.Calendar;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.caelum.stella.bean.validation.CPF;
+
+//import javax.validation.constraints.NotNull;
+
+
+
+
 @MappedSuperclass
 public abstract class PessoaFisica {
 	private String nome;
+	@NotEmpty @CPF
 	private String cpf;
 	private String rg;
 	private Calendar dataDeNascimento;

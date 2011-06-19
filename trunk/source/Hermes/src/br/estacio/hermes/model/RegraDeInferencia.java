@@ -6,15 +6,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+//import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.NotNull;
 
 @Entity
 public class RegraDeInferencia {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne @NotNull
+	@OneToOne //@NotNull
 	private Regra regra;
 	@Enumerated(EnumType.STRING)
 	private Comparador comparador;
