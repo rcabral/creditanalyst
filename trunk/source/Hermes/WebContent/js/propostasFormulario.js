@@ -4,6 +4,9 @@ $(document).ready(function() {
 	});
 
 	function calculaProposta(){
+		var auxValor = $("#valor").val();
+		moedaToDouble("valor");
+		moedaToDouble("valorDaPrestacao");
 		var calculaPrestacaoUrl = $("#calculaPrestacaoUrl").val();
 		$('#valorDaPrestacao').val('');
 		$.post(calculaPrestacaoUrl,$("#formularioDeProposta").serialize() ,function(data) {
@@ -11,5 +14,11 @@ $(document).ready(function() {
 				$('#valorDaPrestacao').val(data);
 			}	
 		});
+		$("#valor").val(auxValor);
 	}
+	
+	$('#formularioDeProposta').submit(function() {
+		moedaToDouble("valor");
+		moedaToDouble("valorDaPrestacao");
+	});
 });

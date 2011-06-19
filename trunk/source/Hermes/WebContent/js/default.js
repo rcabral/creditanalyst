@@ -12,6 +12,9 @@ $(document).ready(function() {
 		,maxDate: '+50d'
 		,minDate: '0d'	
 		,onSelect: function() {
+			var auxValor = $("#valor").val();
+			moedaToDouble("valor");
+			moedaToDouble("valorDaPrestacao");
 			var calculaPrestacaoUrl = $("#calculaPrestacaoUrl").val();
 			$('#valorDaPrestacao').val('');
 			$.post(calculaPrestacaoUrl,$("#formularioDeProposta").serialize() ,function(data) {
@@ -19,6 +22,7 @@ $(document).ready(function() {
 					$('#valorDaPrestacao').val(data);
 				}	
 			});
+			$("#valor").val(auxValor);
 		}	
 	});
 	
@@ -64,18 +68,28 @@ $(document).ready(function() {
 	});
 	
 	
-	$("selectxx").combobox();
+	$(".autocomplete").combobox();
 		
 		
 	 //$(".cpf").mask("999.999.999-99");
 	 
 	
-	 //$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	 $("#formularioDeProposta .moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
 
 
 	
 });
 
+function moedaToDouble(id){
+	var valor =  $("#" + id).val();
+	var valor =  valor.toString();
+	while (valor.indexOf(".") != -1) {
+		valor = valor.replace(".", "");
+	}
+	valor = valor.replace(",", ".");
+	valor = valor.replace("R$ ", "");
+	$("#" + id).val(valor);
+}
 
 (function( $ ) {
 	$.widget( "ui.combobox", {
