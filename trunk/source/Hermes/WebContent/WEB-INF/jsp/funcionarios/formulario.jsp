@@ -1,4 +1,5 @@
 <%@ include file="/header.jsp" %>
+<a class="linkVoltar" href="<c:url value="/funcionarios/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 <script type="text/javascript" src="<c:url value="/js/funcionariosFormulario.js"/>"  ></script> 
 	<form id="formFuncionario" <c:choose><c:when test='${funcionario.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="funcionario.id"  value="${funcionario.id}" />
@@ -67,7 +68,8 @@
 					</c:forEach>
 				</select><br /><br />
 			</fieldset>
-			<br />	
+			<br />
+			<button type="button" onclick="javascript:window.location='<c:url value="/funcionarios/lista"/>'">Voltar</button>	
 			<button type="submit">Enviar</button>	
 		</fieldset>
 	</form>

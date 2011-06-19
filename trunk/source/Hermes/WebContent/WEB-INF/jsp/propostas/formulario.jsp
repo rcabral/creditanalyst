@@ -1,5 +1,6 @@
 <%@ include file="/header.jsp" %>
 <script type="text/javascript" src="<c:url value="/js/propostasFormulario.js"/>"  ></script> 
+	<a class="linkVoltar" href="<c:url value="/propostas/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form id="formularioDeProposta" <c:choose><c:when test='${proposta.id == null}'>action="<c:url value="/propostas/adiciona"/>"</c:when><c:otherwise>action="<c:url value="/propostas/altera"/>"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" id="calculaPrestacaoUrl" value="<c:url value='/propostas/calculaPrestacao'/>" />
 		<input type="hidden" name="proposta.id"  value="${proposta.id}" />
@@ -15,15 +16,28 @@
 			</fieldset>
 			<fieldset>
 				<legend>Dados do Crédito</legend>
-				<hermes:campoMoeda label="Valor:" id="valor" name="proposta.valor" value="${proposta.valor}"></hermes:campoMoeda>
+				<fmt:formatNumber value="${proposta.valor}" minFractionDigits="2" type="currency" var="valor"/> 
+				<hermes:campoMoeda label="Valor:" id="valor" name="proposta.valor" value="${valor}"></hermes:campoMoeda>
 				<br /><br />
-				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${proposta.quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
+				<fmt:formatNumber value="${proposta.quantidadeDeParcelas}" type="number" var="quantidadeDeParcelas"/> 
+				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
 				<br /><br />
-				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" ></hermes:campoData>
+				<fmt:formatDate value="${proposta.dataDoPrimeiroVencimento.time}" var="dataDoPrimeiroVencimento" pattern="dd/MM/yyyy"/>
+				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" value="${dataDoPrimeiroVencimento}" ></hermes:campoData>
 				<br /><br />
-				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${proposta.valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="false"></hermes:campoMoeda>
+				<fmt:formatNumber value="${proposta.valorDaPrestacao}" minFractionDigits="2" type="currency" var="valorDaPrestacao"/>  
+				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="false"></hermes:campoMoeda>
+				<br /><br />
+				<label for="proposta.bancoParaRecebimentoDoCredito.numero">Banco para recebimento:</label>
+				<select class="autocomplete" name="proposta.bancoParaRecebimentoDoCredito.numero" id="proposta.bancoParaRecebimentoDoCredito.numero">
+					<option value="null"></option>
+					<c:forEach items="${bancoList}" var="banco">
+						<option value="${banco.numero}" <c:if test="${proposta.bancoParaRecebimentoDoCredito.numero==banco.numero}">selected="selected"</c:if>  >${banco.nome}</option>
+					</c:forEach>
+				</select>
 			</fieldset>
 			<br />	
+			<button type="button" onclick="javascript:window.location='<c:url value="/propostas/lista"/>'">Voltar</button>
 			<button type="submit">Enviar</button>	
 		</fieldset>
 	</form>

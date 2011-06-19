@@ -5,7 +5,7 @@
 @import url("<c:url value="/css/escoragensFormulario.css"/>");
 -->
 </style>
-
+	<a class="linkVoltar" href="<c:url value="/escoragens/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form id="formEscoragem" <c:choose><c:when test='${escoragem.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="escoragem.id"  value="${escoragem.id}" />
 		<input type="hidden" name="escoragem.ativo"  value="true" />
@@ -77,6 +77,7 @@
 					</div>
 				</div>
 			</fieldset>
+			<button type="button" onclick="javascript:window.location='<c:url value="/escoragens/lista"/>'">Voltar</button>
 			<button type="submit">Treinar Rede e Salvar</button>	
 		</fieldset>
 	</form>

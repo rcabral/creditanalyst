@@ -1,11 +1,5 @@
 <%@ include file="/header.jsp" %> 
-	<div id="erros">
-		<ul>
-		<c:forEach items="${errors}" var="error">
-		<li>${error.category } - ${error.message }</li>
-		</c:forEach>
-		</ul>
-	</div>
+	<a class="linkVoltar" href="<c:url value="/bancos/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form <c:choose><c:when test='${banco.numero == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="get" >
 		<fieldset>
 			<legend>Banco</legend>
@@ -20,6 +14,7 @@
 			</c:choose>
 			<label for="banco.nome">Nome:</label>
 			<input id="banco.nome" type="text" name="banco.nome" value="${banco.nome}"  /><br /><br />
+			<button type="button" onclick="javascript:window.location='<c:url value="/bancos/lista"/>'">Voltar</button>
 			<button type="submit">Enviar</button>
 		</fieldset>
 	</form>

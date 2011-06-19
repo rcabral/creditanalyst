@@ -1,7 +1,5 @@
 <%@ include file="/header.jsp" %>
-
-	<%@ taglib uri="http://displaytag.sf.net" prefix="displayTag" %>
-	 
+	<a class="linkMais" href="<c:url value="/clientes/formulario"/>"><img alt="voltar" src="<c:url value="/images/mais.png"/>" /></a> 
 	<table>
 		<thead>
 			<th>Nome</th>

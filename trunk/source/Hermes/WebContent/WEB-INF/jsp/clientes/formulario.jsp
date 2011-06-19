@@ -1,4 +1,5 @@
 <%@ include file="/header.jsp" %> 
+	<a class="linkVoltar" href="<c:url value="/clientes/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form <c:choose><c:when test='${cliente.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="cliente.id"  value="${cliente.id}" />
 		<fieldset>
@@ -127,7 +128,8 @@
 					</c:forEach>
 				</select><br /><br />
 			</fieldset>
-			<br />	
+			<br />
+			<button type="button" onclick="javascript:window.location='<c:url value="/clientes/lista"/>'">Voltar</button>	
 			<button type="submit">Enviar</button>	
 		</fieldset>
 	</form>
