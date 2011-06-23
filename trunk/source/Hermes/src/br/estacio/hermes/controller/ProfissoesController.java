@@ -6,11 +6,12 @@ import static org.hamcrest.Matchers.notNullValue;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 
 
 import org.hamcrest.core.IsNull;
 import org.hibernate.JDBCException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.validator.constraints.impl.NullValidator;
 
 import br.com.caelum.vraptor.Resource;
@@ -74,11 +75,8 @@ public class ProfissoesController{
 	
 	public void remove(Long id){
 		Profissao Profissao = dao.carrega(id); 
-		try {
-			dao.remove(Profissao);
-		} catch (ConstraintViolationException e) {
-			result.redirectTo(this).constraintViolationException();
-		}
+		result.on(ConstraintViolationException.class).forwardTo(this).constraintViolationException();
+		dao.remove(Profissao);
 		result.redirectTo(this).lista();
 	}
 	
