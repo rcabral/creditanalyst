@@ -67,17 +67,15 @@ $(document).ready(function() {
 		$(this).parent().remove();
 	});
 	
-	
+	$(".cpf").mask("999.999.999-99");
+	$(".cep").mask("99999-999");
+	$(".data").mask("99/99/9999");
 	$(".autocomplete").combobox();
-		
-		
-	 //$(".cpf").mask("999.999.999-99");
-	 
+	$("#formularioDeProposta .moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	$(".numero").numeric();
 	
-	 $("#formularioDeProposta .moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	$("input#id_search").quicksearch('table tbody tr');
 
-
-	
 });
 
 function moedaToDouble(id){
@@ -88,6 +86,23 @@ function moedaToDouble(id){
 	}
 	valor = valor.replace(",", ".");
 	valor = valor.replace("R$ ", "");
+	$("#" + id).val(valor);
+}
+
+function retiraFormatacaoDoCPF(id){
+	var valor =  $("#" + id).val();
+	var valor =  valor.toString();
+	while (valor.indexOf(".") != -1) {
+		valor = valor.replace(".", "");
+	}
+	valor = valor.replace("-", "");
+	$("#" + id).val(valor);
+}
+
+function retiraFormatacaoDoCEP(id){
+	var valor =  $("#" + id).val();
+	var valor =  valor.toString();
+	valor = valor.replace("-", "");
 	$("#" + id).val(valor);
 }
 
