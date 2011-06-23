@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -6,9 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Hermes</title>
-<script type="text/javascript">
-	alert("Esta profissão está sendo utilizada pelo sistema e não pode ser removida!");
-	document.history.back(-1);
+<script>
+	alert("Este item está sendo utilizado pelo sistema e não pode ser removido!");
+	var url = '<c:url value="/profissoes/lista"/>';
+	window.location=url;
 </script>
 </head>
 <body>
