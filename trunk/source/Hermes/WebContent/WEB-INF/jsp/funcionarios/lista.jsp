@@ -1,5 +1,6 @@
 <%@ include file="/header.jsp" %> 
 <a class="linkMais" href="<c:url value="/funcionarios/formulario"/>"><img alt="voltar" src="<c:url value="/images/mais.png"/>" /></a>
+	<hermes:formularioDeBusca></hermes:formularioDeBusca>
 	<table>
 		<thead>
 			<th>Nome</th>
@@ -18,8 +19,8 @@
 					<td><fmt:formatDate value="${funcionario.dataDeNascimento.time}" pattern="dd/MM/yyyy"/></td>
 					<td>${funcionario.sexo}</td>
 					<td>${funcionario.matricula}</td>
-					<td><a href="edita?id=${funcionario.id}">Editar</a></td>
-					<td><a href="remove?id=${funcionario.id}">Remover</a></td>
+					<td><a href="edita?id=${funcionario.id}"><img class="btnEditarItem" alt="Editar" title="Editar" src="<c:url value="/images/btnEditar.png"/>" /></a></td>
+					<td><a href="remove?id=${funcionario.id}"><img class="btnExcluirItem" alt="Excluir" title="Excluir" src="<c:url value="/images/btnExcluir.png"/>" /></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

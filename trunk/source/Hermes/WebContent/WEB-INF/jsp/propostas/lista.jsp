@@ -1,4 +1,5 @@
-<%@ include file="/header.jsp" %> 
+<%@ include file="/header.jsp" %>
+	<hermes:formularioDeBusca></hermes:formularioDeBusca> 
 	<table>
 		<thead>
 			<th>Número da Proposta</th>
@@ -19,8 +20,8 @@
 					<td>${proposta.valor}</td>
 					<td>${proposta.status.nome}</td>
 					<td><fmt:formatDate value="${proposta.dataDeAprovacao.time}" pattern="dd/MM/yyyy"/></td>
-					<td><a href="<c:url value="/propostas/edita"/>?id=${proposta.id}">Editar</a></td>
-					<td><a href="<c:url value="/propostas/remove"/>?id=${proposta.id}">Remover</a></td>
+					<td><a href="<c:url value="/propostas/edita"/>?id=${proposta.id}"><img class="btnEditarItem" alt="Editar" title="Editar" src="<c:url value="/images/btnEditar.png"/>" /></a></td>
+					<td><a href="<c:url value="/propostas/remove"/>?id=${proposta.id}"><img class="btnExcluirItem" alt="Excluir" title="Excluir" src="<c:url value="/images/btnExcluir.png"/>" /></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

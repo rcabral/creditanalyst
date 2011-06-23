@@ -5,8 +5,8 @@
 			<legend>Banco</legend>
 			<c:choose>
 				<c:when test="${banco.numero == null}">
-					<label for="banco.numero">Número:</label>
-					<input id="banco.numero" type="text" name="banco.numero" value="${banco.numero}"  /><br /><br />
+					<hermes:campoNumeroInteiro label="Número:" value="${banco.numero}" id="banco.numero"></hermes:campoNumeroInteiro>
+					<br /><br />
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" name="banco.numero"  value="${banco.numero}" />

@@ -3,8 +3,7 @@
 	<form action="adiciona" method="post" >
 		<fieldset>
 			<legend>Profissão</legend>
-			<label for="profissao.codigoCBO">Código CBO:</label>
-			<input id="profissao.codigoCBO" type="text" name="profissao.codigoCBO" value="${profissao.codigoCBO}"  /><br /><br />
+			<hermes:campoNumeroInteiro label="Código CBO:" value="${profissao.codigoCBO}" id="profissao.codigoCBO"></hermes:campoNumeroInteiro><br /><br />
 			<label for="profissao.descricao">Descrição:</label>
 			<input id="profissao.descricao" type="text" name="profissao.descricao" value="${profissao.descricao}"  /><br /><br />
 			<button type="button" onclick="javascript:window.location='<c:url value="/profissoes/lista"/>'">Voltar</button>

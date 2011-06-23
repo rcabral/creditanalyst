@@ -1,6 +1,7 @@
 <%@ include file="/header.jsp" %> 
+	<script type="text/javascript" src="<c:url value="/js/clientesFormulario.js"/>"  ></script>
 	<a class="linkVoltar" href="<c:url value="/clientes/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
-	<form <c:choose><c:when test='${cliente.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
+	<form id="formularioDeCliente"  <c:choose><c:when test='${cliente.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="cliente.id"  value="${cliente.id}" />
 		<fieldset>
 			<legend>Cliente</legend>
@@ -8,7 +9,7 @@
 				<legend>Dados Pessoais</legend>
 				<hermes:campoTexto label="Nome:" id="cliente.nome" value="${cliente.nome}"></hermes:campoTexto>
 				<br /><br />
-				<hermes:campoCPF label="CPF:" id="cliente.cpf" value="${cliente.cpf}"></hermes:campoCPF>
+				<hermes:campoCPF label="CPF:" id="clienteCPF" name="cliente.cpf" value="${cliente.cpf}"></hermes:campoCPF>
 				<br /><br />
 				<hermes:campoRG label="RG:" id="cliente.rg" value="${cliente.rg}"></hermes:campoRG>
 				<br /><br />
@@ -116,7 +117,7 @@
 				<br /><br />
 				<hermes:campoTexto label="Bairro:" id="cliente.perfilDoCliente.endereco.bairro" value="${cliente.perfilDoCliente.endereco.bairro}"></hermes:campoTexto>
 				<br /><br />
-				<hermes:campoCEP label="CEP:" id="cliente.perfilDoCliente.endereco.cep" value="${cliente.perfilDoCliente.endereco.cep}"></hermes:campoCEP>
+				<hermes:campoCEP label="CEP:" id="clienteCEP" name="cliente.perfilDoCliente.endereco.cep" value="${cliente.perfilDoCliente.endereco.cep}"></hermes:campoCEP>
 				<br /><br />
 				<hermes:campoTexto label="Município:" id="cliente.perfilDoCliente.endereco.municipio" value="${cliente.perfilDoCliente.endereco.municipio}"></hermes:campoTexto>
 				<br /><br />
