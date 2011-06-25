@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.Component;
 import br.estacio.hermes.model.Escoragem;
 import br.estacio.hermes.model.Profissao;
@@ -35,7 +36,7 @@ private Session session;
 	public void atualiza(Profissao objtect){
 		this.session.update(objtect);
 	}
-
+	
 	public List<Profissao> lista(){
 		return this.session.createCriteria(Profissao.class).list();
 	}

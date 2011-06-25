@@ -82,8 +82,28 @@ label{
 	border: none;
 }
 
+.btnMais{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 .btnEditarItem, .btnExcluirItem{
 	border: none;
+}
+
+legend *{
+	vertical-align: middle;
+}
+
+legend img{
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.fieldRequired{
+	color: red;
+	margin: 5px;
+	font-family: verdana;
 }
 
 

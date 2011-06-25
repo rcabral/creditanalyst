@@ -5,7 +5,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -13,13 +16,13 @@ public class Regra {
 	@Id
 	@GeneratedValue
 	private Long id;
-	//@NotNull
+	@NotEmpty(message="{validator.notEmpty}")
 	private String nome;
-	//@NotNull
+	@NotEmpty(message="{validator.notEmpty}")
 	private String pergunta;
-	//@NotNull
+	@NotEmpty(message="{validator.select}")
 	private String metodo;
-	//@NotNull
+	@NotNull
 	private boolean possuiResposta;
 
 	public Long getId() {

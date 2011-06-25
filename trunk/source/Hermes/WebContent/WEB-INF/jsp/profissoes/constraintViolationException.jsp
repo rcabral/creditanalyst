@@ -10,8 +10,8 @@
 <title>Hermes</title>
 <script>
 	alert("Este item está sendo utilizado pelo sistema e não pode ser removido!");
-	var url = '<c:url value="/profissoes/lista"/>';
-	window.location=url;
+	//var url = '<c:url value="/profissoes/lista"/>';
+	//window.location=url;
 </script>
 </head>
 <body>

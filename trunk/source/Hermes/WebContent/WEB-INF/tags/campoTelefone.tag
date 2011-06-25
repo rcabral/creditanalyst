@@ -4,6 +4,10 @@
 <%@ attribute name="idTelefone" required="true" %>
 <%@ attribute name="valueDDD" required="true" %>
 <%@ attribute name="valueTelefone" required="true" %>
-<label for="${id}">${label}</label>
+<%@ attribute name="required" required="false" %>
+<label for="${id}">${label}
+<c:if test="${empty required || required}">
+	<span class="fieldRequired">*</span>
+</c:if>
 <input type="text" id="${idDDD}" name="${idDDD}" class="ddd" value="${valueDDD}" size="2" maxlength="2" />
 <input type="text" id="${idTelefone}" name="${idTelefone}" class="telefone" value="${valueTelefone}" size="10" maxlength="10" />

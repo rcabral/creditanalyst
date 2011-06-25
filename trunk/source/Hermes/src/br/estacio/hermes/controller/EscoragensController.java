@@ -33,6 +33,8 @@ import br.estacio.hermes.dao.ContratoDAO;
 import br.estacio.hermes.dao.EscoragemDAO;
 import br.estacio.hermes.dao.ProfissaoDAO;
 import br.estacio.hermes.dao.RegraDAO;
+import br.estacio.hermes.interceptor.Restrito;
+import br.estacio.hermes.model.Cargo;
 import br.estacio.hermes.model.Comparador;
 import br.estacio.hermes.model.Contrato;
 import br.estacio.hermes.model.Escoragem;
@@ -62,17 +64,20 @@ public class EscoragensController {
 		this.context = context;
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public List<Escoragem> lista() {
 		List<Escoragem> escoragens = dao.lista();
 		return escoragens;
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void formulario(Escoragem escoragem) {
 		result.include("escoragem", escoragem);
 		result.include("regraList", regraDAO.lista());
 		result.include("comparadorList", Comparador.values());
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void adiciona(Escoragem escoragem) throws SecurityException,
 			IllegalArgumentException, NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException,
@@ -87,11 +92,13 @@ public class EscoragensController {
 		result.redirectTo(this).lista();
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void edita(Long id) {
 		Escoragem escoragem = dao.carrega(id);
 		result.forwardTo(this).formulario(escoragem);
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void altera(Escoragem escoragem) throws SecurityException,
 			IllegalArgumentException, NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException,
@@ -106,12 +113,14 @@ public class EscoragensController {
 		result.redirectTo(this).lista();
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void remove(Long id) {
 		Escoragem escoragem = dao.carrega(id);
 		dao.remove(escoragem);
 		result.redirectTo(this).lista();
 	}
 
+	@Restrito({ Cargo.GERENTE_DE_ANALISE_DE_CREDITO })
 	public void createAndTrainNeuralNetwork(Escoragem escoragem)
 			throws SecurityException, IllegalArgumentException,
 			NoSuchMethodException, IllegalAccessException,

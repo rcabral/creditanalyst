@@ -37,7 +37,6 @@
 			</fieldset>
 			<br />	
 			<button type="button" onclick="javascript:window.location='<c:url value="/propostas/lista"/>'">Voltar</button>
-			<button type="submit">Enviar</button>	
 		</fieldset>
 	</form>
 <%@ include file="/footer.jsp" %>

@@ -50,12 +50,14 @@ $(document).ready(function() {
 		var bensImoveisHTML = "";
 		bensImoveisHTML += '<div class="divBemImovel">';
 		bensImoveisHTML += 		'<label for="cliente.perfilDoCliente.bensImoveis['+indice+'].valor">Valor:</label>';
-		bensImoveisHTML += 		'<input type="text" id="cliente.perfilDoCliente.bensImoveis['+indice+'].valor" name="cliente.perfilDoCliente.bensImoveis['+indice+'].valor"  class="moeda" />';
+		bensImoveisHTML += 		'<input type="text" id="valorBemImovel'+ indice +'" name="cliente.perfilDoCliente.bensImoveis['+indice+'].valor"  class="moeda" />';
 		bensImoveisHTML += 		'<label for="cliente.perfilDoCliente.bensImoveis['+indice+'].possuiOnus">Possui Ônus:</label>';
 		bensImoveisHTML += 		'<input type="checkbox" id="cliente.perfilDoCliente.bensImoveis['+indice+'].possuiOnus" name="cliente.perfilDoCliente.bensImoveis['+indice+'].possuiOnus" class="checkbox" />';
 		bensImoveisHTML += 		'<input type="button" class="btnRemoveBemImovel" value="-" />';
 		bensImoveisHTML += '</div>';
 		$("#divBensImoveis").append(bensImoveisHTML);
+		
+		$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
 		
 		$(".btnRemoveBemImovel").click(function() {
 			$(this).parent().remove();
@@ -71,8 +73,9 @@ $(document).ready(function() {
 	$(".cep").mask("99999-999");
 	$(".data").mask("99/99/9999");
 	$(".autocomplete").combobox();
-	$("#formularioDeProposta .moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
+	$(".moeda").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true}); 
 	$(".numero").numeric();
+	$(".resposta").numeric({allow:"."});
 	
 	$("input#id_search").quicksearch('table tbody tr');
 
@@ -97,6 +100,14 @@ function retiraFormatacaoDoCPF(id){
 	}
 	valor = valor.replace("-", "");
 	$("#" + id).val(valor);
+}
+
+function retiraFormatacaoDasModas(){
+	var camposMoeda = $(".moeda");
+	for(i=0; i < camposMoeda.length;i++){
+		var id = $(".moeda:eq("+ i +")").attr("id");
+		moedaToDouble(id);
+	}
 }
 
 function retiraFormatacaoDoCEP(id){
