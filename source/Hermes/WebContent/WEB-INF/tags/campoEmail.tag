@@ -2,5 +2,10 @@
 <%@ attribute name="id" required="true" %>
 <%@ attribute name="label" required="true" %>
 <%@ attribute name="value" required="true" %>
-<label for="${id}">${label}</label>
+<%@ attribute name="required" required="false" %>
+<label for="${id}">${label}
+<c:if test="${empty required || required}">
+	<span class="fieldRequired">*</span>
+</c:if>
+</label>
 <input type="text" id="${id}" name="${id}" class="email" value="${value}" />

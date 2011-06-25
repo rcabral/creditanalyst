@@ -5,12 +5,11 @@
 @import url("<c:url value="/css/escoragensFormulario.css"/>");
 -->
 </style>
-	<a class="linkVoltar" href="<c:url value="/escoragens/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form id="formEscoragem" <c:choose><c:when test='${escoragem.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="escoragem.id"  value="${escoragem.id}" />
 		<input type="hidden" name="escoragem.ativo"  value="true" />
 		<fieldset>
-			<legend>Método de Escoragem</legend>
+			<legend><a class="linkVoltar" href="<c:url value="/escoragens/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>Método de Escoragem</legend>
 			<fieldset>
 				<legend>Identificação</legend>
 				<hermes:campoTexto label="Nome:" id="escoragem.nome" value="${escoragem.nome}"></hermes:campoTexto>
@@ -56,7 +55,7 @@
 										</c:forEach>
 									</select>
 									<label for="">Resposta:</label>
-									<input type="text" id="escoragem.regrasDeInferencia[${s.index}].resposta" name="escoragem.regrasDeInferencia[${s.index}].resposta" class="texto" value="${escoragem.regrasDeInferencia[s.index].resposta}" />
+									<input class="resposta" type="text" id="escoragem.regrasDeInferencia[${s.index}].resposta" name="escoragem.regrasDeInferencia[${s.index}].resposta" class="texto" value="${escoragem.regrasDeInferencia[s.index].resposta}" />
 								</div>
 							</c:if>
 						</div>

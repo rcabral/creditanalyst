@@ -1,10 +1,9 @@
 <%@ include file="/header.jsp" %> 
 	<script type="text/javascript" src="<c:url value="/js/clientesFormulario.js"/>"  ></script>
-	<a class="linkVoltar" href="<c:url value="/clientes/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>
 	<form id="formularioDeCliente"  <c:choose><c:when test='${cliente.id == null}'>action="adiciona"</c:when><c:otherwise>action="altera"</c:otherwise></c:choose> method="post" >
 		<input type="hidden" name="cliente.id"  value="${cliente.id}" />
 		<fieldset>
-			<legend>Cliente</legend>
+			<legend><a class="linkVoltar" href="<c:url value="/clientes/lista"/>"><img alt="voltar" src="<c:url value="/images/voltar.png"/>" /></a>Cliente</legend>
 			<fieldset>
 				<legend>Dados Pessoais</legend>
 				<hermes:campoTexto label="Nome:" id="cliente.nome" value="${cliente.nome}"></hermes:campoTexto>
@@ -16,7 +15,7 @@
 				<fmt:formatDate value="${cliente.dataDeNascimento.time}" var="dataDeNascimento" pattern="dd/MM/yyyy"/>
 				<hermes:campoData id="cliente.dataDeNascimento"  label="Data de Nascimento:" value="${dataDeNascimento}"></hermes:campoData>
 				<br /><br />
-				<label for="cliente.sexo">Sexo:</label>
+				<label for="cliente.sexo">Sexo:<span class="fieldRequired">*</span></label>
 				<select name="cliente.sexo" id="cliente.sexo">
 					<option value=""></option>
 					<c:forEach items="${sexoList}" var="sexo">
@@ -24,7 +23,7 @@
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.estadoCivil">Estado Civil:</label>
+				<label for="cliente.perfilDoCliente.estadoCivil">Estado Civil:<span class="fieldRequired">*</span> </label>
 				<select name="cliente.perfilDoCliente.estadoCivil" id="cliente.perfilDoCliente.estadoCivil">
 					<option value=""></option>
 					<c:forEach items="${estadoCivilList}" var="estadoCivil">
@@ -34,7 +33,7 @@
 				<br /><br />
 				<hermes:campoNumeroInteiro label="Número de Dependentes:" id="cliente.perfilDoCliente.numeroDeDependentes" value="${cliente.perfilDoCliente.numeroDeDependentes}"></hermes:campoNumeroInteiro>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.nivelDeInstrucao">Nível de Instrução:</label>
+				<label for="cliente.perfilDoCliente.nivelDeInstrucao">Nível de Instrução:<span class="fieldRequired">*</span> </label>
 				<select class="teste" name="cliente.perfilDoCliente.nivelDeInstrucao" id="cliente.perfilDoCliente.nivelDeInstrucao">
 					<option value=""></option>
 					<c:forEach items="${nivelDeInstrucaoList}" var="nivelDeInstrucao">
@@ -42,7 +41,7 @@
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.profissao.codigoCBO">Profissão:</label>
+				<label for="cliente.perfilDoCliente.profissao.codigoCBO">Profissão:<span class="fieldRequired">*</span> </label>
 				<select class="autocomplete" name="cliente.perfilDoCliente.profissao.codigoCBO" id="cliente.perfilDoCliente.profissao.codigoCBO">
 					<option value=""></option>
 					<c:forEach items="${profissaoList}" var="profissao">
@@ -50,7 +49,7 @@
 					</c:forEach>
 				</select>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.tipoDeResidencia">Tipo de Residencia:</label>
+				<label for="cliente.perfilDoCliente.tipoDeResidencia">Tipo de Residencia:<span class="fieldRequired">*</span></label>
 				<select name="cliente.perfilDoCliente.tipoDeResidencia" id="cliente.perfilDoCliente.tipoDeResidencia">
 					<option value=""></option>
 					<c:forEach items="${tipoDeResidenciaList}" var="tipoDeResidencia">
@@ -68,14 +67,16 @@
 				<br /><br />
 				<hermes:campoNumeroInteiro label="Quantidade de Veículos:" id="cliente.perfilDoCliente.quantidadeDeVeiculos" value="${cliente.perfilDoCliente.quantidadeDeVeiculos}" ></hermes:campoNumeroInteiro>
 				<br /><br />
-				<hermes:campoMoeda label="Renda Mensal Comprovada" id="cliente.perfilDoCliente.rendaMensalComprovada" value="${cliente.perfilDoCliente.rendaMensalComprovada}"></hermes:campoMoeda>
+				<fmt:formatNumber value="${cliente.perfilDoCliente.rendaMensalComprovada}" minFractionDigits="2" type="currency" var="rendaMensalComprovada"/>
+				<hermes:campoMoeda label="Renda Mensal Comprovada" id="rendaMensalComprovada" name="cliente.perfilDoCliente.rendaMensalComprovada" value="${rendaMensalComprovada}"></hermes:campoMoeda>
 				<br /><br />
-				<hermes:campoMoeda label="Salário" id="cliente.perfilDoCliente.salario" value="${cliente.perfilDoCliente.salario}"></hermes:campoMoeda>	
+				<fmt:formatNumber value="${cliente.perfilDoCliente.salario}" minFractionDigits="2" type="currency" var="salario"/>
+				<hermes:campoMoeda label="Salário" id="salario" name="cliente.perfilDoCliente.salario" value="${salario}"></hermes:campoMoeda>	
 				<br /><br />
 				<fmt:formatDate value="${cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual.time}" var="dataDeEntradaNoEmpregoAtual" pattern="dd/MM/yyyy"/>
 				<hermes:campoData id="cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual" label="Data de Entrada no Emprego Atual:" value="${dataDeEntradaNoEmpregoAtual}" ></hermes:campoData>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.tipoDeVinculoComCredor">Tipo de Vínculo com o Credor:</label>
+				<label for="cliente.perfilDoCliente.tipoDeVinculoComCredor">Tipo de Vínculo com o Credor:<span class="fieldRequired">*</span></label>
 				<select name="cliente.perfilDoCliente.tipoDeVinculoComCredor" id="cliente.perfilDoCliente.tipoDeVinculoComCredor">
 					<option value=""></option>
 					<c:forEach items="${tipoDeVinculoComCredorList}" var="tipoDeVinculoComCredor">  
@@ -94,7 +95,8 @@
 				<dir id="divBensImoveis">
 					 <c:forEach items="${cliente.perfilDoCliente.bensImoveis}" var="bemImovel" varStatus="s">  
 					 	<div class="divBemImovel">
-							<hermes:campoMoeda label="Valor:" id="cliente.perfilDoCliente.bensImoveis[${s.index}].valor" value="${bemImovel.valor}"></hermes:campoMoeda>
+					 		<fmt:formatNumber value="${bemImovel.valor}" minFractionDigits="2" type="currency" var="valor"/>
+							<hermes:campoMoeda label="Valor:" id="valorBemImovel${s.index}" name="cliente.perfilDoCliente.bensImoveis[${s.index}].valor" value="${valor}"></hermes:campoMoeda>
 							<hermes:campoCheckBox label="Possui Ônus:" id="cliente.perfilDoCliente.bensImoveis[${s.index}].possuiOnus" value="${bemImovel.possuiOnus}"></hermes:campoCheckBox>
 							<input type="button" class="btnRemoveBemImovel" value="-" />
 						</div> 
@@ -103,7 +105,7 @@
 				</fieldset>
 				<fieldset>
 				<legend>Endereço</legend>
-				<label for="cliente.perfilDoCliente.endereco.tipoDeLogradouro">Tipo de Logradouro:</label>
+				<label for="cliente.perfilDoCliente.endereco.tipoDeLogradouro">Tipo de Logradouro:<span class="fieldRequired">*</span></label>
 				<select name="cliente.perfilDoCliente.endereco.tipoDeLogradouro" id="cliente.perfilDoCliente.endereco.tipoDeLogradouro">
 					<option value=""></option>
 					<c:forEach items="${tipoDeLogradouroList}" var="tipoDeLogradouro">
@@ -121,7 +123,7 @@
 				<br /><br />
 				<hermes:campoTexto label="Município:" id="cliente.perfilDoCliente.endereco.municipio" value="${cliente.perfilDoCliente.endereco.municipio}"></hermes:campoTexto>
 				<br /><br />
-				<label for="cliente.perfilDoCliente.endereco.uf">UF:</label>
+				<label for="cliente.perfilDoCliente.endereco.uf">UF:<span class="fieldRequired">*</span></label>
 				<select name="cliente.perfilDoCliente.endereco.uf" id="cliente.perfilDoCliente.endereco.uf">
 					<option value=""></option>
 					<c:forEach items="${ufs}" var="uf">  
@@ -133,5 +135,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/clientes/lista"/>'">Voltar</button>	
 			<button type="submit">Enviar</button>	
 		</fieldset>
+		<span class="fieldRequired">* Os campos marcados são obrigatórios</span> 
 	</form>
 <%@ include file="/footer.jsp" %>

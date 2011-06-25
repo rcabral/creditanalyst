@@ -148,6 +148,12 @@ public class PropostasController {
 		Proposta proposta = dao.carrega(id);
 		result.forwardTo(this).formulario(proposta);
 	}
+	
+	public void visualiza(Long id) {
+		Proposta proposta = dao.carrega(id);
+		result.include("bancoList", bancoDAO.lista());
+		result.include("proposta", proposta);
+	}
 
 	public void altera(Proposta proposta) throws SecurityException,
 			IllegalArgumentException, NoSuchMethodException,

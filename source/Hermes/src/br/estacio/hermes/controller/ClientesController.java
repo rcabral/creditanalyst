@@ -39,19 +39,12 @@ public class ClientesController {
 	}
 
 	public void formulario(Cliente cliente) {
-		result.include("nivelDeInstrucaoList", NivelDeInstrucao.values());
-		result.include("profissaoList", profissaoDAO.lista());
-		result.include("tipoDeLogradouroList", TipoDeLogradouro.values());
-		result.include("sexoList", Sexo.values());
-		result.include("estadoCivilList", EstadoCivil.values());
-		result.include("tipoDeVinculoComCredorList",
-				TipoDeVinculoComCredor.values());
-		result.include("tipoDeResidenciaList", TipoDeResidencia.values());
-		result.include("ufs", Uf.values());
+		incluiListas();
 		result.include("cliente", cliente);
 	}
 
 	public void adiciona(Cliente cliente) {
+		incluiListas();
 		validator.validate(cliente);
 		validator.onErrorUsePageOf(this).formulario(cliente);
 		dao.salva(cliente);
@@ -64,6 +57,7 @@ public class ClientesController {
 	}
 
 	public void altera(Cliente cliente) {
+		incluiListas();
 		validator.validate(cliente);
 		validator.onErrorUsePageOf(this).formulario(cliente);
 		dao.atualiza(cliente);
@@ -82,5 +76,17 @@ public class ClientesController {
 		proposta.setCliente(cliente);
 		result.forwardTo(PropostasController.class).formulario(proposta);
 	}
+	
+	public void incluiListas() {
+		result.include("nivelDeInstrucaoList", NivelDeInstrucao.values());
+		result.include("profissaoList", profissaoDAO.lista());
+		result.include("tipoDeLogradouroList", TipoDeLogradouro.values());
+		result.include("sexoList", Sexo.values());
+		result.include("estadoCivilList", EstadoCivil.values());
+		result.include("tipoDeVinculoComCredorList",TipoDeVinculoComCredor.values());
+		result.include("tipoDeResidenciaList", TipoDeResidencia.values());
+		result.include("ufs", Uf.values());
+	}
+	
 
 }
