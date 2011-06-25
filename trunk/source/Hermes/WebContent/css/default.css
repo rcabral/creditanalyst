@@ -87,7 +87,7 @@ label{
 	margin-right: 5px;
 }
 
-.btnEditarItem, .btnExcluirItem{
+.btnEditarItem,.btnExcluirItem,.btnVisualizarItem,.btnNovaProposta{
 	border: none;
 }
 
