@@ -10,6 +10,7 @@
 <c:if test="${empty required || required}">
 	<span class="fieldRequired">*</span>
 </c:if>
+</label>
 <c:if test="${empty name}">
 	<c:set var="name" value="${id}"></c:set>
 </c:if>

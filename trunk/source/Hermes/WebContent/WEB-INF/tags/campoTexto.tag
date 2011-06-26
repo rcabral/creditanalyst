@@ -9,6 +9,7 @@
 <c:if test="${empty required || required}">
 	<span class="fieldRequired">*</span>
 </c:if>
+</label>
 <input type="text" id="${id}" name="${id}" value="${value}"
 <c:if test="${readOnly}">
 	readonly="readonly"	
