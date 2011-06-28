@@ -5,6 +5,8 @@
 <%@ attribute name="label" required="true" %>
 <%@ attribute name="value" required="false" %>
 <%@ attribute name="required" required="false" %>
+<%@ attribute name="readOnly" required="false" %>
+
 <label for="${id}">${label}
 <c:if test="${empty required || required}">
 	<span class="fieldRequired">*</span>
@@ -13,7 +15,11 @@
 <c:if test="${empty name}">
 	<c:set var="name" value="${id}"></c:set>
 </c:if>
-<input type="text" id="${id}" name="${name}" class="data" value="${value}" />
+<input type="text" id="${id}" name="${name}" class="data <c:if test='${readOnly}'> readOnly</c:if>"
+<c:if test="${readOnly}">
+	readonly="readonly"	
+</c:if>
+ value="${value}" />
 
 
 
