@@ -19,13 +19,13 @@
 				<hermes:campoMoeda label="Valor:" id="valor" name="proposta.valor" value="${valor}"></hermes:campoMoeda>
 				<br /><br />
 				<fmt:formatNumber value="${proposta.quantidadeDeParcelas}" type="number" var="quantidadeDeParcelas"/> 
-				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
+				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" readOnly="true" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
 				<br /><br />
-				<fmt:formatDate value="${proposta.dataDoPrimeiroVencimento.time}" var="dataDoPrimeiroVencimento" pattern="dd/MM/yyyy"/>
+				<fmt:formatDate value="${proposta.dataDoPrimeiroVencimento.time}" var="dataDoPrimeiroVencimento"  pattern="dd/MM/yyyy"/>
 				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" value="${dataDoPrimeiroVencimento}" ></hermes:campoData>
 				<br /><br />
 				<fmt:formatNumber value="${proposta.valorDaPrestacao}" minFractionDigits="2" type="currency" var="valorDaPrestacao"/>  
-				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="false"></hermes:campoMoeda>
+				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="true"></hermes:campoMoeda>
 				<br /><br />
 				<label for="proposta.bancoParaRecebimentoDoCredito.numero">Banco para recebimento:<span class="fieldRequired">*</span></label>
 				<select class="autocomplete" name="proposta.bancoParaRecebimentoDoCredito.numero" id="proposta.bancoParaRecebimentoDoCredito.numero">
@@ -39,5 +39,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/propostas/lista"/>'">Voltar</button>
 			<button type="submit">Enviar</button>	
 		</fieldset>
+		<hermes:campoObrigatorio></hermes:campoObrigatorio>
 	</form>
 <%@ include file="/footer.jsp" %>

@@ -22,12 +22,12 @@
 				<fieldset>
 				<legend>Data de Início</legend>
 				<fmt:formatDate value="${escoragem.dataDeInicioDaAmostragem.time}" var="dataDeInicioDaAmostragem" pattern="dd/MM/yyyy"/>
-				<hermes:campoData label="Data: " id="escoragem.dataDeInicioDaAmostragem" value="${dataDeInicioDaAmostragem}"></hermes:campoData>
+				<hermes:campoData label="Data: " id="escoragem.dataDeInicioDaAmostragem" required="false" value="${dataDeInicioDaAmostragem}"></hermes:campoData>
 				</fieldset>
 				<fieldset>
 				<legend>Data de Fim</legend>
 				<fmt:formatDate value="${escoragem.dataFinalDaAmostragem.time}" var="dataFinalDaAmostragem" pattern="dd/MM/yyyy"/>
-				<hermes:campoData label="Data: " id="escoragem.dataFinalDaAmostragem" value="${dataFinalDaAmostragem}"></hermes:campoData>
+				<hermes:campoData label="Data: " id="escoragem.dataFinalDaAmostragem" required="false" value="${dataFinalDaAmostragem}"></hermes:campoData>
 				</fieldset>
 			</fieldset>	
 			<fieldset>
@@ -55,7 +55,7 @@
 										</c:forEach>
 									</select>
 									<label for="">Resposta:</label>
-									<input class="resposta" type="text" id="escoragem.regrasDeInferencia[${s.index}].resposta" name="escoragem.regrasDeInferencia[${s.index}].resposta" class="texto" value="${escoragem.regrasDeInferencia[s.index].resposta}" />
+									<input class="texto resposta" type="text" id="escoragem.regrasDeInferencia[${s.index}].resposta" name="escoragem.regrasDeInferencia[${s.index}].resposta" value="${escoragem.regrasDeInferencia[s.index].resposta}" />
 								</div>
 							</c:if>
 						</div>
@@ -79,5 +79,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/escoragens/lista"/>'">Voltar</button>
 			<button type="submit">Treinar Rede e Salvar</button>	
 		</fieldset>
+		<hermes:campoObrigatorio></hermes:campoObrigatorio>
 	</form>
 <%@ include file="/footer.jsp" %>

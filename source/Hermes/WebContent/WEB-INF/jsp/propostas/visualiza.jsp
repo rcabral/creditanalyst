@@ -16,16 +16,16 @@
 			<fieldset>
 				<legend>Dados do Crédito</legend>
 				<fmt:formatNumber value="${proposta.valor}" minFractionDigits="2" type="currency" var="valor"/> 
-				<hermes:campoMoeda label="Valor:" id="valor" name="proposta.valor" value="${valor}"></hermes:campoMoeda>
+				<hermes:campoMoeda readOnly="true" label="Valor:" id="valor"  name="proposta.valor" value="${valor}"></hermes:campoMoeda>
 				<br /><br />
 				<fmt:formatNumber value="${proposta.quantidadeDeParcelas}" type="number" var="quantidadeDeParcelas"/> 
-				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
+				<hermes:campoNumeroInteiro readOnly="true" label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
 				<br /><br />
 				<fmt:formatDate value="${proposta.dataDoPrimeiroVencimento.time}" var="dataDoPrimeiroVencimento" pattern="dd/MM/yyyy"/>
-				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" value="${dataDoPrimeiroVencimento}" ></hermes:campoData>
+				<hermes:campoData readOnly="true" label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" value="${dataDoPrimeiroVencimento}" ></hermes:campoData>
 				<br /><br />
 				<fmt:formatNumber value="${proposta.valorDaPrestacao}" minFractionDigits="2" type="currency" var="valorDaPrestacao"/>  
-				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="false"></hermes:campoMoeda>
+				<hermes:campoMoeda label="Valor da Prestação:" id="valorDaPrestacao" value="${valorDaPrestacao}" name="proposta.valorDaPrestacao" readOnly="true"></hermes:campoMoeda>
 				<br /><br />
 				<label for="proposta.bancoParaRecebimentoDoCredito.numero">Banco para recebimento:<span class="fieldRequired">*</span></label>
 				<select class="autocomplete" name="proposta.bancoParaRecebimentoDoCredito.numero" id="proposta.bancoParaRecebimentoDoCredito.numero">

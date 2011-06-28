@@ -7,5 +7,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/profissoes/lista"/>'">Voltar</button>
 			<button type="submit">Enviar</button>
 		</fieldset>
+		<hermes:campoObrigatorio></hermes:campoObrigatorio>
 	</form>
 <%@ include file="/footer.jsp" %>

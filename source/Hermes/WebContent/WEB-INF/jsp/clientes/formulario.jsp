@@ -59,11 +59,11 @@
 				<br /><br />
 				<hermes:campoNumeroInteiro label="Tempo de Residencia em Anos:" id="cliente.perfilDoCliente.tempoDeResidenciaAtualEmAnos" value="${cliente.perfilDoCliente.tempoDeResidenciaAtualEmAnos}" ></hermes:campoNumeroInteiro>
 				<br /><br />
-				<hermes:campoTelefone label="Telefone Residencial:" idDDD="cliente.perfilDoCliente.telefoneResidencial.ddd" idTelefone="cliente.perfilDoCliente.telefoneResidencial.numero" valueTelefone="${cliente.perfilDoCliente.telefoneResidencial.numero}" valueDDD="${cliente.perfilDoCliente.telefoneResidencial.ddd}"></hermes:campoTelefone>
+				<hermes:campoTelefone label="Telefone Residencial:" required="false" idDDD="cliente.perfilDoCliente.telefoneResidencial.ddd" idTelefone="cliente.perfilDoCliente.telefoneResidencial.numero" valueTelefone="${cliente.perfilDoCliente.telefoneResidencial.numero}" valueDDD="${cliente.perfilDoCliente.telefoneResidencial.ddd}"></hermes:campoTelefone>
 				<br /><br />
-				<hermes:campoTelefone label="Telefone Celular:" idDDD="cliente.perfilDoCliente.telefoneCelular.ddd" idTelefone="cliente.perfilDoCliente.telefoneCelular.numero" valueTelefone="${cliente.perfilDoCliente.telefoneCelular.numero}" valueDDD="${cliente.perfilDoCliente.telefoneCelular.ddd}"></hermes:campoTelefone>
+				<hermes:campoTelefone label="Telefone Celular:" required="false" idDDD="cliente.perfilDoCliente.telefoneCelular.ddd" idTelefone="cliente.perfilDoCliente.telefoneCelular.numero" valueTelefone="${cliente.perfilDoCliente.telefoneCelular.numero}" valueDDD="${cliente.perfilDoCliente.telefoneCelular.ddd}"></hermes:campoTelefone>
 				<br /><br />
-				<hermes:campoEmail label="Email:" id="cliente.perfilDoCliente.email" value="${cliente.perfilDoCliente.email}"></hermes:campoEmail>
+				<hermes:campoEmail label="Email:" required="false" id="cliente.perfilDoCliente.email" value="${cliente.perfilDoCliente.email}"></hermes:campoEmail>
 				<br /><br />
 				<hermes:campoNumeroInteiro label="Quantidade de Veículos:" id="cliente.perfilDoCliente.quantidadeDeVeiculos" value="${cliente.perfilDoCliente.quantidadeDeVeiculos}" ></hermes:campoNumeroInteiro>
 				<br /><br />
@@ -74,7 +74,7 @@
 				<hermes:campoMoeda label="Salário" id="salario" name="cliente.perfilDoCliente.salario" value="${salario}"></hermes:campoMoeda>	
 				<br /><br />
 				<fmt:formatDate value="${cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual.time}" var="dataDeEntradaNoEmpregoAtual" pattern="dd/MM/yyyy"/>
-				<hermes:campoData id="cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual" label="Data de Entrada no Emprego Atual:" value="${dataDeEntradaNoEmpregoAtual}" ></hermes:campoData>
+				<hermes:campoData id="cliente.perfilDoCliente.dataDeEntradaNoEmpregoAtual" required="false" label="Data de Entrada no Emprego Atual:" value="${dataDeEntradaNoEmpregoAtual}" ></hermes:campoData>
 				<br /><br />
 				<label for="cliente.perfilDoCliente.tipoDeVinculoComCredor">Tipo de Vínculo com o Credor:<span class="fieldRequired">*</span></label>
 				<select name="cliente.perfilDoCliente.tipoDeVinculoComCredor" id="cliente.perfilDoCliente.tipoDeVinculoComCredor">
@@ -96,7 +96,7 @@
 					 <c:forEach items="${cliente.perfilDoCliente.bensImoveis}" var="bemImovel" varStatus="s">  
 					 	<div class="divBemImovel">
 					 		<fmt:formatNumber value="${bemImovel.valor}" minFractionDigits="2" type="currency" var="valor"/>
-							<hermes:campoMoeda label="Valor:" id="valorBemImovel${s.index}" name="cliente.perfilDoCliente.bensImoveis[${s.index}].valor" value="${valor}"></hermes:campoMoeda>
+							<hermes:campoMoeda label="Valor:" id="valorBemImovel${s.index}" required="false" name="cliente.perfilDoCliente.bensImoveis[${s.index}].valor" value="${valor}"></hermes:campoMoeda>
 							<hermes:campoCheckBox label="Possui Ônus:" id="cliente.perfilDoCliente.bensImoveis[${s.index}].possuiOnus" value="${bemImovel.possuiOnus}"></hermes:campoCheckBox>
 							<input type="button" class="btnRemoveBemImovel" value="-" />
 						</div> 
@@ -135,6 +135,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/clientes/lista"/>'">Voltar</button>	
 			<button type="submit">Enviar</button>	
 		</fieldset>
-		<span class="fieldRequired">* Os campos marcados são obrigatórios</span> 
+		<hermes:campoObrigatorio></hermes:campoObrigatorio> 
 	</form>
 <%@ include file="/footer.jsp" %>
