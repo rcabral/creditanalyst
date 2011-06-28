@@ -23,5 +23,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/regras/lista"/>'">Voltar</button>
 			<button type="submit">Gravar</button>	
 		</fieldset>
+		<hermes:campoObrigatorio></hermes:campoObrigatorio>
 	</form>
 <%@ include file="/footer.jsp" %>

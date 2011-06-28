@@ -1,7 +1,7 @@
 <%@ include file="/header.jsp" %> 
 	<form>
 		<fieldset>
-			<legend>&nbsp;Lista de Bancos:<a class="linkMais" href="<c:url value="/bancos/formulario"/>"><img class="btnMais" alt="mais" title="mais" src="<c:url value="/images/mais.png"/>" /></a></legend>
+			<legend>&nbsp;Lista de Bancos:<a class="linkMais" href="<c:url value="/bancos/novo"/>"><img class="btnMais" alt="mais" title="mais" src="<c:url value="/images/mais.png"/>" /></a></legend>
 			<hermes:formularioDeBusca></hermes:formularioDeBusca>
 			<table>
 				<thead>

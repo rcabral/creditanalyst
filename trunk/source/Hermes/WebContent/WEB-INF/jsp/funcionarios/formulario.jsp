@@ -57,7 +57,7 @@
 				<legend>Credencial</legend>
 				<hermes:campoTexto label="Login:" id="funcionario.login" value="${funcionario.login}"></hermes:campoTexto>
 				<br /><br />
-				<hermes:campoSenha label="Senha:" id="funcionario.senha"></hermes:campoSenha>
+				<hermes:campoSenha label="Senha:" id="funcionario.senha" name="funcionario.senha"></hermes:campoSenha>
 				<br /><br />
 				<label for="funcionario.cargo">Cargo:<span class="fieldRequired">*</span></label>
 				<select name="funcionario.cargo" id="funcionario.cargo">
@@ -71,5 +71,6 @@
 			<button type="button" onclick="javascript:window.location='<c:url value="/funcionarios/lista"/>'">Voltar</button>	
 			<button type="submit">Enviar</button>	
 		</fieldset>
+		<hermes:campoObrigatorio></hermes:campoObrigatorio>
 	</form>
 <%@ include file="/footer.jsp" %>
