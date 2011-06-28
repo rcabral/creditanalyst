@@ -17,7 +17,7 @@ $(document).ready(function() {
 		regraHTML     += 			$('#divOptionsComparador').html();
 		regraHTML     += 		'</select>';
 		regraHTML     += 		'<label for="">Resposta:</label>';
-		regraHTML     += 		'<input type="text" id="escoragem.regrasDeInferencia['+indice+'].resposta" name="escoragem.regrasDeInferencia['+indice+'].resposta" class="texto" value="" />';
+		regraHTML     += 		'<input class="texto resposta" id="escoragem.regrasDeInferencia['+indice+'].resposta" name="escoragem.regrasDeInferencia['+indice+'].resposta" class="texto" value="" />';
 		regraHTML     += 	'</div>';
 		regraHTML     += '</div>';
 		
@@ -36,6 +36,7 @@ $(document).ready(function() {
 				atrivutosDeResposta.css("display","none");
 			}
 		});
+		$(".resposta").numeric({allow:"."});		
 	});
 	
 	$(".btnRemoveRegra").click(function() {
