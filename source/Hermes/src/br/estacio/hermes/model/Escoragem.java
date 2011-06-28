@@ -11,24 +11,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
-
-
-
-
 
 @Entity
 public class Escoragem {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotNull(message = "{validator.notEmpty}")
 	@OneToMany(cascade = { CascadeType.ALL })
 	private List<RegraDeInferencia> regrasDeInferencia;
-	@NotEmpty(message="{validator.notEmpty}")
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String nome;
-	@NotEmpty(message="{validator.notEmpty}")
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String descricao;
 	private Calendar dataDeInicioDaAmostragem;
 	private Calendar dataFinalDaAmostragem;
@@ -81,7 +78,7 @@ public class Escoragem {
 	public void setDataFinalDaAmostragem(Calendar dataFinalDaAmostragem) {
 		this.dataFinalDaAmostragem = dataFinalDaAmostragem;
 	}
-	
+
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -90,79 +87,83 @@ public class Escoragem {
 		this.ativo = ativo;
 	}
 
-	public ArrayList<Double> escorar(Proposta proposta) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException{
-		ArrayList<Double> escore = new ArrayList<Double>(); 
+	public ArrayList<Double> escorar(Proposta proposta)
+			throws SecurityException, NoSuchMethodException,
+			IllegalArgumentException, IllegalAccessException,
+			InvocationTargetException, ClassNotFoundException {
+		ArrayList<Double> escore = new ArrayList<Double>();
 		Class classeProposta = proposta.getClass();
 		double retorno;
-		
+
 		for (RegraDeInferencia regraDeInferencia : this.regrasDeInferencia) {
-			 Method method = classeProposta.getMethod(regraDeInferencia.getRegra().getMetodo());
-			 double retornoDoMetodo = (Double)method.invoke(proposta);
-			 Comparador comparador = regraDeInferencia.getComparador();
-			 double resposta = regraDeInferencia.getResposta();
-			 			 
-			 if(comparador == Comparador.IGUAL){
-				 if(retornoDoMetodo==resposta){
-					 retorno = 1;
-				 }else{
-					 retorno = 0;
-				 }
-			 }else if (comparador == Comparador.DIFERENTE) {
-				 if(retornoDoMetodo!=resposta){
-					 retorno = 1;
-				 }else{
-					 retorno = 0;
-				 }
-			 } else if (comparador == Comparador.MAIOR) {
-				 if(retornoDoMetodo > resposta){
-					 retorno = 1;
-				 }else{
-					 if(resposta==0){
-						 retorno = 0;
-					 }else{
-						 retorno = retornoDoMetodo/resposta;
-					 }
-				 }
-			 } else if (comparador == Comparador.MAIOR_IGUAL) {
-				 if(retornoDoMetodo >= resposta){
-					 retorno = 1;
-				 }else{
-					 if(resposta==0){
-						 retorno = 0;
-					 }else{
-						 retorno = retornoDoMetodo/resposta;
-					 }
-				 }	 
-			 } else if (comparador == Comparador.MENOR) {
-				 if(retornoDoMetodo < resposta){
-					 retorno = 1;
-				 }else{
-					 if(retornoDoMetodo==0){
-						 retorno = 0;
-					 }else{
-						 retorno = resposta/retornoDoMetodo;
-						 
-					 }
-				 }
-			 } else if (comparador == Comparador.MENOR_IGUAL) {
-				 if(retornoDoMetodo <= resposta){
-					 retorno = 1;
-				 }else{
-					 if(retornoDoMetodo==0){
-						 retorno = 0;
-					 }else{
-						 retorno = resposta/retornoDoMetodo;
-						 
-					 }
-				 }	 
-			 }else {
-				 retorno = retornoDoMetodo;
-			 }
-			 
-			 escore.add(retorno);
-		
+			Method method = classeProposta.getMethod(regraDeInferencia
+					.getRegra().getMetodo());
+			double retornoDoMetodo = (Double) method.invoke(proposta);
+			Comparador comparador = regraDeInferencia.getComparador();
+			double resposta = regraDeInferencia.getResposta();
+
+			if (comparador == Comparador.IGUAL) {
+				if (retornoDoMetodo == resposta) {
+					retorno = 1;
+				} else {
+					retorno = 0;
+				}
+			} else if (comparador == Comparador.DIFERENTE) {
+				if (retornoDoMetodo != resposta) {
+					retorno = 1;
+				} else {
+					retorno = 0;
+				}
+			} else if (comparador == Comparador.MAIOR) {
+				if (retornoDoMetodo > resposta) {
+					retorno = 1;
+				} else {
+					if (resposta == 0) {
+						retorno = 0;
+					} else {
+						retorno = retornoDoMetodo / resposta;
+					}
+				}
+			} else if (comparador == Comparador.MAIOR_IGUAL) {
+				if (retornoDoMetodo >= resposta) {
+					retorno = 1;
+				} else {
+					if (resposta == 0) {
+						retorno = 0;
+					} else {
+						retorno = retornoDoMetodo / resposta;
+					}
+				}
+			} else if (comparador == Comparador.MENOR) {
+				if (retornoDoMetodo < resposta) {
+					retorno = 1;
+				} else {
+					if (retornoDoMetodo == 0) {
+						retorno = 0;
+					} else {
+						retorno = resposta / retornoDoMetodo;
+
+					}
+				}
+			} else if (comparador == Comparador.MENOR_IGUAL) {
+				if (retornoDoMetodo <= resposta) {
+					retorno = 1;
+				} else {
+					if (retornoDoMetodo == 0) {
+						retorno = 0;
+					} else {
+						retorno = resposta / retornoDoMetodo;
+
+					}
+				}
+			} else {
+				retorno = retornoDoMetodo;
+			}
+
+			escore.add(retorno);
+
 		}
-		
+
 		return escore;
 	}
 

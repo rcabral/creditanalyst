@@ -43,6 +43,8 @@ public class FuncionariosController {
 		validator.validate(funcionario);
 		validator.onErrorUsePageOf(this).formulario(funcionario);
 		dao.salva(funcionario);
+		funcionario.setMatricula("FINICRED-" + funcionario.getId());
+		dao.atualiza(funcionario);
 		result.redirectTo(this).lista();
 	}
 

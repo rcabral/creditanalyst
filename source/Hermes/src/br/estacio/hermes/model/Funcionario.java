@@ -11,6 +11,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.estacio.hermes.interceptor.Credencial;
 import br.estacio.hermes.util.Md5;
@@ -24,11 +29,15 @@ public class Funcionario extends PessoaFisica {
 	@GeneratedValue
 	private Long id;
 	private String matricula;
+	@NotNull(message="{validator.notEmpty}")
 	@OneToOne(cascade = { CascadeType.ALL })
 	private Endereco endereco;
+	@NotNull(message="{validator.notEmpty}")
 	@Enumerated(EnumType.STRING)
 	private Cargo cargo;
+	@NotEmpty(message="{validator.notEmpty}")
 	private String login;
+	@NotEmpty(message="{validator.notEmpty}")
 	private String senha;
 
 	public Long getId() {
@@ -72,11 +81,10 @@ public class Funcionario extends PessoaFisica {
 	}
 
 	public String getSenha() {
-		return senha;
+		return this.senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = Md5.md5(senha);
-		;
 	}
 }
