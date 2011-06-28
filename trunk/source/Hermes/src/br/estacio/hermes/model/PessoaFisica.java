@@ -5,23 +5,28 @@ import java.util.Calendar;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.caelum.stella.bean.validation.CPF;
 
-//import javax.validation.constraints.NotNull;
+
 
 
 
 
 @MappedSuperclass
 public abstract class PessoaFisica {
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String nome;
-	@NotEmpty @CPF
+	@NotEmpty(message = "{validator.notEmpty}") @CPF
 	private String cpf;
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String rg;
+	@NotNull(message="{validator.notEmpty}")
 	private Calendar dataDeNascimento;
+	@NotNull(message="{validator.notEmpty}")
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 

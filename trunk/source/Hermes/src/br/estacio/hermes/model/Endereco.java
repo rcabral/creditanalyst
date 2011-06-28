@@ -7,6 +7,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Endereco {
@@ -14,12 +17,19 @@ public class Endereco {
 	@GeneratedValue
 	private Long id;
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="{validator.notEmpty}")
 	private TipoDeLogradouro tipoDeLogradouro;
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String nomeDoLogrado;
+	@NotNull(message="{validator.notEmpty}")
 	private int numero;
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String bairro;
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String cep;
+	@NotEmpty(message = "{validator.notEmpty}")
 	private String municipio;
+	@NotNull(message="{validator.notEmpty}")
 	@Enumerated(EnumType.STRING)
 	private Uf uf;
 

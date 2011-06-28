@@ -10,9 +10,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Banco {
 	@Id
-	@NotNull
+	@NotNull(message="{validator.notEmpty}")
 	private Long numero;
-	@NotEmpty
+	@NotEmpty(message="{validator.notEmpty}")
 	private String nome;
 
 	public Long getNumero() {

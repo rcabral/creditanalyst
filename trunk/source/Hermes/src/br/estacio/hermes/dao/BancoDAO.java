@@ -22,7 +22,7 @@ private Session session;
 		this.session.delete(objtect);
 	}
 	public Banco carrega(Long id){
-		return (Banco)this.session.load(Banco.class,id);
+		return (Banco)this.session.get(Banco.class,id);
 		
 	}
 	public void atualiza(Banco objtect){
