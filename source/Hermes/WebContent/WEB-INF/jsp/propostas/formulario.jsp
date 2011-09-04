@@ -19,7 +19,7 @@
 				<hermes:campoMoeda label="Valor:" id="valor" name="proposta.valor" value="${valor}"></hermes:campoMoeda>
 				<br /><br />
 				<fmt:formatNumber value="${proposta.quantidadeDeParcelas}" type="number" var="quantidadeDeParcelas"/> 
-				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" readOnly="true" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
+				<hermes:campoNumeroInteiro label="Quantidade de Parcelas:" value="${quantidadeDeParcelas}" id="quantidadeDeParcelas" name="proposta.quantidadeDeParcelas"></hermes:campoNumeroInteiro>
 				<br /><br />
 				<fmt:formatDate value="${proposta.dataDoPrimeiroVencimento.time}" var="dataDoPrimeiroVencimento"  pattern="dd/MM/yyyy"/>
 				<hermes:campoData label="Primeiro Vencimento:" id="dataDoPrimeiroVencimento" name="proposta.dataDoPrimeiroVencimento" value="${dataDoPrimeiroVencimento}" ></hermes:campoData>
