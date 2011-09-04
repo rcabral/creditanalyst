@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -24,13 +25,18 @@ public class PerfilDoCliente {
 	private Long id;
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
+	@NotNull(message="{validator.notEmpty}")
 	private int numeroDeDependentes;
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="{validator.notEmpty}")
 	private NivelDeInstrucao nivelDeInstrucao;
 	@OneToOne
+	@NotNull(message="{validator.notEmpty}")
 	private Profissao profissao;
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="{validator.notEmpty}")
 	private TipoDeResidencia tipoDeResidencia;
+	@NotNull(message="{validator.notEmpty}")
 	private int tempoDeResidenciaAtualEmAnos;
 	@OneToOne(cascade = { CascadeType.ALL })
 	private Endereco endereco;
@@ -42,16 +48,21 @@ public class PerfilDoCliente {
 	private Telefone telefoneCelular;
 	@Email
 	private String email;
+	@NotNull(message="{validator.notEmpty}")
 	private int quantidadeDeVeiculos;
 	private double rendaEstimada;
+	@NotNull(message="{validator.notEmpty}")
 	private double rendaMensalComprovada;
+	@NotNull(message="{validator.notEmpty}")
 	private double salario;
 	private Calendar dataDeEntradaNoEmpregoAtual;
 	private TipoDeVinculoEmpregaticio tipoDeVincluloEmpregaticio;
 	@OneToOne(cascade = { CascadeType.ALL })
 	private Conjuge conjuge;
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="{validator.notEmpty}")
 	private TipoDeVinculoComCredor tipoDeVinculoComCredor;
+	@NotNull(message="{validator.notEmpty}")
 	private Calendar dataDeAberturaDaContaMaisAntiga;
 	private boolean possuiChequeEspecial;
 	private boolean possuiSeguroDeAutmovel;

@@ -41,7 +41,9 @@ public class FuncionariosController {
 	public void adiciona(Funcionario funcionario) {
 		incluiListas();
 		validator.validate(funcionario);
+		validator.validate(funcionario.getEndereco());
 		validator.onErrorUsePageOf(this).formulario(funcionario);
+		
 		dao.salva(funcionario);
 		funcionario.setMatricula("FINICRED-" + funcionario.getId());
 		dao.atualiza(funcionario);
@@ -58,7 +60,9 @@ public class FuncionariosController {
 	public void altera(Funcionario funcionario) {
 		incluiListas();
 		validator.validate(funcionario);
+		validator.validate(funcionario.getEndereco());
 		validator.onErrorUsePageOf(this).formulario(funcionario);
+		funcionario.setMatricula("FINICRED-" + funcionario.getId());
 		dao.atualiza(funcionario);
 		result.redirectTo(this).lista();
 	}

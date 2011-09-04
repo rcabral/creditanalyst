@@ -46,6 +46,8 @@ public class ClientesController {
 	public void adiciona(Cliente cliente) {
 		incluiListas();
 		validator.validate(cliente);
+		validator.validate(cliente.getPerfilDoCliente());
+		validator.validate(cliente.getPerfilDoCliente().getEndereco());
 		validator.onErrorUsePageOf(this).formulario(cliente);
 		dao.salva(cliente);
 		result.redirectTo(this).lista();
@@ -59,6 +61,8 @@ public class ClientesController {
 	public void altera(Cliente cliente) {
 		incluiListas();
 		validator.validate(cliente);
+		validator.validate(cliente.getPerfilDoCliente());
+		validator.validate(cliente.getPerfilDoCliente().getEndereco());
 		validator.onErrorUsePageOf(this).formulario(cliente);
 		dao.atualiza(cliente);
 		result.redirectTo(this).lista();
